@@ -1,0 +1,2 @@
+#Aprendizados da semana
+Começamos aprendedo sobre como seria no decorrer da semana e do curso, depois aprendemos a usar o **terminal**, onde foi um trabalho de detetive bem legal e logo após o **git**, e por fim tivemos **tech talk** com apresentações de ex-alunos, depois aula de **empregabilidade** encerrando vimos um pouco do **vsCode**.
