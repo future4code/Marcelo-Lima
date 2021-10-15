@@ -153,13 +153,67 @@
 // let numeroChutado = Number(prompt("Digite o número que você acha que a outra pessoa pensou!"))
 
 
-// while(numeroChutado !== numeroPensado) {
-//     let diferenca
-//     if (numeroChutado > numeroPensado){
-//         diferenca = "menor"
-//     } else {
-//         diferenca = "maior"
+// let numeroPensado = Number(prompt("Digite um número!"))
+// let numeroChutado = Number(prompt("Digite o número que você acha que a outra pessoa pensou!"))
+
+// function imprimirBilhete (num2, num1){
+//     console.log("Vamos jogar!")
+//     let tentativas = 0
+//     while(num2 !== num1) {
+        
+        
+//         let diferenca
+//         if (num2 > num1){
+//             diferenca = "menor"
+//             tentativas += 1
+//             console.log(`O número chutado foi: ${num2}`)
+//         } else {
+//             diferenca = "maior"
+//             tentativas += 1
+//             console.log(`O número chutado foi: ${num2}`)
+//         }
+//         console.log(`Errrrrrrrou, é ${diferenca}`)
+//         num2 = Number(prompt("Digite outro número"))
+        
 //     }
-//     console.log(`Errrrrrrrou, é ${diferenca}`)
-//     numeroChutado = Number(prompt("Digite outro número"))
+//     console.log(`ACERTOOOOOOOOU!!!`)
+//     console.log(`O número de tentativas foi: ${tentativas}`)
 // }
+
+// imprimirBilhete(numeroChutado, numeroPensado)
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 2. Uma das principais características de uma boa pessoa programadora é conseguir resolver seus problemas independentemente. Queremos que você comece a 
+// treinar isso a partir de hoje! Então, vamos pedir para que você faça uma alteração no código acima. Agora, ao invés de ter 2 jogadores, haverá um só; e 
+// o seu adversário será o computador. A ideia é: ao iniciar o jogo, você deve sortear um número aleatório (entre 1 e 100) e o usuário terá que ficar 
+// chutando o valor até acertar. Mantenha as demais funcionalidades e mensagens pedidas no exercício anterior.
+
+// Quando resolver o exercício, pare e faça a seguinte reflexão: foi fácil fazer esta alteração? O que você poderia ter feito para que fosse mais fácil? 
+// Deixe comentários no seu código sobre esta reflexão.
+
+// let num1 = Math.round(Math.random() * 100)
+// let num2 = Number(prompt("Digite o número que você acha que a outra pessoa pensou!"))
+
+
+//     console.log("Vamos jogar!")
+//     let tentativas = 1
+//     while(num2 !== num1) {
+        
+        
+//         let diferenca
+//         if (num2 > num1){
+//             diferenca = "menor"
+//             tentativas += 1
+//             console.log(`O número chutado foi: ${num2}`)
+//         } else {
+//             diferenca = "maior"
+//             tentativas += 1
+//             console.log(`O número chutado foi: ${num2}`)
+//         }
+//         console.log(`Errrrrrrrou, é ${diferenca}`)
+//         num2 = Number(prompt("Digite outro número"))
+        
+//     }
+//     console.log(`ACERTOOOOOOOOU!!!`)
+//     console.log(`O número de tentativas foi: ${tentativas}`)
