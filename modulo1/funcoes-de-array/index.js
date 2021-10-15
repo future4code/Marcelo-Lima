@@ -167,8 +167,13 @@
 //     item.preco = item.preco - item.preco * 5 /100
 //     return item
 // }
-// const precosComDescontos = produtos.map(colocarDesconto)
+// const precosComDescontos = produtos.map(colocarDesconto).map((item) =>{
+//     return {nome: item.nome, preco: item.preco}
+// })
+
+
 // console.log(precosComDescontos)
+
 
 
 
