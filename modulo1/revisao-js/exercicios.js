@@ -146,17 +146,30 @@ function retornaPessoaAnonimizada(pessoa) {
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+    let saberPessoas= (pessoas) => {
+        if(pessoas.altura > 1.5 && pessoas.idade > 14 && pessoas.idade< 60){
+            return pessoas
+        }
+    }
+    let pessoasAutorizadas = pessoas.filter(saberPessoas)
+    return pessoasAutorizadas
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    let saberPessoas= (pessoas) => {
+        if(pessoas.altura <= 1.5 || pessoas.idade <= 14 || pessoas.idade >= 60){
+            return pessoas
+        }
+    }
+    let pessoasNaoAutorizadas = pessoas.filter(saberPessoas)
+    console.log(pessoasNaoAutorizadas)
+    return pessoasNaoAutorizadas
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    
 }
 
 // EXERCÍCIO 15A
