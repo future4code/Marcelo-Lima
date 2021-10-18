@@ -39,13 +39,14 @@ function retornaNumerosParesElevadosADois(array) {
     const numerosPares = array.filter((item) =>{
         return item % 2 === 0
     }) 
-    let arrayElevado2 = 0
-    let arrayElevado = 0
+    console.log(numerosPares)
+    let numerosElevados = []
+    let numerosMultiplicados = []
     for(let i=0; i<numerosPares.length; i++){
-        arrayElevado = numerosPares[i] ** 2
-        arrayElevado2[0] += arrayElevado
+        numerosMultiplicados = numerosPares[i] ** 2
+        numerosElevados.push(numerosMultiplicados) 
     }
-    return arrayElevado2
+    return numerosElevados
 }
 
 // EXERCÍCIO 06
