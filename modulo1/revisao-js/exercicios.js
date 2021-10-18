@@ -10,12 +10,16 @@ function retornaTamanhoArray(array) {
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
-    array.reverse()
-    return array
-    // let arrayInvertido = []
-    // for(let i=array.length; i >= 0; i--){
-    //     arrayInvertido.push(i)
-    // } return arrayInvertido
+    // array.reverse()
+    // return array
+
+
+// DESAFIO
+    let arrayInvertido = []
+    for(let i=array.length -1; i >= 0; i--){
+        arrayInvertido.push(array[i])
+    } 
+    return arrayInvertido
 } 
 
 // EXERCÍCIO 03
@@ -51,17 +55,22 @@ function retornaNumerosParesElevadosADois(array) {
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    let maior = 0
+    for(let numero of array){
+        if(numero > maior) {
+            maior = numero
+        }
+    }
+    return maior
 }
-
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
-
+    
 }
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+
 }
 
 // EXERCÍCIO 09
