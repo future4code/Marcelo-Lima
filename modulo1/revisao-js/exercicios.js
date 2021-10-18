@@ -10,6 +10,7 @@ function retornaTamanhoArray(array) {
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
+    // Usando o reverse()
     // array.reverse()
     // return array
 
@@ -43,7 +44,6 @@ function retornaNumerosParesElevadosADois(array) {
     const numerosPares = array.filter((item) =>{
         return item % 2 === 0
     }) 
-    console.log(numerosPares)
     let numerosElevados = []
     let numerosMultiplicados = []
     for(let i=0; i<numerosPares.length; i++){
@@ -100,20 +100,13 @@ function retornaNPrimeirosPares(n) {
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-    let resultado = ""
-    if(ladoA === ladoB && ladoA === ladoB && ladoB === ladoC){
-        resultado = "Equilátero"
-    } else if(ladoA === ladoB && ladoB < ladoC){
-        resultado = "Isósceles"
-    } else if(ladoA === ladoC && ladoC < ladoB){
-        resultado = "Isósceles"
-    }else if(ladoA < ladoB && ladoB === ladoC){
-        resultado = "Isósceles"
-    }else{
-        resultado = "Escaleno"
+    if(ladoA === ladoB && ladoA === ladoC && ladoB === ladoC){
+        return "Equilátero"
+    } else if(ladoA === ladoB || ladoA === ladoC || ladoB === ladoC){
+        return "Isósceles"
+    } else if(ladoA !== ladoB && ladoB !== ladoC && ladoA !== ladoC){
+        return "Escaleno"
     }
-    console.log(resultado)
-    return resultado
 }
 
 // EXERCÍCIO 10
@@ -163,7 +156,6 @@ function retornaPessoasNaoAutorizadas(pessoas) {
         }
     }
     let pessoasNaoAutorizadas = pessoas.filter(saberPessoas)
-    console.log(pessoasNaoAutorizadas)
     return pessoasNaoAutorizadas
 }
 
@@ -179,10 +171,17 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+    consultas.sort(function(a, b){
+        if(a.nome>b.nome) return 1
+        if(a.nome<b.nome) return -1
+    })
+    return consultas
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+   return consultas.sort((primeira, segunda) =>{
+       return new Date(primeira.dataDaConsulta.split("/").reverse()).getTime() - new Date(segunda.dataDaConsulta.
+       split("/").reverse()).getTime()
+   })
 }
