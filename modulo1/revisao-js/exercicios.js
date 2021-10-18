@@ -130,7 +130,9 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+    let atores = "Meryl Streep, Anne Hathaway, Emily Blunt, Stanley Tucci"
+    let frase = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${atores}.` 
+    return frase
 }
 
 // EXERCÍCIO 12
