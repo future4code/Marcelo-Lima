@@ -23,19 +23,29 @@ function retornaArrayOrdenado(array) {
   array.sort(function(a, b){
       if(a>b) return 1
       if(a<b) return -1
-      
   })
   return array
 }
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    const numerosPares = array.filter((item) =>{
+        return item % 2 === 0
+    }) 
+    return numerosPares
 }
-
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    const numerosPares = array.filter((item) =>{
+        return item % 2 === 0
+    }) 
+    let arrayElevado2 = 0
+    let arrayElevado = 0
+    for(let i=0; i<numerosPares.length; i++){
+        arrayElevado = numerosPares[i] ** 2
+        arrayElevado2[0] += arrayElevado
+    }
+    return arrayElevado2
 }
 
 // EXERCÍCIO 06
