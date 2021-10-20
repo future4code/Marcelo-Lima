@@ -1,0 +1,111 @@
+/* todas as paginas */
+.cabecalho{
+    text-align: center;
+    background-color: #eeeaea;color: white;
+    background-color: rgb(168, 13, 13);
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* todas as paginas */
+.centralizar-menu{
+    text-align: center;
+    background-color: rgb(143, 158, 157);
+    border: 5px;
+    padding: 5px;
+    
+}
+
+/* todas as paginas */
+.menu{
+    color: rgb(11, 17, 43);
+    font-weight: bold;
+    margin: 30px
+}
+
+/* rodape */
+.imagem-redes-sociais{
+    max-width: 50px;
+}
+
+/* rodape */
+.footer{
+    background-color: rgb(236, 234, 234);
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+    bottom: 0;
+    position: absolute;
+}
+
+/* rodape pagina controle de estoque */
+#footer{
+    background-color: rgb(236, 234, 234);
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+    bottom: 0;
+    position: static;
+}
+
+/* pagina adicionar produto */
+.titulo-adicionar-produto{
+    text-align: center;
+    margin: 50px;
+    margin-bottom: 100px;
+}
+/* pagina adicionar produto */
+.tabela-adidionar-produto{
+    text-align: center;
+}
+/* pagina adicionar produto */
+#texto-link-foto{
+    display:block;
+    margin: 3px;
+}
+/* pagina adicionar produto */
+#texto-descricao{
+    display:block;
+    margin: 3px;
+}
+/* pagina adicionar produto */
+#texto-preco{
+    display: block;
+    margin: 3px;
+}
+/* pagina adicionar produto */
+#texto-quantidade{
+    display:block;
+    margin: 3px;
+}
+/* pagina adicionar produto */
+#botao{
+    margin: 5px;
+}
+
+/* pagina controle de estoque */
+.centralizar-tabela-estoque{
+    text-align: center;
+    width: 600px;
+    margin: auto;
+}
+/* pagina controle de estoque */
+#descricao-estoque{
+    margin: 500px;
+}
+
+/* pagina fincionarios */
+.tabela-funcionarios{
+    text-align: center;
+    margin: auto;
+}
+/* pagina fincionarios */
+.nome-cargo{
+    padding: 10px;
+    background-color: #46b2fa;
+}
+/* pagina fincionarios */
+.cargos-nomes{
+    padding: 5px;
+    background-color: #66bcf5;
+}
