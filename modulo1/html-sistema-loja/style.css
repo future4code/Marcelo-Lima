@@ -82,6 +82,16 @@
 #botao{
     margin: 5px;
 }
+/* pagina adicionar produto */
+.formulario{
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
 /* pagina controle de estoque */
 .centralizar-tabela-estoque{
@@ -98,14 +108,20 @@
 .tabela-funcionarios{
     text-align: center;
     margin: auto;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border: 3px solid black
 }
 /* pagina fincionarios */
 .nome-cargo{
     padding: 10px;
     background-color: #46b2fa;
+    border: 3px solid black
 }
 /* pagina fincionarios */
 .cargos-nomes{
-    padding: 5px;
-    background-color: #66bcf5;
+    padding: 50px;
+    background-color: #b1d4eb;
+    border: 1px solid black
 }
