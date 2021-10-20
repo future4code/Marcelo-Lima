@@ -5,38 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Funcionários</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <p>SuperMotos</p>
-    </div>
-    
-    <div>
-        <a href="/index.html">Página Inicial</a>
-        <a href="/ctrl-estoque.html">Controle de Estoque</a>
-        <a href="/add-produto.html">Adicionar Produto</a>
-        <a href="/funcionarios.html">Funcionários</a>
+    <header>
+        <div class="cabecalho">
+            <p>SuperMotos</p>
+        </div>
+    </header>
+    <div class="centralizar-menu">
+        <a class="menu"href="/index.html">Página Inicial</a>
+        <a class="menu"href="/ctrl-estoque.html">Controle de Estoque</a>
+        <a class="menu"href="/add-produto.html">Adicionar Produto</a>
+        <a class="menu"href="/funcionarios.html">Funcionários</a>
     </div>
 
-    <h2>Funcionários</h2>
+    <h2 class="titulo-adicionar-produto">Funcionários</h2>
     <!-- Crie uma lista de funcionários usando as tags que você aprendeu hoje abaixo \/ -->
-    <table>
-        <tr>
-            <th>Cargo</th>
-            <th>Nome</th>
-        </tr>
-        <tr>
-            <td>Gerente</td>
-            <td>Helena</td>
-        </tr>
-        <tr>
-            <td>Vendedor(a)</td>
-            <td>Alex</td>
-        </tr>
-        <tr>
-            <td>Vendedor(a)</td>
-            <td>Heitor</td>
-        </tr>
-    </table>
+    <div >
+        <form action="">
+            <table class="tabela-funcionarios">
+                <tr>
+                    <th class="nome-cargo">Cargo</th>
+                    <th class="nome-cargo">Nome</th>
+                </tr>
+                <tr >
+                    <td class="cargos-nomes">Gerente</td>
+                    <td class="cargos-nomes">Helena</td>
+                </tr>
+                <tr>
+                    <td class="cargos-nomes">Vendedor(a)</td>
+                    <td class="cargos-nomes">Alex</td>
+                </tr>
+                <tr>
+                    <td class="cargos-nomes">Vendedor(a)</td>
+                    <td class="cargos-nomes">Heitor</td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <p>Siga-nos nas redes sociais!</p>
+            <div>
+                <img class="imagem-redes-sociais"src="https://image.flaticon.com/icons/png/512/25/25305.png"/>
+                <img class="imagem-redes-sociais"src="https://image.flaticon.com/icons/png/512/25/25425.png"/>
+                <img class="imagem-redes-sociais"src="https://image.flaticon.com/icons/png/512/8/8800.png"/>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
