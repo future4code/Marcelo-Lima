@@ -74,11 +74,11 @@ div img {
 }
 
 #container-de-descricao>ol {
-    /* display: block;
+    display: block;
     padding: 50px 0px;
     margin: auto;
     text-align: left;
-    width: 200px; */
+    width: 200px;
 }
 #container-de-descricao>p{
     display: block;
@@ -142,4 +142,9 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+.contaier-da-tabela>table{
+    text-align: center;
+    margin: 0 auto;
 }
