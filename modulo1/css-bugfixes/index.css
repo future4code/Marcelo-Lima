@@ -121,21 +121,28 @@ td button {
     color: black;
 }
 
+td button:hover{
+    background-color: #c2ad51;
+}
+
+td button:active{
+    color: white;
+}
+
 .container-do-search {
-    border: 2px solid black;
     margin-top: 20px;
     height: 100px;
 }
+
 #form-search{
     margin-top: 25px;
 }
+
 .icone {  
     margin: -5px auto;
     width: 20px;
     height: 20px;
 }
-
-
 
 #back-button {
     background-color: white;
