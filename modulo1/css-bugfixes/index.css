@@ -67,7 +67,6 @@ div img {
 
 #container-de-descricao {
     background-color: #2274a5;
-    border: 5px solid black;
     color: white;
     padding: 50px;
 }
@@ -76,7 +75,7 @@ div img {
     display: block;
     padding: 50px 0px;
     margin: auto;
-    text-align: left;
+    text-align: center;
     width: 210px;
 }
 #container-de-descricao>p{
@@ -88,6 +87,7 @@ div img {
 
 #container-para-comprar {
     background-color: #e7eb90;
+    max-height: 400px;
 }
 
 #container-para-comprar>p {
@@ -115,6 +115,7 @@ table {
     width: 60%;
     text-align: center;
     margin: 0 auto;
+    padding: 50px;
 }
 
 td button {
@@ -149,8 +150,9 @@ td button:active{
 
 .icone {  
     margin: -5px auto;
-    width: 20px;
+    width: 25px;
     height: 20px;
+    opacity: 0.7;
 }
 
 #back-button {
@@ -161,6 +163,9 @@ td button:active{
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    display: block;
+    margin: 100px auto;
+    
 }
 
 #back-button:hover {
@@ -173,3 +178,15 @@ img{
 }
 
 /* DESAFIOS */
+
+
+#button-lupa{
+    background-color: rgb(68, 67, 67);
+}
+#button-lupa:hover{
+    background-color: white;
+}
+
+#button-lupa:active{
+    background-color: rgb(68, 67, 67);
+}
