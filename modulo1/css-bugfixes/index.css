@@ -80,12 +80,12 @@ div img {
     text-align: left;
     width: 200px; */
 }
-/* #container-de-descricao>p{
+#container-de-descricao>p{
     display: block;
     margin: auto;
     padding: 10px;
     width: 190px;
-} */
+}
 
 #container-para-comprar {
     background-color: #e7eb90;
