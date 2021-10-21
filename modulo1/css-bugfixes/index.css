@@ -55,11 +55,6 @@ div img {
     text-align: center;
 }
 
-.icone {
-    height: 15px;
-}
-
-
 /** 
   *
   *  ESTILOS HOME 
@@ -127,9 +122,19 @@ td button {
 }
 
 .container-do-search {
+    border: 2px solid black;
     margin-top: 20px;
     height: 100px;
 }
+#form-search{
+    margin-top: 25px;
+}
+.icone {  
+    margin: -5px auto;
+    width: 20px;
+    height: 20px;
+}
+
 
 
 #back-button {
