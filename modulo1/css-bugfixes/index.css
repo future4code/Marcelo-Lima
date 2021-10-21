@@ -8,6 +8,10 @@
     margin: 0;
     padding: 0;
 }
+body {
+    font-family: roboto;
+  }
+  
 
 h2 {
     background-color: #fe7e02;
@@ -73,13 +77,13 @@ div img {
     padding: 50px 0px;
     margin: auto;
     text-align: left;
-    width: 200px;
+    width: 210px;
 }
 #container-de-descricao>p{
     display: block;
     margin: auto;
     padding: 10px;
-    width: 190px;
+    width: 210px;
 }
 
 #container-para-comprar {
