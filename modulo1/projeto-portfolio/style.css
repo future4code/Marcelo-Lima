@@ -13,7 +13,7 @@ body{
     background-color: rgb(255, 255, 255);
     position: static;
     width: 100%;
-    line-height: 80px;
+    line-height: 100px;
     bottom: 0;
 }
 
@@ -52,9 +52,15 @@ body{
 .container-apresentacao{
     text-align: center;
     margin-top: 200px;
-    margin-right: auto;
+    margin-right: 200px;
+    margin-left: 200px;
     margin-bottom: 10%;
     transform: scale(1.2);
+    font-family: fantasy;
+}
+
+.container-apresentacao>h1{
+    padding-bottom: 20px;
 }
 
 .container-links-redes{
@@ -62,6 +68,10 @@ body{
     margin: auo;
     margin-bottom: 160px;
     text-align: center;
+}
+
+.container-links-redes>p{
+    padding-bottom: 20px;
 }
 
 .links-redes{
@@ -86,7 +96,21 @@ body{
 /* PAGINA PROJETOS */
 
 .vazia{
-    margin-top: 700px;
+    text-align: center;
+    width: 12%;
+    margin-top: 100px;
+    margin-left: 300px;
+    margin-bottom: 350px;
+}
+
+#imagem-lojinha{
+    border: 2px solid rgb(110, 132, 255);
+    width: 200px;
+}
+#imagem-lojinha:hover{
+    
+    transition: .5s ease-in-out;
+    transform: scale(1.2);
 }
 
 /* PAGINA SOBRE */
@@ -138,14 +162,19 @@ body{
 .frase-contato{
     text-align: center;
     margin-top: 130px;
+    margin-right: 200px;
+    margin-left: 200px;
     transform: scale(1.2);
-    font-family:fantasy
+    font-family:fantasy;
 }
 
 .container-tabela{
     margin: auto;
+    width: 40%;
+    padding-top: 200px;
+    padding-bottom: 200px;
     transform: scale(1.5);
-    padding: 200px ;
+    
 }
 
 #container-tabela-tr{
@@ -156,9 +185,14 @@ body{
     text-align: left;
 }
 
+.texto-tabela0{
+    padding-right: 11%;
+}
+
+
 .texto-tabela1{
     text-align: left;
-    padding: 5px 100px 0px 2px
+    padding: 5px 100px 0px 20%
 }
 
 .texto-tabela2{
