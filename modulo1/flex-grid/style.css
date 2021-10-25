@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#div-pagina{
+    display: grid;
+    grid-template-rows: 60px 1fr 50px;
+    height: 100vh;
+}
+header{
+    border: 1px solid black;
+    background-color: mediumvioletred;
+    display: grid;
+    grid-template-columns: 50px 1fr 60px;
+    padding: 15px 20px;
+}
+#imagem-bolinho{
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+ header>button{
+    margin: 3px;
+}
+main{
+     display: grid;
+     grid-template-columns: 300px 1fr;   
+}
+.img{
+     width: 20px;
+}
+nav{
+    background-color: #f2d0e0;
+}
+.div-menu{
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    align-items: center;
+    padding: 15px;
+}
+footer{
+    background-color: mediumvioletred;
+}
+footer>p{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+.foto-bolo{
+    width: 100%;
+}
+
+section{
+    border: 1px solid black;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 18% 18% 18% 18% 18%;
+    gap: 15px;
+    text-align: center;
+}
+.div-bolo{
+    border-top: none;
+    border-left: none;
+    box-shadow: 2px 3px 10px -5px black;
+}
+.texto-bolo{
+    padding-top: 15px;
+}
