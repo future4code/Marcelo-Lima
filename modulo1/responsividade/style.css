@@ -76,9 +76,8 @@ footer{
 .video{
     display: flex;
     flex-direction: column;
-    max-width: 1000px;
+    max-width: 80vw;
     margin: auto;
-    width: 80%;
 }
 
 @media screen and (max-device-width : 480px) {
