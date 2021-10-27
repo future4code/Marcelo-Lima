@@ -17,6 +17,7 @@ function filtraTarefas() {
 
   // Escreva seu código aqui
   
+  //usando for
   let tarefasTerminadas = []
   for(i of tarefas){
     if(i.status === "done"){
@@ -24,5 +25,10 @@ function filtraTarefas() {
     }
   }
   return tarefasTerminadas
+
+  //usando map e filter
+  const tarefasAcabadas = tarefas.filter(tarefas => tarefas.status === "done")
+  const tarefasAcabadasLista = tarefasAcabadas.map(tarefasAcabadas => tarefasAcabadas.titulo)
+  return tarefasAcabadasLista
 }
 ```
