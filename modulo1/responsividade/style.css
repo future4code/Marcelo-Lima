@@ -87,4 +87,7 @@ footer{
         display: flex;
         flex-direction: column;
     }
+    .video{
+        width: 80vw;
+    }
 }    
