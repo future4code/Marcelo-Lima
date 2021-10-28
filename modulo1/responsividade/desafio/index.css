@@ -1,0 +1,147 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border: 1px solid black;
+}
+
+#main-container{
+    display: grid;
+    height: 50px;
+    gap: 10px;
+}
+
+#primeiro-container{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 300px;
+    gap: 15px;
+    padding: 10px;
+}
+
+#segundo-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 400px;
+    gap: 10px;
+    padding: 0px 10px;
+}
+
+#terceiro-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 200px;
+    gap: 10px;
+    padding: 10px;
+}
+
+#first-block {
+    background-color: red;
+}
+
+.blue-block {
+    background-color: blue;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.yellow-block {
+    background-color: yellow;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.green-block {
+    background-color: green;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.black-block {
+    background-color: black;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.white-block {
+    background-color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.white-block1 {
+    background-color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-device-width : 400px) and (max-device-width : 700px) {
+    /* celulares */
+    #primeiro-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        height: 300px;
+    }
+    .blue-block {
+        background-color: blue;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1/1;
+    }
+    .yellow-block {
+        background-color: yellow;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1/0;
+    }
+    .green-block {
+        background-color: green;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1/-1;
+    }
+
+    #terceiro-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 200px;
+        gap: 10px;
+        padding: 10px;
+    }
+    .white-block {
+        background-color: white;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .white-block1 {
+        background-color: white;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1/3;
+    }
+
+}
+    
+@media screen and (max-device-width : 400px) {
+    /* celulares */
+    
+}
