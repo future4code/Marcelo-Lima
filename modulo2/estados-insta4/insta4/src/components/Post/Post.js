@@ -53,6 +53,7 @@ class Post extends React.Component {
     comentando: false,
     numeroComentarios: 0,
     compartilhamento: false,
+    novoComentarioUsuario: "",
   }
 
   onClickCurtida = () => {
@@ -95,6 +96,7 @@ class Post extends React.Component {
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
     })
+    
   }
 
   render() {
@@ -126,6 +128,9 @@ class Post extends React.Component {
       componenteCompartilhar = <SecaoCompartilhar aoEnviar={this.aoEnviarComentario}/>
     }
 
+    let novoComentarioUsuario = <p>{this.state.novoComentarioUsuario}</p>
+    const novoComentario = <p>{this.novoComentarioUsuario}</p>
+    
     return <PostContainer>
       <PostHeader>
         <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
@@ -150,7 +155,6 @@ class Post extends React.Component {
         <IconeComContador
           icone={iconeCompartilhar}
           onClickIcone={this.onClickCompartilhar}
-          // valorContador={this.state.numeroComentarios}
         />
 
         <IconeComContador
