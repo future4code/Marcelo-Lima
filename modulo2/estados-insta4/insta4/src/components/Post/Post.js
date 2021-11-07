@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {IconeComContador} from '../IconeComContador/IconeComContador'
+import { IconeComContador } from '../IconeComContador/IconeComContador'
 
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
@@ -9,8 +9,8 @@ import iconeComentario from '../../img/comment_icon.svg'
 import iconeSalvar from '../../img/salvar-branco.png'
 import iconeSalvarP from '../../img/salvar-preto.png'
 import iconeCompartilhar from '../../img/compartilhar.png'
-import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
-import {SecaoCompartilhar} from '../SecaoCompartilhar/SecaoCompartilhar'
+import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
+import { SecaoCompartilhar } from '../SecaoCompartilhar/SecaoCompartilhar'
 
 const PostContainer = styled.div`
   border: 1px solid gray;
@@ -53,16 +53,16 @@ class Post extends React.Component {
     comentando: false,
     numeroComentarios: 0,
     compartilhamento: false,
-    novoComentarioUsuario: "",
+
   }
 
   onClickCurtida = () => {
     console.log('Curtiu!')
     this.setState({
-      curtido: !this.state.curtido, 
-      numeroCurtidas: this.state.numeroCurtidas +1
+      curtido: !this.state.curtido,
+      numeroCurtidas: this.state.numeroCurtidas + 1
     })
-    if(this.state.curtido){
+    if (this.state.curtido) {
       this.setState({
         numeroCurtidas: 0
       })
@@ -89,20 +89,20 @@ class Post extends React.Component {
     })
   }
 
-  
+
 
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
     })
-    
+
   }
 
   render() {
     let iconeSalvo
 
-    if(this.state.salvo) {
+    if (this.state.salvo) {
       iconeSalvo = iconeSalvarP
     } else {
       iconeSalvo = iconeSalvar
@@ -110,7 +110,7 @@ class Post extends React.Component {
 
     let iconeCurtida
 
-    if(this.state.curtido) {
+    if (this.state.curtido) {
       iconeCurtida = iconeCoracaoPreto
     } else {
       iconeCurtida = iconeCoracaoBranco
@@ -118,26 +118,28 @@ class Post extends React.Component {
 
     let componenteComentario
 
-    if(this.state.comentando) {
-      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+    if (this.state.comentando) {
+      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} aparecer="true" />
+    } else {
+      componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} aparecer="false" />
+
     }
 
     let componenteCompartilhar
 
-    if(this.state.compartilhamento) {
-      componenteCompartilhar = <SecaoCompartilhar aoEnviar={this.aoEnviarComentario}/>
+    if (this.state.compartilhamento) {
+      componenteCompartilhar = <SecaoCompartilhar aoEnviar={this.aoEnviarComentario} />
     }
 
-    let novoComentarioUsuario = <p>{this.state.novoComentarioUsuario}</p>
-    const novoComentario = <p>{this.novoComentarioUsuario}</p>
-    
+
+
     return <PostContainer>
       <PostHeader>
-        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
+        <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'} />
         <p>{this.props.nomeUsuario}</p>
       </PostHeader>
 
-      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'}/>
+      <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'} />
 
       <PostFooter>
         <IconeComContador
@@ -162,10 +164,11 @@ class Post extends React.Component {
           onClickIcone={this.onClickSalvar}
         />
 
-        
+
       </PostFooter>
       {componenteCompartilhar}
       {componenteComentario}
+      {/* <div>TESTE</div> */}
     </PostContainer>
   }
 }

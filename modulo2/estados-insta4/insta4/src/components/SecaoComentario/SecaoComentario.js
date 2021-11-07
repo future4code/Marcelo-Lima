@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const CommentContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 5px;
 `
 
@@ -12,9 +12,15 @@ const InputComentario = styled.input`
     margin-right: 5px;
 `
 
+const estiloComentario = styled.p`
+	display: flex;
+	flex-direction: column;
+`
+
 export class SecaoComentario extends Component {
 	state = {
 		comentario: "",
+		comentarios: [""],
 	}
 
 	onChangeComentario = (event) => {
@@ -23,18 +29,55 @@ export class SecaoComentario extends Component {
 		this.setState({ comentarioUsuario: this.state.comentario })
 	}
 
+	alterar = (event) => {
+		const valor = this.state.comentario
+		this.setState(
+			{
+				comentario: "",
+				comentarios: [...this.state.comentarios, valor]
+			},
+			() => { this.props.aoEnviar() }
+		)
+
+	}
+
+
 	render() {
-		const novoComentario = <p>{this.state.comentario}</p>
+		let aparecerComentario
+		if (this.props.aparecer === "true") {
+			aparecerComentario =
+				<>
+					<InputComentario
+						placeholder={'Comentário'}
+						value={this.state.comentario}
+						onChange={this.onChangeComentario}
+					/>
+
+					<button onClick={this.alterar}>Enviar</button>
+				</>
+		} else {
+			const mostrarComentario = this.state.comentarios.map((item) => {
+				return <p>{item}</p>
+			})
+			aparecerComentario = <estiloComentario>{mostrarComentario}</estiloComentario>
+
+		}
 
 		return <CommentContainer>
-			<InputComentario
+			{aparecerComentario}
+			{/* <InputComentario
 				placeholder={'Comentário'}
 				value={this.state.comentario}
 				onChange={this.onChangeComentario}
 			/>
 			
-			<button onClick={this.props.aoEnviar}>Enviar</button>
-			<novoComentario/>
+			<button onClick={this.alterar}>Enviar</button> */}
+			<novoComentario />
+
 		</CommentContainer>
 	}
 }
+
+
+
+
