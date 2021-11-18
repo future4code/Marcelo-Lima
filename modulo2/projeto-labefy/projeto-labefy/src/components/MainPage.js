@@ -86,17 +86,21 @@ export default class MainPage extends React.Component {
     }
 
     getPlaylistTracks = (id) => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks`
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+        
         axios.get(url, {
             headers: {
                 Authorization: "marcelo-maia-carver"
             }
         })
         .then((res) => {
+            // const responseDetails = res.data.result.tracks.map((item) => {
+            //     return item.name
+            // })
             this.setState({details: res.data.result.tracks})
         })
         .catch((err) => {
-            console.log("deu errado", err.message)
+            console.log("deu errado", err)
         })
     }
 
@@ -108,8 +112,8 @@ export default class MainPage extends React.Component {
 
     render() {
 
-        console.log(this.state.inputValue)
-        console.log(this.state.details)
+        console.log("inputValue:", this.state.inputValue)
+        console.log("details:", this.state.details)
         const listCreate = this.state.playlist.map((list) => {
             return (
                 <DivList key={list.id}>
