@@ -83,10 +83,6 @@ class App extends React.Component {
       })
   }
 
-
-
-
-
   onChangeInputNome = (e) => {
     this.setState({ name: e.target.value })
     // console.log(this.state.name)
@@ -95,17 +91,6 @@ class App extends React.Component {
   onChangeInputEmail = (e) => {
     this.setState({ email: e.target.value })
   }
-
-
-
-
-
-
-
-
-
-
-
 
   togglePage = () => {
     if (this.state.page === 1) {
@@ -117,10 +102,34 @@ class App extends React.Component {
     }
   }
 
-  render() {
+  deleteUsers = (e) => {
+    const id = e.target.value
+    axios
+      .delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
+        {
+          headers: {
+            Authorization: "marcelo-maia-carver"
+          },
+          data: {
+            source: id
+          }
+        }
+      ).then((answ) => {
+        alert("Usuário excluído!")
+        this.getUsersList()
+      })
+      .catch((err) => {
+        alert("Erro, tente novamente!")
+        console.log("erro:", err.response.data)
+      })
 
+  }
+
+  render() {
+    
     const listUsers = this.state.users.map((item) => {
-      return <ul><il>{item.name}</il></ul>
+      return <ul><il>{item.name}</il><button value={this.state.users.id} onCLick={this.deleteUsers}>X</button></ul>
     })
 
     const pageRegister = <DivForm>
@@ -143,13 +152,13 @@ class App extends React.Component {
 
     const pageList = <DivList>
       <h2>Usuários cadastrados:</h2>
-      <ul>{listUsers}</ul>
+      {listUsers}
     </DivList>
 
     return (
       <div>
         <button onClick={this.togglePage}>Ir para página de {this.state.nameButton}</button>
-        {this.state.page === 1 ? pageRegister : pageList}  
+        {this.state.page === 1 ? pageRegister : pageList}
       </div>
     );
   }
