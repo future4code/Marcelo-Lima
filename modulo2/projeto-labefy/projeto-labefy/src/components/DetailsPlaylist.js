@@ -94,16 +94,16 @@ export default class DetailsPlaylist extends React.Component {
             })
     }
 
-    
-        onChangeInputName = (e) => {
-            this.setState({ inputName: e.target.value })
-        }
-        onChangeInputArtist = (e) => {
-            this.setState({ inputArtist: e.target.value })
-        }
-        onChangeInputUrl = (e) => {
-            this.setState({ inputUrl: e.target.value })
-        }
+
+    onChangeInputName = (e) => {
+        this.setState({ inputName: e.target.value })
+    }
+    onChangeInputArtist = (e) => {
+        this.setState({ inputArtist: e.target.value })
+    }
+    onChangeInputUrl = (e) => {
+        this.setState({ inputUrl: e.target.value })
+    }
 
     render() {
         console.log("hm", this.state.playlists)
@@ -144,23 +144,6 @@ export default class DetailsPlaylist extends React.Component {
                         onChange={this.onChangeInputUrl}
                     />
                     <button onClick={this.addTrackToPlaylist}>Salvar Track</button>
-
-                    {/* <input
-                        placeholder={"Nome da música"}
-                        value={this.props.aluno}
-                        onChange={this.props.aluno1}
-                    />
-                    <input
-                        placeholder={"Artista"}
-                        value={this.props.aluno2}
-                        onChange={this.props.aluno21}
-                    />
-                    <input
-                        placeholder={"Url link"}
-                        value={this.props.aluno3}
-                        onChange={this.props.aluno31}
-                    />
-                    <button onClick={this.props.aluno4}>Salvar Track</button> */}
                 </div>
             </div>
         )
