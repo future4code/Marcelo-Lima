@@ -15,7 +15,7 @@ const DivForm = styled.div`
     width: 300px;
     height: 100px;
     margin: 200px auto;
-    background-image: url("https://www.hardware.com.br/filters:format:(jpeg)/@/static/wp/2021/03/24/descobrir-musica.jpg");
+    background-image: url("https://catracalivre.com.br/wp-content/uploads/2011/11/Descarga-de-musica-800x500.jpg");
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -50,8 +50,8 @@ export default class MainPage extends React.Component {
             .then((res) => {
                 console.log(res.data)
                 alert("Playlist criada com sucesso!")
-                this.getAllPlaylists()
                 this.setState({ inputValue: "" })
+                this.getAllPlaylists()
             })
             .catch((err) => {
                 console.log("erro:", err.message)

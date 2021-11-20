@@ -2,7 +2,69 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+const DivContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+`
+const DivCardsRender = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+`
 
+const TituloPlaylist = styled.div`
+    color: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Jazz LET, fantasy;
+    font-variant: normal;
+    font-size: 20px;
+`
+
+const DivContainerPlaylist = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 20px;
+    button{
+        :hover{
+            background-color: gold;
+        }
+    }
+`
+
+const DivNamePlaylist = styled.div`
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(142,0,0,1) 53%, rgba(163,122,65,1) 100%);
+    width: 80px;
+    text-align: center;
+    border-radius: 10px;
+    :hover{
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    }
+    :active{
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(142,0,0,1) 53%, rgba(163,122,65,1) 100%);
+    }
+`
+
+const DivButton = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const DivCard = styled.div`
+    width: 250px;
+    height: 375px;
+    box-shadow: 0px 15px 30px rgb(131,58,180);
+`
+
+const DivPlaylists = styled.div`
+    padding-bottom: 300px;
+`
 
 export default class DetailsPlaylist extends React.Component {
     state = {
@@ -12,6 +74,7 @@ export default class DetailsPlaylist extends React.Component {
         inputName: "",
         inputArtist: "",
         inputUrl: "",
+        control: 1
     }
 
     componentDidMount = () => {
@@ -63,6 +126,15 @@ export default class DetailsPlaylist extends React.Component {
                     idPlaylist: id
                 })
                 console.log(this.state.idPlaylist)
+                if (this.state.control === 1) {
+                    this.setState({
+                        control: 2
+                    })
+                } else if (this.state.control === 2) {
+                    this.setState({
+                        control: 1
+                    })
+                }
             })
             .catch((err) => {
                 console.log("deu errado", err)
@@ -106,46 +178,62 @@ export default class DetailsPlaylist extends React.Component {
     }
 
     render() {
+        console.log("control:", this.state.control)
         console.log("hm", this.state.playlists)
         const renderPLaylist = this.state.playlists.map((item) => {
             return (
-                <div>
-                    <p onClick={() => this.getPlaylistTracks(item.id)}>{item.name}</p>
-                    <button onClick={() => this.deleteList(item.id)}>X</button>
-                </div>)
+                <DivContainerPlaylist>
+                    <DivNamePlaylist>
+                        <TituloPlaylist onClick={() => this.getPlaylistTracks(item.id)}>{item.name}</TituloPlaylist>
+                    </DivNamePlaylist>
+                    
+                    <DivButton>
+                        <button onClick={() => this.deleteList(item.id)}>X</button>
+                    </DivButton>
+                    
+                </DivContainerPlaylist>)
         })
 
         const renderListTracks = this.state.details.map((item) => {
             return (
-                <div key={item.id}>
+                <DivCard key={item.id}>
                     <iframe src={item.url} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                </div>
+                </DivCard>
             )
         })
 
-        return (
+        const addTrack =
             <div>
-                <div>
+                <input
+                    placeholder={"Nome da música"}
+                    value={this.state.inputName}
+                    onChange={this.onChangeInputName}
+                />
+                <input
+                    placeholder={"Artista"}
+                    value={this.state.inputArtist}
+                    onChange={this.onChangeInputArtist}
+                />
+                <input
+                    placeholder={"Url link"}
+                    value={this.state.inputUrl}
+                    onChange={this.onChangeInputUrl}
+                />
+                <button onClick={this.addTrackToPlaylist}>Salvar Track</button></div>
+
+
+        return (
+            <DivContainer>
+                <DivPlaylists>
                     {renderPLaylist}
-                    {renderListTracks}
-                    <input
-                        placeholder={"Nome da música"}
-                        value={this.state.inputName}
-                        onChange={this.onChangeInputName}
-                    />
-                    <input
-                        placeholder={"Artista"}
-                        value={this.state.inputArtist}
-                        onChange={this.onChangeInputArtist}
-                    />
-                    <input
-                        placeholder={"Url link"}
-                        value={this.state.inputUrl}
-                        onChange={this.onChangeInputUrl}
-                    />
-                    <button onClick={this.addTrackToPlaylist}>Salvar Track</button>
+                </DivPlaylists>
+                <div>
+                    {this.state.control === 2 ? addTrack : ""}
+                    <DivCardsRender>
+                        {this.state.control === 2 ? renderListTracks : ""}
+                    </DivCardsRender>
                 </div>
-            </div>
+            </DivContainer>
         )
     }
 }
