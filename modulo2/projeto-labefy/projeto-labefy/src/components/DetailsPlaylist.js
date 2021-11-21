@@ -58,8 +58,9 @@ const DivButton = styled.div`
 
 const DivCard = styled.div`
     width: 250px;
-    height: 375px;
+    height: 380px;
     box-shadow: 0px 15px 30px rgb(131,58,180);
+    margin-bottom: 20px;
 `
 
 const DivPlaylists = styled.div`
