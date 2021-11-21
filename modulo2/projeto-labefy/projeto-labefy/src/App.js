@@ -16,11 +16,6 @@ const MainDiv = styled.div`
   background: linear-gradient(90deg, rgba(1,4,18,1) 0%, rgba(14,22,22,1) 32%, rgba(14,13,13,1) 71%, rgba(14,0,0,1) 100%);
   height: 100vh;
   padding-bottom: 20px;
-  footer{
-    background-color: black;
-    color: white;
-    height: 300px;
-  }
 `
 
 const MainContainer = styled.div`
@@ -55,6 +50,19 @@ const DivTitle = styled.div`
 
 const DivSec =styled.div`
   width: 120px;
+`
+const Footer = styled.footer`
+  background-color: black;
+    color: white;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    img{
+      width: 50px;
+      background-color: black;
+    }
 `
 
 
@@ -91,9 +99,11 @@ class App extends React.Component {
           <button onClick={this.togglePage}>Ir para {this.state.nameButton}</button>
           {this.state.control === 1 ? <MainPage /> : <DetailsPlaylist />} 
         </MainContainer>
-        <footer>
+        <Footer>
             <h1>SOU O FOOTER</h1>
-        </footer>
+            <p>© 2021 labefy</p>
+            <img src="https://www.citypng.com/public/uploads/preview/-51609193448mids70tdmp.png"/>
+        </Footer>
       </MainDiv>
     );
   }
