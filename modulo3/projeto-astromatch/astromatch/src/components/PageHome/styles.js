@@ -15,7 +15,7 @@ export const DivHeader = styled.div`
         height: 25px;
     }
     h3{
-        padding-right: 20px;
+        padding-right: 60px;
     }
 `
 
@@ -24,23 +24,18 @@ export const MainDiv = styled.div`
     flex-direction: column;
     align-items: center;
     width: 300px;
-    border: 1px solid red;
+    box-shadow: 0px 0px 8px 1px black;
+    border-radius: 20px;
 `
 
 export const CardDiv = styled.div`
     /* margin: auto; */
     width: 250px;
-    border: 1px solid black;
     position: relative;
     height: 350px;
-    div{
-        z-index: -1;
-        background-image: url("https://images.tcdn.com.br/img/img_prod/637099/quadro_abstrato_cod_4437_2229_1_20201213204410.jpg");
-        filter: blur(30px);
-        height: 100%;
-        width: 100%;
-        position: absolute;
-    }
+    box-shadow: 0px 0px 0.8px 0.5px gray;
+    border-radius: 10px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     img{
         width: 100%;
         display: flex;
@@ -48,6 +43,8 @@ export const CardDiv = styled.div`
         border-radius: 10px;
         justify-content: center;
         align-items: center;
+        /* display: block; */
+        z-index: -1;
     }
     h3{
         position: absolute;
@@ -65,12 +62,27 @@ export const CardDiv = styled.div`
     }
 `
 
+export const DivBlur = styled.div`
+    z-index: -1;
+    background-image: url("https://dbdzm869oupei.cloudfront.net/img/sticker/preview/59597.png");
+    /* filter: blur(1px); */
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    border-radius: 10px;
+`
+
 export const DivButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 50px;
+    height: 60px;
 `
 
 export const Button = styled.button`

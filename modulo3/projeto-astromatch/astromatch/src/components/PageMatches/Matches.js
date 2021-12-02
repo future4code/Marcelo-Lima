@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import * as C from './Styles'
+import Button from '@material-ui/core/Button';
+import { Add} from '@material-ui/icons';
 
 export default function Matches(props) {
     const [matches, setMatches] = useState([])
@@ -14,10 +16,8 @@ export default function Matches(props) {
         axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Marcelo/matches`)
             .then((res) => {
                 setMatches(res.data.matches)
-                // console.log("a", res.data)
             })
             .catch((err) => {
-                // console.log(err.responde.data)
             })
     })
 
@@ -25,7 +25,6 @@ export default function Matches(props) {
         axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Marcelo/clear`)
             .then((res) => {
                 getMatches()
-                // console.log("h", res.data)
             })
             .catch()
     })
@@ -42,15 +41,17 @@ export default function Matches(props) {
             </C.DivMatchProfile>
         )
     })
-    // console.log("g", matches)
+
     return (
         <C.MainDiv>
             <C.DivHeader>
-                <button onClick={props.changePageBack}>voltar</button>
-                <h3>astromatch</h3>
+                <Add onClick={props.changePageBack}/>
+                <h3>AstroMatch</h3>
             </C.DivHeader>
             {matchesTrue}
-            <button onClick={clearMatches}>Apagar</button>
+            <C.DivButton>
+            <Button variant="contained" color="success" onClick={clearMatches}>Apagar</Button>
+            </C.DivButton>
         </C.MainDiv>
     )
 }

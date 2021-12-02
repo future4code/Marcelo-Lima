@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import Matches from '../PageMatches/Matches';
+import Styles from './Styles'
+import { AccountCircle, Favorite, ThumbDown, ThumbUp, ThumbUpOffAlt, ThumbDownOffAlt} from '@material-ui/icons';
 
-import * as C from './styles'
+
+import * as C from './Styles'
+
 
 function Home() {
     const [person, setPerson] = useState([])
@@ -19,10 +23,8 @@ function Home() {
         axios.get(url)
             .then((res) => {
                 setPerson(res.data.profile)
-                // console.log("b", person)
             })
             .catch((err) => {
-                // console.log("c", err.response)
             })
     })
 
@@ -35,10 +37,8 @@ function Home() {
         axios.post(url, body)
             .then((res) => {
                 getProfileToChoose()
-                // console.log("e", res.data)
             })
             .catch((err) => {
-                // console.log("f", err.response)
             })
     })
 
@@ -63,25 +63,26 @@ function Home() {
 
     const cardProfile =
         <C.CardDiv>
-            <div>
-            </div>
+            <C.DivBlur>
                 <img src={person.photo} />
-            
+                </C.DivBlur>
                 <h3>{person.name}, {person.age}</h3>
                 <p>{person.bio}</p>
-            
+                
         </C.CardDiv>
+
+ 
 
     const pageHome =
         <C.MainDiv>
             <C.DivHeader>
-                <h3>astromatch</h3>
-                <button onClick={changePageMatches}>Matches</button>
+                <h3>AstroMatch</h3>
+                <AccountCircle onClick={changePageMatches}/>
             </C.DivHeader>
             {cardProfile}
             <C.DivButton>
-                <button onClick={getProfileToChoose}>X</button>
-                <C.Button onClick={choosePerson}>♥</C.Button>
+                <ThumbDown onClick={getProfileToChoose}/>
+                <ThumbUp onClick={choosePerson}/>
             </C.DivButton>
         </C.MainDiv>
 
