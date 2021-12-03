@@ -1,16 +1,18 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import Matches from '../PageMatches/Matches';
-import Styles from './Styles'
-import { AccountCircle, Favorite, ThumbDown, ThumbUp, ThumbUpOffAlt, ThumbDownOffAlt} from '@material-ui/icons';
 
+import iconPerson from '../img/iconPerson1.png'
+import positive from '../img/positive.png'
+import negative from '../img/negative.png'
 
 import * as C from './Styles'
-
 
 function Home() {
     const [person, setPerson] = useState([])
     const [page, setPage] = useState(1)
+    const [isMatch, setIsMatch] = useState({})
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getProfileToChoose()
@@ -19,12 +21,14 @@ function Home() {
     // FUNÇÕES -------------------------------------------------------------------------
 
     const getProfileToChoose = (() => {
+        setLoading(true)
         const url = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Marcelo/person`
         axios.get(url)
             .then((res) => {
                 setPerson(res.data.profile)
             })
             .catch((err) => {
+                alert("Acabaram-se os usuários! Limpe a lista de matches se quiser continuar.")
             })
     })
 
@@ -37,6 +41,11 @@ function Home() {
         axios.post(url, body)
             .then((res) => {
                 getProfileToChoose()
+                if (res.data.isMatch) {
+                    alert(`Temos um match! Você já pode conversar com ${person.name}!`)
+                    // bootbox.alert("Hello world!");
+                }
+                
             })
             .catch((err) => {
             })
@@ -65,31 +74,28 @@ function Home() {
         <C.CardDiv>
             <C.DivBlur>
                 <img src={person.photo} />
-                </C.DivBlur>
-                <h3>{person.name}, {person.age}</h3>
-                <p>{person.bio}</p>
-                
+            </C.DivBlur>
+            <h3>{person.name}, {person.age}</h3>
+            <p>{person.bio}</p>
         </C.CardDiv>
-
- 
 
     const pageHome =
         <C.MainDiv>
             <C.DivHeader>
                 <h3>AstroMatch</h3>
-                <AccountCircle onClick={changePageMatches}/>
+                <img src={iconPerson} onClick={changePageMatches} title="Ir mara os matches" />
             </C.DivHeader>
             {cardProfile}
             <C.DivButton>
-                <ThumbDown onClick={getProfileToChoose}/>
-                <ThumbUp onClick={choosePerson}/>
+                <img src={negative} onClick={getProfileToChoose} />
+                <img src={positive} onClick={choosePerson} />
             </C.DivButton>
-        </C.MainDiv>
-
+        </C.MainDiv> 
+        
     return (
-        <C.MainContainer>
-            {togglePage()}
-        </C.MainContainer>
+            <C.MainContainer>
+                {togglePage()}
+            </C.MainContainer>
     );
 }
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
     display: flex;
     justify-content: center;
-    /* margin-top: 100px; */
+    padding-top: 200px;
 `
 
 export const DivHeader = styled.div`
@@ -11,11 +11,24 @@ export const DivHeader = styled.div`
     align-items: center;
     justify-content: right;
     width: 90%;
-    button{
-        height: 25px;
-    }
     h3{
-        padding-right: 60px;
+        padding-right: 30.7px;
+        padding-left: 5px;
+        display: inline-block;
+        font-weight: bold;
+        font-family: Courier, monospace;
+        background: linear-gradient(to bottom, #1abc9c 50%,#3498db 50%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    img{
+        width: 30px;
+        :hover{
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            transform: scale(0.87);
+        }
     }
 `
 
@@ -23,19 +36,22 @@ export const MainDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 270px;
     box-shadow: 0px 0px 8px 1px black;
     border-radius: 20px;
+    transform: scale(1.5);
 `
 
 export const CardDiv = styled.div`
-    /* margin: auto; */
     width: 250px;
     position: relative;
     height: 350px;
     box-shadow: 0px 0px 0.8px 0.5px gray;
     border-radius: 10px;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+    :hover{
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0), transparent);
+    }
     img{
         width: 100%;
         display: flex;
@@ -43,8 +59,7 @@ export const CardDiv = styled.div`
         border-radius: 10px;
         justify-content: center;
         align-items: center;
-        /* display: block; */
-        z-index: -1;
+        /* z-index: -1; */
     }
     h3{
         position: absolute;
@@ -64,8 +79,9 @@ export const CardDiv = styled.div`
 
 export const DivBlur = styled.div`
     z-index: -1;
-    background-image: url("https://dbdzm869oupei.cloudfront.net/img/sticker/preview/59597.png");
+    /* background-image: url("https://dbdzm869oupei.cloudfront.net/img/sticker/preview/59597.png"); */
     /* filter: blur(1px); */
+    background-color: black;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -80,10 +96,20 @@ export const DivBlur = styled.div`
 export const DivButton = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-between;
+    width: 180px;
     height: 60px;
+    img{
+        width: 35px;
+        :hover{
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            transform: scale(1.3);
+        }
+    }
 `
 
 export const Button = styled.button`
 `
+
+

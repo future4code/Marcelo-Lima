@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react'
 import * as C from './Styles'
 import Button from '@material-ui/core/Button';
-import { Add} from '@material-ui/icons';
+
+import back from '../img/back.png'
 
 export default function Matches(props) {
     const [matches, setMatches] = useState([])
@@ -45,12 +46,14 @@ export default function Matches(props) {
     return (
         <C.MainDiv>
             <C.DivHeader>
-                <Add onClick={props.changePageBack}/>
+                <img src={back} onClick={props.changePageBack} title="Voltar aos perfis" />
                 <h3>AstroMatch</h3>
             </C.DivHeader>
-            {matchesTrue}
+            <C.DivScroll>
+            {matches.length !== 0 ? matchesTrue : <C.ImgGif src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif" />}
+            </C.DivScroll>
             <C.DivButton>
-            <Button variant="contained" color="success" onClick={clearMatches}>Apagar</Button>
+                <button onClick={clearMatches}>Limpar matches</button>
             </C.DivButton>
         </C.MainDiv>
     )
