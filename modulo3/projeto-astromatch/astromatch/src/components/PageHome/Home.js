@@ -11,8 +11,6 @@ import * as C from './Styles'
 function Home() {
     const [person, setPerson] = useState([])
     const [page, setPage] = useState(1)
-    const [isMatch, setIsMatch] = useState({})
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getProfileToChoose()
@@ -21,7 +19,6 @@ function Home() {
     // FUNÇÕES -------------------------------------------------------------------------
 
     const getProfileToChoose = (() => {
-        setLoading(true)
         const url = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Marcelo/person`
         axios.get(url)
             .then((res) => {
@@ -45,7 +42,7 @@ function Home() {
                     alert(`Temos um match! Você já pode conversar com ${person.name}!`)
                     // bootbox.alert("Hello world!");
                 }
-                
+
             })
             .catch((err) => {
             })
@@ -71,13 +68,18 @@ function Home() {
     // VARIAVEIS -------------------------------------------------------------------------
 
     const cardProfile =
-        <C.CardDiv>
-            <C.DivBlur>
-                <img src={person.photo} />
-            </C.DivBlur>
-            <h3>{person.name}, {person.age}</h3>
-            <p>{person.bio}</p>
-        </C.CardDiv>
+        person ?
+            <C.CardDiv>
+                <C.DivBlur>
+                    <img src={person.photo} />
+                </C.DivBlur>
+                <h3>{person.name}, {person.age}</h3>
+                <p>{person.bio}</p>
+            </C.CardDiv>
+            :
+            <C.DivText>
+                <p>Não tem mais perfis disponiveis! Para resetar o app, por favor, limpe os matches e atualize a página!</p>
+            </C.DivText>
 
     const pageHome =
         <C.MainDiv>
@@ -90,12 +92,12 @@ function Home() {
                 <img src={negative} onClick={getProfileToChoose} />
                 <img src={positive} onClick={choosePerson} />
             </C.DivButton>
-        </C.MainDiv> 
-        
+        </C.MainDiv>
+
     return (
-            <C.MainContainer>
-                {togglePage()}
-            </C.MainContainer>
+        <C.MainContainer>
+            {togglePage()}
+        </C.MainContainer>
     );
 }
 

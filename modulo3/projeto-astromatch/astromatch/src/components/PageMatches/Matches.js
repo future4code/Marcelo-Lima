@@ -30,6 +30,15 @@ export default function Matches(props) {
             .catch()
     })
 
+    const getProfileToChoose = (() => {
+        const url = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Marcelo/person`
+        axios.get(url)
+            .then((res) => {
+            })
+            .catch((err) => {
+            })
+    })
+
     const matchesTrue = matches.map((item) => {
         return (
             <C.DivMatchProfile>

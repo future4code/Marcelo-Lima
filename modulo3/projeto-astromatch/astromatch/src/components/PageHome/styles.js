@@ -112,4 +112,13 @@ export const DivButton = styled.div`
 export const Button = styled.button`
 `
 
-
+export const DivText = styled.div`
+    height: 350px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+`
