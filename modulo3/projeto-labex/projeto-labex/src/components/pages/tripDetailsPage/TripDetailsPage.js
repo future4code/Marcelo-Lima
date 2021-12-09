@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router'
 import axios from 'axios'
 import { headers, TOKEN, url } from '../../../constants/Constants'
+import * as C from './Styles'
 
 export default function TripDetailsPage() {
     const [tripDetail, setTripDetail] = useState({})
@@ -21,21 +22,42 @@ export default function TripDetailsPage() {
         getTripDetail()
     }, [])
 
-    
-    
-
     const getTripDetail = () => {
         axios.get(`${url}/trip/${params.id}`, headers)
-        .then((res) => {
-            console.log("e", res.data.trip)
-            setTripDetail(res.data.trip)
-        })
-        .catch((err) => {
-            console.log("f", err.response)
-        })
+            .then((res) => {
+                setTripDetail(res.data.trip)
+            })
+            .catch((err) => {
+            })
     }
 
-    const detailTrip = 
+    const decideCand = (id, res) => {
+        if (res === "approv") {
+            const body = {
+                approve: true
+            }
+            axios.put(`${url}/trips/${params.id}/candidates/${id}/decide`, body, headers)
+                .then((res) => {
+                    getTripDetail()
+                    alert("Candidato aprovado com sucesso!")
+                })
+                .catch((err) => {
+                })
+        } else if (res === "reprov") {
+            const body = {
+                approve: false
+            }
+            axios.put(`${url}/trips/${params.id}/candidates/${id}/decide`, body, headers)
+                .then((res) => {
+                    getTripDetail()
+                    alert("Candidato recusado com sucesso!")
+                })
+                .catch((err) => {
+                })
+        }
+    }
+
+    const detailTrip =
         <div>
             <p><b>Nome:</b> {tripDetail.name}</p>
             <p><b>Descrição:</b> {tripDetail.description}</p>
@@ -44,11 +66,35 @@ export default function TripDetailsPage() {
             <p><b>Data:</b> {tripDetail.date}</p>
         </div>
 
+    const candidate = tripDetail.candidates && tripDetail.candidates.map((candidate) => {
+        return (
+            <C.DivCandidate key={candidate.id}>
+                <p><b>Nome: </b>{candidate.name}</p>
+                <p><b>Profissão: </b>{candidate.profession}</p>
+                <p><b>Idade: </b>{candidate.age}</p>
+                <p><b>País: </b>{candidate.country}</p>
+                <p><b>Descrição: </b>{candidate.applicationText}</p>
+                <button onClick={() => decideCand(candidate.id, "approv")}>Aprovar</button>
+                <button onClick={() => decideCand(candidate.id, "reprov")}>Recusar</button>
+            </C.DivCandidate>
+        )
+    })
+
+    const approved = tripDetail.approved && tripDetail.approved.map((candidate) => {
+        return (
+            <div key={tripDetail.id}>
+                <li>{candidate.name}</li>
+            </div>
+        )
+    })
+
     return (
         <div>
             <p>TripDetailsPage</p>
             {detailTrip}
             <button onClick={goBack}>Voltar</button>
+            {candidate}
+            {approved}
         </div>
     )
 }

@@ -1,58 +1,65 @@
 import axios from 'axios'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react/cjs/react.development'
+import { url } from '../../../constants/Constants'
+import useForm from '../../../hooks/Hooks'
 
 export default function LoginPage() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const { form, onChange, cleanFields } = useForm({
+        email: '',
+        password: ''
+    })
 
     const history = useHistory()
-
-    const goBack = () => {
-        history.goBack()
-    }
-
-    const onChangeInputEmail = (e) => {
-        setEmail(e.target.value)
-    }
-
-    const onChangeInputSenha = (e) => {
-        setPassword(e.target.value)
-    }
-
-    const login = () => {
-        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelo-maia-carver/login"
+    const send = (e) => {
+        e.preventDefault()
         const body = {
-            email: email,
-            password: password
+            email: form.email,
+            password: form.password
         }
-        axios.post(url, body)
-        .then((res) => {
-            console.log("deu certo", res.data)
-            history.push("/adminHome")
-            localStorage.setItem('token', res.data.token)
-        })
-        .catch((err) => {
-            console.log("deu errado", err.response)
-            alert("E-mail ou senha inválidos")
-        })
+        axios.post(`${url}/login`, body)
+            .then((res) => {
+                console.log("deu certo", res.data)
+                localStorage.setItem('token', res.data.token)
+                history.push("/adminHome")
+                cleanFields()
+            })
+            .catch((err) => {
+                console.log("deu errado", err.response)
+                alert("E-mail ou senha inválidos")
+            })
+    }
+
+    const goBackToHome = () => {
+        history.push("/")
     }
 
     return (
         <div>
             <p>LoginPage</p>
-            <input
-                onChange={onChangeInputEmail}
-                placeholder="E-mail"
-            />
-            <input
-                onChange={onChangeInputSenha}
-                placeholder="Senha"
-                type="password"
-            />
-            <button onClick={login}>Entrar</button>
-            <button onClick={goBack}>Voltar</button>
+            <form onSubmit={send}>
+                <input
+                    name={"email"}
+                    value={form.email}
+                    onChange={onChange}
+                    placeholder="E-mail"
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title={"Insira um endereço de e-mail válido com @endereço.com"}
+                />
+                <input
+                    name={"password"}
+                    value={form.password}
+                    onChange={onChange}
+                    placeholder="Senha"
+                    type="password"
+                    required
+                    pattern={"^.{4,}"}
+                    title={"A senha deve ter no mínimo 4 dígitos"}
+                />
+                <button>Entrar</button>
+            </form>
+            <button onClick={goBackToHome}>Voltar</button>
         </div>
     )
 }
