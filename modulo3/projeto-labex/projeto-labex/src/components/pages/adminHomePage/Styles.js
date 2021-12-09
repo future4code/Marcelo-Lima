@@ -7,4 +7,8 @@ export const TripDiv = styled.div`
     width: 300px;
     justify-content: space-between;
     align-items: center;
+    z-index: -1;
+    button{
+        z-index: 1;
+    }
 `

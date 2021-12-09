@@ -1,15 +1,19 @@
+import axios from 'axios'
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react/cjs/react.development'
+import { headers, url } from '../../../constants/Constants'
 import { useGetList, useProtectedPage } from '../../../hooks/Hooks'
 
 import * as C from './Styles'
 
 export default function AdminHomePage() {
+    const [trips, setTrips] = useState([])
+
     useProtectedPage()
 
     const history = useHistory()
-  
+
     const goToHomePage = () => {
         history.push("/")
     }
@@ -23,13 +27,39 @@ export default function AdminHomePage() {
         localStorage.clear()
     }
 
-    const listNameTrips = useGetList().map((trip) => {
+    useEffect(() => {
+        getTrips()
+    }, [])
+
+    const getTrips = () => {
+        axios.get(`${url}/trips`,)
+            .then((res) => {
+                setTrips(res.data.trips)
+            })
+            .catch((err) => {
+                console.log('b', err.response)
+            })
+    }
+
+    const deleteTrip = (id) => {
+        axios.delete(`${url}/trips/${id}`, headers)
+            .then((res) => {
+                alert("Viagem deletada com sucesso!")
+                getTrips()
+            })
+            .catch((err) => [
+                console.log("j", err.response)
+            ])
+    }
+
+
+    const listNameTrips = trips.map((trip) => {
         return (
             <C.TripDiv
                 key={trip.id}
-                onClick={() => {history.push(`/tripDetails/${trip.id}`)}}>
-                <p>{trip.name}</p>
-                <button>X</button>
+            >
+                <p onClick={() => { history.push(`/tripDetails/${trip.id}`) }}>{trip.name}</p>
+                <button onClick={() => deleteTrip(trip.id)}>X</button>
             </C.TripDiv>
         )
     })

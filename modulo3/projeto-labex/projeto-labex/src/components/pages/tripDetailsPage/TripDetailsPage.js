@@ -21,6 +21,9 @@ export default function TripDetailsPage() {
         getTripDetail()
     }, [])
 
+    
+    
+
     const getTripDetail = () => {
         axios.get(`${url}/trip/${params.id}`, headers)
         .then((res) => {
