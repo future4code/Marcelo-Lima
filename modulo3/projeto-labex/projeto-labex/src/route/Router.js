@@ -28,7 +28,7 @@ function Router() {
           <LoginPage />
         </Route>
 
-        <Route exact path={"/adminHome"}>
+        <Route exact path={"/adminHomePage"}>
           <AdminHomePage />
         </Route>
 

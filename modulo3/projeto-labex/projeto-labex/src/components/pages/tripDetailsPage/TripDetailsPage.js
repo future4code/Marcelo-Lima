@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router'
 import axios from 'axios'
 import { headers, TOKEN, url } from '../../../constants/Constants'
 import * as C from './Styles'
+import moment from 'moment'
 
 export default function TripDetailsPage() {
     const [tripDetail, setTripDetail] = useState({})
@@ -63,7 +64,7 @@ export default function TripDetailsPage() {
             <p><b>Descrição:</b> {tripDetail.description}</p>
             <p><b>Planeta:</b> {tripDetail.planet}</p>
             <p><b>Duração:</b> {tripDetail.durationInDays}</p>
-            <p><b>Data:</b> {tripDetail.date}</p>
+            <p ><b>Data:</b> {moment(tripDetail.date).format('DD/MM/YYYY')}</p>
         </div>
 
     const candidate = tripDetail.candidates && tripDetail.candidates.map((candidate) => {

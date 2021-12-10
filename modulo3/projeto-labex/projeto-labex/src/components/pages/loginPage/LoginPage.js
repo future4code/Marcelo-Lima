@@ -21,7 +21,7 @@ export default function LoginPage() {
             .then((res) => {
                 console.log("deu certo", res.data)
                 localStorage.setItem('token', res.data.token)
-                history.push("/adminHome")
+                history.push("/adminHomePage")
                 cleanFields()
             })
             .catch((err) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import moment from 'moment'
 
 import * as C from './Styles'
 import { useGetList } from '../../../hooks/Hooks'
@@ -23,7 +24,7 @@ export default function ListTripsPage() {
                 <p>{trip.description}</p>
                 <p>{trip.planet}</p>
                 <p>{trip.durationInDays}</p>
-                <p>{trip.date}</p>
+                <p>{moment(trip.date).format('DD/MM/YYYY')}</p>
             </C.CardDiv>
         )
     })

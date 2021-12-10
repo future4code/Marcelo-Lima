@@ -37,8 +37,10 @@ export default function CreateTripPage() {
         axios.post(`${url}/trips`, body, headers)
         .then((res) => {
              cleanFields()
+             alert("Viagem criada com sucesso!")
         })
         .catch((err) => {
+            alert("Ocorreu algum erro, por favor tente novamente!")
         })
     }
 

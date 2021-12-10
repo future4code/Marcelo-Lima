@@ -9,7 +9,7 @@ export default function HomePage() {
     }
 
     const goToLoginPage = () => {
-        history.push("/adminHome")
+        history.push("/adminHomePage")
     }
 
     return (
