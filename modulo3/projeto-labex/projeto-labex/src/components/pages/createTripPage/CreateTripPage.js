@@ -1,6 +1,6 @@
 import React from 'react'
 import { useProtectedPage } from '../../../hooks/Hooks'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory } from 'react-router-dom'
 
 import * as C from './Styles'
 

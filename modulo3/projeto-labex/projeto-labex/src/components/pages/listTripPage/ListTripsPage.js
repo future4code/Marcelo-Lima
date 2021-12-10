@@ -9,7 +9,7 @@ export default function ListTripsPage() {
     const history = useHistory()
 
     const goBack = () => {
-        history.goBack()
+        history.push("/")
     }
 
     const goToApplicationFormPage = () => {
