@@ -1,15 +1,11 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGetList } from '../../../hooks/Hooks'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../../hooks/Hooks'
 
-import { TextField } from '@material-ui/core';
-import Input from '@material-ui/core/Input';
-
 import * as C from './Styles'
-import { headers, url } from '../../../constants/Constants'
+import { url } from '../../../constants/Constants'
 
 export default function ApplicationFormPage() {
     const { form, onChange, cleanFields } = useForm({
@@ -53,7 +49,7 @@ export default function ApplicationFormPage() {
     })
 
     return (
-        <C.ContainerDiv>
+        <div>
             <C.HeaderDiv>
                 <button onClick={goBack}>Voltar</button>
                 <h1>Inscreva-se para uma viagem</h1>
@@ -78,7 +74,7 @@ export default function ApplicationFormPage() {
                         placeholder="Nome"
                         required
                     />
-                    <input 
+                    <input
                         id="outlined-basic" label="Idade" variant="outlined"
                         name='age'
                         value={form.age}
@@ -320,7 +316,6 @@ export default function ApplicationFormPage() {
                     <button>Enviar</button>
                 </form>
             </C.MainDiv>
-
-        </C.ContainerDiv>
+        </div>
     )
 }

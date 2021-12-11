@@ -1,7 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-// import {MainDiv} from './Styles'
 import * as C from './Styles'
 
 export default function HomePage() {

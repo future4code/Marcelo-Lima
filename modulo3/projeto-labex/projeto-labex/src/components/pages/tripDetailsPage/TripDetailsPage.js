@@ -3,7 +3,7 @@ import { useProtectedPage } from '../../../hooks/Hooks'
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { headers, TOKEN, url } from '../../../constants/Constants'
+import { headers, url } from '../../../constants/Constants'
 import * as C from './Styles'
 import moment from 'moment'
 
@@ -75,7 +75,6 @@ export default function TripDetailsPage() {
             <p><b>Duração:</b> {tripDetail.durationInDays} dias</p>
             <p ><b>Data:</b> {moment(tripDetail.date).format('DD/MM/YYYY')}</p>
             {approved && approved.length > 0 ? <p><b>Candidatos aprovados para viagem:</b> {approved}</p> : <p></p>}
-
         </div>
 
     const candidate = tripDetail.candidates && tripDetail.candidates.map((candidate) => {

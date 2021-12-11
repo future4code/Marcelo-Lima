@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { headers, url } from '../../../constants/Constants'
-import { useGetList, useProtectedPage } from '../../../hooks/Hooks'
+import { useProtectedPage } from '../../../hooks/Hooks'
 
 import deleteIcon3 from '../../img/deleteIcon3.png'
 import loading from '../../img/loading.gif'
@@ -51,7 +51,7 @@ export default function AdminHomePage() {
                 getTrips()
             })
             .catch((err) => {
-
+                alert("Não foi possível deletar a viagem, por favor tente de novo!")
             })
     }
 

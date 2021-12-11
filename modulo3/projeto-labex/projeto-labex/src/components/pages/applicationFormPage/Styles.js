@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const ContainerDiv = styled.div`
-    
-    
-`
 export const HeaderDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -20,7 +16,6 @@ export const HeaderDiv = styled.div`
         color: #21c0c2;
         text-align: center;
         margin-top: 50px;
-        /* margin-right: 30px; */
     }
     p{
         width: 120px;
@@ -87,7 +82,6 @@ export const MainDiv = styled.div`
             height: 35px;
             border-radius: 10px;
             border: none;
-            /* border: 1px solid black; */
         }
         select{
             margin: 10px 0px;
@@ -133,7 +127,5 @@ export const MainDiv = styled.div`
                 text-decoration: none;
             }
         }
-    
     };
-    
 `

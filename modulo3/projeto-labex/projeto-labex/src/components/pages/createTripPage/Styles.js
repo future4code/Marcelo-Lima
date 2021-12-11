@@ -59,9 +59,6 @@ export const HeaderDiv = styled.div`
     }
 `
 
-export const DivForm = styled.div`
-`
-
 export const MainDiv = styled.div`
     background: #3D94F6;
     width: 50%;
@@ -85,7 +82,6 @@ export const MainDiv = styled.div`
             height: 35px;
             border-radius: 10px;
             border: none;
-            /* border: 1px solid black; */
         }
         select{
             margin: 10px 0px;
@@ -132,7 +128,5 @@ export const MainDiv = styled.div`
                 text-decoration: none;
             }
         }
-    
     };
-    
 `

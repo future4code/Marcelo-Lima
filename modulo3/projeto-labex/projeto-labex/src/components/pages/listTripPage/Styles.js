@@ -6,7 +6,6 @@ export const CardDiv = styled.div`
     width: 500px;
     box-shadow: 0px 0px 10px 2px black;
     background: #3D94F6;
-    /* color: #69DADB; */
     color: white;
     min-height: 300px;
     p{
@@ -29,8 +28,6 @@ export const ContainerDiv = styled.div`
 
 export const HeaderDiv = styled.div`
     display: flex;
-    /* text-align: center; */
-    /* width: 100%; */
     justify-content: space-evenly;
     h1{
         font-family: courier;
@@ -74,13 +71,11 @@ export const HeaderDiv = styled.div`
             border-radius: 20px;
             text-decoration: none;
         }
-
     }
     @media screen and (max-device-width : 480px) {
         display: flex;
         flex-direction: column;
-}
-
+    }
 `
 
 export const TripDiv = styled.div`
@@ -94,8 +89,7 @@ export const TripDiv = styled.div`
     @media screen and (max-device-width : 480px) {
         display: flex;
         flex-direction: column;
-}
-
+    }
 `
 
 export const Loading = styled.div`
