@@ -7,7 +7,6 @@ import useForm from '../../../hooks/Hooks'
 
 import { TextField } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
-import Select from '@material-ui/core/Select';
 
 import * as C from './Styles'
 import { headers, url } from '../../../constants/Constants'
@@ -71,35 +70,33 @@ export default function ApplicationFormPage() {
                         <option>Escolha uma viagem</option>
                         {selectTripList}
                     </select>
-                    {/* <label for="User">Click me</label> */}
-                    <TextField
-                        id="filled-basic" label="Nome" variant="filled"
+                    <input
+                        id="outlined-basic" label="Nome" variant="outlined"
                         name='name'
                         value={form.name}
                         onChange={onChange}
-                        // placeholder="Nome"
+                        placeholder="Nome"
                         required
                     />
-                    <TextField
-                        id="filled-basic" label="Idade" variant="filled"
+                    <input 
+                        id="outlined-basic" label="Idade" variant="outlined"
                         name='age'
                         value={form.age}
                         onChange={onChange}
-                        // placeholder="Idade"
+                        placeholder="Idade"
                         required
                     />
-                    <TextField
-                        id="filled-basic" label="Texto de Candidatura" variant="filled"
+                    <input
+                        id="outlined-basic" label="Texto de Candidatura" variant="outlined"
                         name='textCand'
                         value={form.textCand}
                         onChange={onChange}
-                        // placeholder="Texto de Candidatura"
+                        placeholder="Texto de Candidatura"
                         required
                         pattern={"^.{30,}"}
                         title='Preencha no mínimo com 30 caracteres!'
                     />
-                    <TextField
-                        id="filled-basic" label="Profissão" variant="filled"
+                    <input
                         name='profession'
                         value={form.profession}
                         onChange={onChange}
