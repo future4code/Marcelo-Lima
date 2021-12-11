@@ -16,6 +16,7 @@ export const HeaderDiv = styled.div`
         color: #21c0c2;
         text-align: center;
         margin-top: 50px;
+        /* margin-right: 30px; */
     }
     p{
         width: 120px;
@@ -59,16 +60,13 @@ export const HeaderDiv = styled.div`
     }
 `
 
-export const DivForm = styled.div`
-`
-
 export const MainDiv = styled.div`
     background: #3D94F6;
     width: 50%;
     min-width: 400px;
     max-width: 800px;
     margin: auto;
-    height: 382px;
+    height: 250px;
     border-radius: 10px;
     @media screen and (max-device-width : 480px) {
         width: 100%;
@@ -76,10 +74,11 @@ export const MainDiv = styled.div`
     form{
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
         width: 90%;
         margin: auto;
         margin-top: 140px;
-        padding-top: 10px;
+        padding-top: 30px;
         input{
             margin: 10px 0px;
             height: 35px;
@@ -117,7 +116,7 @@ export const MainDiv = styled.div`
             cursor: pointer;
             text-align: center;
             margin: auto;
-            margin-top: 30px;
+            margin-top: 25px;
             :hover {
                 border: solid #337FED 1px;
                 background: #1E62D0;

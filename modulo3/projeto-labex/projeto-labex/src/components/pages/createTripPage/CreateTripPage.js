@@ -45,15 +45,21 @@ export default function CreateTripPage() {
 
     return (
         <C.DivForm>
-            <p>CreateTripPage</p>
+            <C.HeaderDiv>
+                <p></p>
+                <h1>Criar viagem</h1>
+                <button onClick={goBack}>Voltar</button>
+            </C.HeaderDiv>
+            <C.MainDiv>
             <form onSubmit={createTrip}>
                 <input
                     name="name"
                     value={form.name}
                     onChange={onChange}
                     placeholder="Nome"
+                    required
                 />
-                <select placeholder="Planeta" name="planet" value={form.planet} onChange={onChange} required="">
+                <select placeholder="Planeta" name="planet" value={form.planet} onChange={onChange} required>
                     <option value="" disabled="" selected="">Escolha um Planeta</option>
                     <option value="Mercúrio">Mercúrio</option>
                     <option value="Vênus">Vênus</option>
@@ -70,22 +76,29 @@ export default function CreateTripPage() {
                     name="date"
                     value={form.date}
                     onChange={onChange}
+                    required
                 />
                 <input
                     name="description"
                     value={form.description}
                     onChange={onChange}
                     placeholder="Descrição"
+                    required
+                    pattern={"^.{30,}"}
+                    title='Preencha no mínimo com 30 caracteres!'
                 />
                 <input
                     name="durationInDays"
                     value={form.durationInDays}
                     onChange={onChange}
                     placeholder="Duração de dias"
+                    required
+                    type='number'
                 />
                 <button>Criar</button>
             </form>
-            <button onClick={goBack}>Voltar</button>
+            </C.MainDiv>
+
         </C.DivForm>
     )
 }

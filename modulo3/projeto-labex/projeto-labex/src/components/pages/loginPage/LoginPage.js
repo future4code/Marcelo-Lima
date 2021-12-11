@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { url } from '../../../constants/Constants'
 import useForm from '../../../hooks/Hooks'
 
+import * as C from './Styles'
+
 export default function LoginPage() {
     const { form, onChange, cleanFields } = useForm({
         email: '',
@@ -35,7 +37,12 @@ export default function LoginPage() {
 
     return (
         <div>
-            <p>LoginPage</p>
+            <C.HeaderDiv>
+            <button onClick={goBackToHome}>Voltar</button>
+            <h1>Login</h1>
+            <p></p>
+            </C.HeaderDiv>
+            <C.MainDiv>
             <form onSubmit={send}>
                 <input
                     name={"email"}
@@ -58,7 +65,8 @@ export default function LoginPage() {
                 />
                 <button>Entrar</button>
             </form>
-            <button onClick={goBackToHome}>Voltar</button>
+            </C.MainDiv>
+            
         </div>
     )
 }

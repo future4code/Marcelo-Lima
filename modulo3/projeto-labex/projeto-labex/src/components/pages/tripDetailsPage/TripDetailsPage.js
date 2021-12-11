@@ -7,6 +7,8 @@ import { headers, TOKEN, url } from '../../../constants/Constants'
 import * as C from './Styles'
 import moment from 'moment'
 
+import loading from '../../img/loading.gif'
+
 export default function TripDetailsPage() {
     const [tripDetail, setTripDetail] = useState({})
 
@@ -57,30 +59,6 @@ export default function TripDetailsPage() {
                 })
         }
     }
-
-    const detailTrip =
-        <div>
-            <p><b>Nome:</b> {tripDetail.name}</p>
-            <p><b>Descrição:</b> {tripDetail.description}</p>
-            <p><b>Planeta:</b> {tripDetail.planet}</p>
-            <p><b>Duração:</b> {tripDetail.durationInDays}</p>
-            <p ><b>Data:</b> {moment(tripDetail.date).format('DD/MM/YYYY')}</p>
-        </div>
-
-    const candidate = tripDetail.candidates && tripDetail.candidates.map((candidate) => {
-        return (
-            <C.DivCandidate key={candidate.id}>
-                <p><b>Nome: </b>{candidate.name}</p>
-                <p><b>Profissão: </b>{candidate.profession}</p>
-                <p><b>Idade: </b>{candidate.age}</p>
-                <p><b>País: </b>{candidate.country}</p>
-                <p><b>Descrição: </b>{candidate.applicationText}</p>
-                <button onClick={() => decideCand(candidate.id, "approv")}>Aprovar</button>
-                <button onClick={() => decideCand(candidate.id, "reprov")}>Recusar</button>
-            </C.DivCandidate>
-        )
-    })
-
     const approved = tripDetail.approved && tripDetail.approved.map((candidate) => {
         return (
             <div key={tripDetail.id}>
@@ -89,13 +67,52 @@ export default function TripDetailsPage() {
         )
     })
 
+    const detailTrip =
+        <div>
+            <p><b>Nome:</b> {tripDetail.name}</p>
+            <p><b>Descrição:</b> {tripDetail.description}</p>
+            <p><b>Planeta:</b> {tripDetail.planet}</p>
+            <p><b>Duração:</b> {tripDetail.durationInDays} dias</p>
+            <p ><b>Data:</b> {moment(tripDetail.date).format('DD/MM/YYYY')}</p>
+            {approved && approved.length > 0 ? <p><b>Candidatos aprovados para viagem:</b> {approved}</p> : <p></p>}
+
+        </div>
+
+    const candidate = tripDetail.candidates && tripDetail.candidates.map((candidate) => {
+        return (
+            <C.DivCandidate key={candidate.id}>
+                <div>
+                    <h2>Candidato</h2>
+                    <p><b>Nome: </b>{candidate.name}</p>
+                    <p><b>Profissão: </b>{candidate.profession}</p>
+                    <p><b>Idade: </b>{candidate.age}</p>
+                    <p><b>País: </b>{candidate.country}</p>
+                    <p><b>Texto de Candidatura: </b>{candidate.applicationText}</p>
+                    <section>
+                        <C.ButtonAproved onClick={() => decideCand(candidate.id, "approv")}>Aprovar</C.ButtonAproved>
+                        <C.ButtonReprov onClick={() => decideCand(candidate.id, "reprov")}>Recusar</C.ButtonReprov>
+                    </section>
+                </div>
+            </C.DivCandidate>
+        )
+    })
+
     return (
         <div>
-            <p>TripDetailsPage</p>
-            {detailTrip}
-            <button onClick={goBack}>Voltar</button>
-            {candidate}
-            {approved}
+            {detailTrip && candidate ?
+                <div>
+                    <C.HeaderDiv>
+                        <button onClick={goBack}>Voltar</button>
+                        <h1>{tripDetail.name}</h1>
+                        <p></p>
+                    </C.HeaderDiv>
+                    <C.TripDiv>
+                        {detailTrip}
+                    </C.TripDiv>
+                    <C.CandidatesDiv>
+                        {candidate}
+                    </C.CandidatesDiv>
+                </div> : <C.Loading><img src={loading} /></C.Loading>}
         </div>
     )
 }

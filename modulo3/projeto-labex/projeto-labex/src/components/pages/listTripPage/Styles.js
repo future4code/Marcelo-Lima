@@ -6,27 +6,25 @@ export const CardDiv = styled.div`
     width: 500px;
     box-shadow: 0px 0px 10px 2px black;
     background: #3D94F6;
-    color: #69DADB;
+    /* color: #69DADB; */
+    color: white;
     min-height: 300px;
     p{
         margin: 15px;
         font-size: 20px;
     }
     b{
-        color: #B0D9D9;
+        color: #b5f4f5;
+        font-size: 22px;
     }
-    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    @media screen and (max-device-width : 480px) {
         width: 100vw;
-}
-
+    }
 `
 
 export const ContainerDiv = styled.div`
     display: flex;
     flex-direction: column;
-    h1{
-        color: #69DADB;
-    }
 `
 
 export const HeaderDiv = styled.div`
@@ -37,6 +35,7 @@ export const HeaderDiv = styled.div`
     h1{
         font-family: courier;
         font-size: 40px;
+        color: #21c0c2;
     }
     align-items: center;
     button{
@@ -56,7 +55,7 @@ export const HeaderDiv = styled.div`
         font-size: 25px;
         -webkit-box-shadow: 1px 1px 20px 0 #000000;
         -moz-box-shadow: 1px 1px 20px 0 #000000;
-        box-shadow: 1px 1px 20px 0 #000000;
+        box-shadow: 1px 1px 4px 0 #000000;
         text-shadow: 0 1px 10px #000000;
         border: solid #337FED 0;
         cursor: pointer;
@@ -97,4 +96,13 @@ export const TripDiv = styled.div`
         flex-direction: column;
 }
 
+`
+
+export const Loading = styled.div`
+    display: flex;
+    height: 70vh;
+    img{
+        margin: auto;
+        text-align: center;
+    }
 `

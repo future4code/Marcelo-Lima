@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import moment from 'moment'
 
+import loading from '../../img/loading.gif'
+
 import * as C from './Styles'
 import { useGetList } from '../../../hooks/Hooks'
 
@@ -37,10 +39,9 @@ export default function ListTripsPage() {
                 <h1>Lista de viagens</h1>
                 <button onClick={goToApplicationFormPage}>Inscrever-se</button>
             </C.HeaderDiv>
-            <C.TripDiv>
+            {tripList.length ? <C.TripDiv>
                 {tripList}
-            </C.TripDiv>
-
+            </C.TripDiv> : <C.Loading><img src={loading} /></C.Loading>}
         </C.ContainerDiv>
     )
 }

@@ -7,10 +7,17 @@ export const ContainerDiv = styled.div`
 export const HeaderDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
+    @media screen and (max-device-width : 480px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
     h1{
         font-family: courier;
         font-size: 40px;
-        color: #69DADB;
+        color: #21c0c2;
         text-align: center;
         margin-top: 50px;
         /* margin-right: 30px; */
@@ -35,7 +42,7 @@ export const HeaderDiv = styled.div`
         font-size: 25px;
         -webkit-box-shadow: 1px 1px 20px 0 #000000;
         -moz-box-shadow: 1px 1px 20px 0 #000000;
-        box-shadow: 1px 1px 20px 0 #000000;
+        box-shadow: 1px 1px 4px 0 #000000;
         text-shadow: 0 1px 10px #000000;
         border: solid #337FED 0;
         cursor: pointer;
@@ -58,26 +65,36 @@ export const HeaderDiv = styled.div`
 `
 
 export const MainDiv = styled.div`
-    
+    background: #3D94F6;
+    width: 50%;
+    min-width: 400px;
+    max-width: 800px;
+    margin: auto;
+    height: 408px;
+    border-radius: 10px;
+    @media screen and (max-device-width : 480px) {
+        width: 100%;
+}
     form{
         display: flex;
         flex-direction: column;
-        width: 600px;
+        width: 90%;
         margin: auto;
-        margin-top: 150px;
-        /* input{
-            margin: 10px 0px;
-            height: 30px;
-            border-radius: 10px;
-        } */
+        margin-top: 140px;
+        padding-top: 10px;
         input{
-          
+            margin: 10px 0px;
+            height: 35px;
+            border-radius: 10px;
+            border: none;
+            /* border: 1px solid black; */
         }
         select{
             margin: 10px 0px;
-            height: 30px;
+            height: 35px;
             border-radius: 10px;
             background-color: white;
+            border: none;
         }
         button{
             background: #3D94F6;
@@ -96,7 +113,7 @@ export const MainDiv = styled.div`
             font-size: 25px;
             -webkit-box-shadow: 1px 1px 20px 0 #000000;
             -moz-box-shadow: 1px 1px 20px 0 #000000;
-            box-shadow: 1px 1px 20px 0 #000000;
+            box-shadow: 1px 1px 4px 0 #000000;
             text-shadow: 0 1px 10px #000000;
             border: solid #337FED 0;
             cursor: pointer;

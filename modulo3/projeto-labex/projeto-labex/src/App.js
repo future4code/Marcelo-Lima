@@ -5,9 +5,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    /* background-color: #071A60; */
+    background-color: #dedede;
   }
-`;
+`
 
 function App() {
   return (

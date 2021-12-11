@@ -85,6 +85,7 @@ export default function ApplicationFormPage() {
                         onChange={onChange}
                         placeholder="Idade"
                         required
+                        type='number'
                     />
                     <input
                         id="outlined-basic" label="Texto de Candidatura" variant="outlined"

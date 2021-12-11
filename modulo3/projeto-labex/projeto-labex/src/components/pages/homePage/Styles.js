@@ -8,7 +8,7 @@ export const MainDiv = styled.div`
     h1{
         font-size: 70px;
         font-family: courier;
-        color: #69DADB;
+        color: #21c0c2;
     }
     
     button{    
@@ -28,7 +28,7 @@ export const MainDiv = styled.div`
         font-size: 30px;
         -webkit-box-shadow: 1px 1px 20px 0 #000000;
         -moz-box-shadow: 1px 1px 20px 0 #000000;
-        box-shadow: 1px 1px 20px 0 #000000;
+        box-shadow: 1px 1px 4px 0 #000000;
         text-shadow: 0 1px 10px #000000;
         border: solid #337FED 0;
         cursor: pointer;
