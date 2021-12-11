@@ -1,7 +1,7 @@
 import React from 'react'
 import { useProtectedPage } from '../../../hooks/Hooks'
 import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { headers, TOKEN, url } from '../../../constants/Constants'
 import * as C from './Styles'

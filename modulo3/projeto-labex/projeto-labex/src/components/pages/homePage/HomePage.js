@@ -1,6 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+// import {MainDiv} from './Styles'
+import * as C from './Styles'
+
 export default function HomePage() {
     const history = useHistory()
 
@@ -8,15 +11,17 @@ export default function HomePage() {
         history.push("/listTrips")
     }
 
-    const goToLoginPage = () => {
+    const goToAdminPage = () => {
         history.push("/adminHomePage")
     }
 
     return (
-        <div>
-            <p>HomePage</p>
-            <button onClick={goToListTripPage}>listTrips</button>
-            <button onClick={goToLoginPage}>Área de Admin</button>
-        </div>
+        <C.MainDiv>
+            <h1>LabeX</h1>
+            <div>
+                <button onClick={goToListTripPage}>Lista de viagens</button>
+                <button onClick={goToAdminPage}>Área de Admin</button>
+            </div>
+        </C.MainDiv>
     )
 }

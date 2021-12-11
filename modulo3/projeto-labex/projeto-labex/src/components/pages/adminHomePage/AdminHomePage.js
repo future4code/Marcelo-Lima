@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react/cjs/react.development'
+import { useEffect, useState } from 'react'
 import { headers, url } from '../../../constants/Constants'
 import { useGetList, useProtectedPage } from '../../../hooks/Hooks'
 

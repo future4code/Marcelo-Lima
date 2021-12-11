@@ -20,21 +20,27 @@ export default function ListTripsPage() {
     const tripList = useGetList().map((trip) => {
         return (
             <C.CardDiv>
-                <p>{trip.name}</p>
-                <p>{trip.description}</p>
-                <p>{trip.planet}</p>
-                <p>{trip.durationInDays}</p>
-                <p>{moment(trip.date).format('DD/MM/YYYY')}</p>
+                <p><b>Nome: </b>{trip.name}</p>
+                <p><b>Descrição: </b>{trip.description}</p>
+                <p><b>Planeta: </b>{trip.planet}</p>
+                <p><b>Duração: </b>{trip.durationInDays} dias</p>
+                <p><b>Data: </b>{moment(trip.date).format('DD/MM/YYYY')}</p>
             </C.CardDiv>
         )
     })
 
     return (
-        <div>
-            <p>ListTripsPage</p>
-            <button onClick={goBack}>Voltar</button>
-            <button onClick={goToApplicationFormPage}>Inscrever-se</button>
-            {tripList}
-        </div>
+        <C.ContainerDiv>
+ 
+            <C.HeaderDiv>
+                <button onClick={goBack}>Home</button>
+                <h1>Lista de viagens</h1>
+                <button onClick={goToApplicationFormPage}>Inscrever-se</button>
+            </C.HeaderDiv>
+            <C.TripDiv>
+                {tripList}
+            </C.TripDiv>
+
+        </C.ContainerDiv>
     )
 }

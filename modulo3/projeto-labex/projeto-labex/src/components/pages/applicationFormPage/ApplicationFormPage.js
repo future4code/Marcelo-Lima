@@ -2,8 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useGetList } from '../../../hooks/Hooks'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import useForm from '../../../hooks/Hooks'
+
+import { TextField } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
+import Select from '@material-ui/core/Select';
 
 import * as C from './Styles'
 import { headers, url } from '../../../constants/Constants'
@@ -17,7 +21,6 @@ export default function ApplicationFormPage() {
         country: '',
         tripId: ''
     })
-
 
     const history = useHistory()
 
@@ -35,12 +38,13 @@ export default function ApplicationFormPage() {
             country: form.country
         }
         axios.post(`${url}/trips/${form.tripId}/apply`, body)
-        .then((res) => {
-            console.log('gg', res.data)
-        })
-        .catch((err) => {
-            console.log('g',err.response)
-        })
+            .then((res) => {
+                alert("Inscrição feita com sucesso!")
+                cleanFields()
+            })
+            .catch((err) => {
+                alert("Aconteceu algum erro, por favor tente mais tarde!")
+            })
     }
 
     const selectTripList = useGetList().map((trip) => {
@@ -49,13 +53,15 @@ export default function ApplicationFormPage() {
         )
     })
 
-    console.log("a", form.tripId)
-
     return (
-        <div>
+        <C.ContainerDiv>
+            <C.HeaderDiv>
+                <button onClick={goBack}>Voltar</button>
+                <h1>Inscreva-se para uma viagem</h1>
+                <p></p>
+            </C.HeaderDiv>
             <C.MainDiv>
-                <p>ApplicationFormPage</p>
-                <form onSubmit={registerTrip}>
+                <form onSubmit={registerTrip} >
                     <select
                         name='tripId'
                         value={form.tripId}
@@ -65,30 +71,35 @@ export default function ApplicationFormPage() {
                         <option>Escolha uma viagem</option>
                         {selectTripList}
                     </select>
-                    <input
+                    {/* <label for="User">Click me</label> */}
+                    <TextField
+                        id="filled-basic" label="Nome" variant="filled"
                         name='name'
                         value={form.name}
                         onChange={onChange}
-                        placeholder="Nome"
+                        // placeholder="Nome"
                         required
                     />
-                    <input
+                    <TextField
+                        id="filled-basic" label="Idade" variant="filled"
                         name='age'
                         value={form.age}
                         onChange={onChange}
-                        placeholder="Idade"
+                        // placeholder="Idade"
                         required
                     />
-                    <input
+                    <TextField
+                        id="filled-basic" label="Texto de Candidatura" variant="filled"
                         name='textCand'
                         value={form.textCand}
                         onChange={onChange}
-                        placeholder="Texto de Candidatura"
+                        // placeholder="Texto de Candidatura"
                         required
                         pattern={"^.{30,}"}
                         title='Preencha no mínimo com 30 caracteres!'
                     />
-                    <input
+                    <TextField
+                        id="filled-basic" label="Profissão" variant="filled"
                         name='profession'
                         value={form.profession}
                         onChange={onChange}
@@ -308,12 +319,10 @@ export default function ApplicationFormPage() {
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
-
-
                     <button>Enviar</button>
                 </form>
             </C.MainDiv>
-            <button onClick={goBack}>Voltar</button>
-        </div>
+
+        </C.ContainerDiv>
     )
 }

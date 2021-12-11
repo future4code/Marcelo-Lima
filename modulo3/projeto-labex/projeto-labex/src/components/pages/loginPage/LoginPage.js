@@ -19,9 +19,8 @@ export default function LoginPage() {
         }
         axios.post(`${url}/login`, body)
             .then((res) => {
-                console.log("deu certo", res.data)
-                localStorage.setItem('token', res.data.token)
                 history.push("/adminHomePage")
+                localStorage.setItem('token', res.data.token)
                 cleanFields()
             })
             .catch((err) => {

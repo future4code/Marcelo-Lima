@@ -1,45 +1,17 @@
 import styled from "styled-components";
 
-export const CardDiv = styled.div`
+export const MainDiv = styled.div`
     display: flex;
     flex-direction: column;
-    width: 500px;
-    box-shadow: 0px 0px 10px 2px black;
-    background: #3D94F6;
-    color: #69DADB;
-    min-height: 300px;
-    p{
-        margin: 15px;
-        font-size: 20px;
-    }
-    b{
-        color: #B0D9D9;
-    }
-    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-        width: 100vw;
-}
-
-`
-
-export const ContainerDiv = styled.div`
-    display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     h1{
+        font-size: 70px;
+        font-family: courier;
         color: #69DADB;
     }
-`
-
-export const HeaderDiv = styled.div`
-    display: flex;
-    /* text-align: center; */
-    /* width: 100%; */
-    justify-content: space-evenly;
-    h1{
-        font-family: courier;
-        font-size: 40px;
-    }
-    align-items: center;
-    button{
+    
+    button{    
         background: #3D94F6;
         background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
         background-image: -moz-linear-gradient(top, #3D94F6, #1E62D0);
@@ -49,11 +21,11 @@ export const HeaderDiv = styled.div`
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
         border-radius: 20px;
-        height: 50px;
+        height: 100px;
         color: #FFFFFF;
         font-family: Courier New;
-        width: 250px;
-        font-size: 25px;
+        width: 350px;
+        font-size: 30px;
         -webkit-box-shadow: 1px 1px 20px 0 #000000;
         -moz-box-shadow: 1px 1px 20px 0 #000000;
         box-shadow: 1px 1px 20px 0 #000000;
@@ -61,7 +33,8 @@ export const HeaderDiv = styled.div`
         border: solid #337FED 0;
         cursor: pointer;
         text-align: center;
-        margin-top: 100px;
+        margin: 0px 50px;
+        margin-top: 30vh;
         :hover {
             border: solid #337FED 1px;
             background: #1E62D0;
@@ -75,26 +48,5 @@ export const HeaderDiv = styled.div`
             border-radius: 20px;
             text-decoration: none;
         }
-
     }
-    @media screen and (max-device-width : 480px) {
-        display: flex;
-        flex-direction: column;
-}
-
-`
-
-export const TripDiv = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    /* justify-content: center; */
-    justify-items: center;
-    margin: auto;
-    margin-top: 100px;
-    @media screen and (max-device-width : 480px) {
-        display: flex;
-        flex-direction: column;
-}
-
 `

@@ -28,7 +28,6 @@ export const useGetList = () => {
                 setTrips(res.data.trips)
             })
             .catch((err) => {
-                console.log('b', err.response)
             })
     }
     return trips

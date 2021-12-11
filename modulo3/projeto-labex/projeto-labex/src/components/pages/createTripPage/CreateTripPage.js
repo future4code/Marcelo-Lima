@@ -24,7 +24,6 @@ export default function CreateTripPage() {
         history.goBack()
     }
 
-
     const createTrip = (e) => {
         e.preventDefault()
         const body = {
@@ -35,25 +34,24 @@ export default function CreateTripPage() {
             durationInDays: form.durationInDays
         }
         axios.post(`${url}/trips`, body, headers)
-        .then((res) => {
-             cleanFields()
-             alert("Viagem criada com sucesso!")
-        })
-        .catch((err) => {
-            alert("Ocorreu algum erro, por favor tente novamente!")
-        })
+            .then((res) => {
+                cleanFields()
+                alert("Viagem criada com sucesso!")
+            })
+            .catch((err) => {
+                alert("Ocorreu algum erro, por favor tente novamente!")
+            })
     }
-
 
     return (
         <C.DivForm>
             <p>CreateTripPage</p>
             <form onSubmit={createTrip}>
-                <input 
-                name="name"
-                value={form.name}
-                onChange={onChange}
-                placeholder="Nome" 
+                <input
+                    name="name"
+                    value={form.name}
+                    onChange={onChange}
+                    placeholder="Nome"
                 />
                 <select placeholder="Planeta" name="planet" value={form.planet} onChange={onChange} required="">
                     <option value="" disabled="" selected="">Escolha um Planeta</option>
@@ -67,23 +65,23 @@ export default function CreateTripPage() {
                     <option value="Netuno">Netuno</option>
                     <option value="Plutão">Plutão</option>
                 </select>
-                <input 
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={onChange}
+                <input
+                    type="date"
+                    name="date"
+                    value={form.date}
+                    onChange={onChange}
                 />
-                <input 
-                name="description"
-                value={form.description}
-                onChange={onChange}
-                placeholder="Descrição" 
+                <input
+                    name="description"
+                    value={form.description}
+                    onChange={onChange}
+                    placeholder="Descrição"
                 />
-                <input 
-                name="durationInDays"
-                value={form.durationInDays}
-                onChange={onChange}
-                placeholder="Duração de dias" 
+                <input
+                    name="durationInDays"
+                    value={form.durationInDays}
+                    onChange={onChange}
+                    placeholder="Duração de dias"
                 />
                 <button>Criar</button>
             </form>
