@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# LabeX
+Status do Projeto: Concluido :white_check_mark:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Descrição do Projeto
+A ideia será criar uma plataforma de gerenciamento de viagens. A plataforma terá duas partes: uma pública e uma privada. Onde terá uma página para fazer login e ter acesso a parte administrativa do site, com isto, você ganha o poder de criar e deletar viagens do projeto.
 
-## Available Scripts
+# Objetivos
 
-In the project directory, you can run:
+1 - Ver a lista de todas as viagens com a possibilidade de deletá-las
 
-### `npm start`
+2- Ter acesso a uma página com formulário para criar novas viagens
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3-  -   Ver os detalhes de uma viagem e, dentro desta página:
+    
+    -   Conseguir ver a lista de candidatos que se aplicaram para essa viagem e ainda estão pendentes
+    -   Aprovar ou reprovar os candidatos para a viagem
+    -   Ver lista atualizada de candidatos aprovados
+    💡 Para acessar a parte do admin, utilize o email [`astrodev@gmail.com`](mailto:astrodev@gmail.com) e a senha `123456`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Login
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+💡 Para acessar a parte do admin, utilize o email [`marcelo@labenu.com`]e a senha `123456`
 
-### `npm run build`
+## Deploy da Aplicação com Surge: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+courageous-pies.surge.sh
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tecnologias utilizadas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   React Js
+-   Axios
+-   Styled components
