@@ -4,6 +4,15 @@ import Router from "./routers/Router";
 import { useState } from "react";
 import Header from "./components/Header/Header";
 import { BrowserRouter } from 'react-router-dom'
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    /* margin: 0;
+    padding: 0; */
+    background-color: #dedede;
+  }
+`
 
 function App() {
   const token = localStorage.getItem('token')
@@ -11,6 +20,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <BrowserRouter>
         <Header rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
         <Router setRightButtonText={setRightButtonText}/>
