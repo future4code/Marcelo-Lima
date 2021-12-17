@@ -45,8 +45,25 @@ export const DivTitleName = styled.div`
     }
 `
 
-export const TextBodyContainer = styled.p`
-    min-height: 300px;
+export const TextBodyContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    min-height: 200px;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100px;
+        margin-right: 5px;
+    }
+    img{
+        width: 25px;
+        :hover{
+            width: 30px;
+            transition: .1s ease-in-out;
+            cursor: pointer;
+        }
+    }
 `
 
 export const DivBottomCardPost = styled.div`
@@ -57,6 +74,25 @@ export const DivBottomCardPost = styled.div`
     padding-bottom: 5px;
     background-color: #DAE0E6;
     border-radius: 5px;
+    max-height: 350px;
+    overflow: auto;
+    ::-webkit-scrollbar {
+    width: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #eb4034; 
+    border-radius: 10px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #3632b3; 
+    }
     form{
         display: flex;
         flex-direction: row;
@@ -85,4 +121,27 @@ export const StyledInput = styled(TextField)`
 
 export const DivComentContainer = styled.div`
     margin-top: 7px;
+    display: flex;
+    justify-content: space-between;
+`
+
+export const DivButtonLikeComment = styled.div`
+    display: flex;
+    flex-direction: row;
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        margin-right: 5px;
+    }
+    img{
+        width: 25px;
+        :hover{
+            width: 30px;
+            transition: .1s ease-in-out;
+            cursor: pointer;
+        }
+    }
 `

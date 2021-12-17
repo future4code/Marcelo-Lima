@@ -17,7 +17,6 @@ export const DivCardContainer = styled.div`
     min-height: 200px;
     background-color: white;
     z-index: -1;
-    cursor: pointer;
     :hover{
         box-shadow: 0px 0px 2px 1px black;
     }
@@ -31,6 +30,7 @@ export const DivCardContainer = styled.div`
 `
 
 export const DivTitleName = styled.div`
+    cursor: pointer;
     h3{
         margin: 0px 10px;
         color: black;
@@ -44,8 +44,44 @@ export const DivTitleName = styled.div`
     }
 `
 
-export const TextBodyContainer = styled.p`
+export const TextBodyContainer = styled.div`
+    display: flex;
+    flex-direction: row;
     min-height: 100px;
+    overflow: auto;
+    ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #eb4034; 
+    border-radius: 10px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #3632b3; 
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100px;
+        margin-right: 5px;
+    }
+    img{
+        width: 25px;
+        :hover{
+            width: 30px;
+            transition: .1s ease-in-out;
+            cursor: pointer;
+        }
+    }
 `
 
 export const DivBottomCardPost = styled.div`
@@ -82,6 +118,9 @@ export const DivFormCreatePost = styled.div`
     max-width: 400px;
     margin: auto;
     margin-top: 20px;
+    @media screen and (max-device-width : 480px) {
+        width: 100vw;
+    }
     form{
         display: flex;
         flex-direction: column;
@@ -89,6 +128,9 @@ export const DivFormCreatePost = styled.div`
         width: 40vw;
         min-width: 200px;
         max-width: 400px;
+        @media screen and (max-device-width : 480px) {
+        width: 100vw;
+        }
         input{
             height: 40px;
         }

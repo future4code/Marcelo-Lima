@@ -6,98 +6,111 @@ import { useProtectedPage } from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import { AddPostButton, DivBottomCardPost, DivCardContainer, DivFormCreatePost, DivLikeContainer, DivTitleName, StyledInput, TextBodyContainer } from './Styled'
 import { useHistory } from 'react-router-dom/'
-import AddIcon from '@material-ui/icons/Add';
 import { goToPost } from '../../routers/Coordinator'
 import useForm from '../../hooks/useForm'
 import { StyledButton } from '../LoginPage/Styled'
+import { useParams } from 'react-router-dom/'
+
+import upBlack from '../../components/img/upBlack.png'
+import upWhite from '../../components/img/upWhite.png'
+import downBlack from '../../components/img/downBlack.png'
+import downWhite from '../../components/img/downWhite.png'
+import FeedForm from './FeedForm'
+
 
 
 const FeedPage = () => {
     useProtectedPage()
     const history = useHistory()
     const [feed, getPost] = useRequestData([], `${BASE_URL}/posts`)
-    const { form, onChange, cleanFields } = useForm({ title: '', body: '' })
-
-    const createPost = (e) => {
-        e.preventDefault()
-        axios.post(`${BASE_URL}/posts`, form, {
-            headers: {
-                Authorization: localStorage.getItem('token')
-            }
-        })
-            .then((res) => {
-                console.log('vv', res.data)
-                cleanFields()
-                getPost()
-                alert('Post criado com sucesso!')
-            })
-            .catch((err) => {
-                alert(err.response.data.message)
-
-            })
-    }
 
     const onClickPost = (id) => {
         goToPost(history, id)
     }
 
-    const clickButton = (e) => {
-        e.stopPropagation()
-        console.log("abc")
+    const createVote = (id, userVote, vote) =>{
+        const headers = {
+            headers:{
+                Authorization: localStorage.getItem('token')
+            }
+        }
+
+        let body = {}
+
+        if (vote === true){
+            body = {
+                direction: 1
+            }
+        } else {
+            body = {
+                direction: -1
+            }
+        }
+
+        if (userVote === null){
+            axios.post(`${BASE_URL}/posts/${id}/votes`, body, headers)
+            .then((res) => {
+                getPost()
+                console.log('bb', res)
+            })
+            .catch((err) =>{
+                history.push('/error')
+                console.log('nn', err.response)
+            })
+        } else if (userVote === -body.direction){
+            axios.put(`${BASE_URL}/posts/${id}/votes`, body, headers)
+            .then((res) => {
+                getPost()
+            })
+            .catch((err) =>{
+                history.push('/error')
+            })
+        }
     }
 
-    const posts = feed.map((post) => {
+    const deletePostVote = (id) => {
+        const headers = {
+            headers:{
+                Authorization: localStorage.getItem('token')
+            }
+        }
+        axios.delete(`${BASE_URL}/posts/${id}/votes`, headers)
+        .then((res) => {
+            getPost()
+        })
+        .catch((err) => {
+            history.push('/error')
+        })
+    }
+
+    const posts = feed && feed.map((post) => {
         return (
-            <DivCardContainer key={post.id} onClick={() => onClickPost(post.id)}>
-                <DivTitleName>
+            <DivCardContainer key={post.id} >
+                <DivTitleName onClick={() => onClickPost(post.id)}>
                     <p>Posted by {post.username}</p>
                     <h3>{post.title}</h3>
                 </DivTitleName>
-                <TextBodyContainer>{post.body}</TextBodyContainer>
+                <TextBodyContainer>
+                    <div>
+                        {post.userVote === 1 ? <img src={upBlack} onClick={() => deletePostVote( post.id )}/> : <img src={upWhite} onClick={() => createVote( post.id, post.userVote, true)}/>}
+                        <p>{!post.voteSum ? 0 : post.voteSum}</p>
+                        {post.userVote === -1 ? <img src={downBlack} onClick={() => deletePostVote( post.id )}/> : <img src={downWhite} onClick={() => createVote( post.id, post.userVote, false )}/>}
+                    </div>
+                    {post.body}
+                </TextBodyContainer>
                 <DivBottomCardPost>
                     <DivLikeContainer>
-                        <button onClick={clickButton}>+</button>
-                        <p>{!post.voteSum ? 0 : post.voteSum}</p>
-                        <button>-</button>
                     </DivLikeContainer>
                     <p>{!post.commentCount ? 0 : post.commentCount} comentários</p>
                 </DivBottomCardPost>
             </DivCardContainer>
         )
     })
+    
     return (
         <div>
-            <DivFormCreatePost>
-                <form onSubmit={createPost}>
-                    <StyledInput
-                        variant={'outlined'}
-                        name={'title'}
-                        value={form.title}
-                        onChange={onChange}
-                        label={'Título'}
-                        required
-                        margin='normal'
-                    />
-                    <StyledInput
-                        variant={'outlined'}
-                        name={'body'}
-                        value={form.body}
-                        onChange={onChange}
-                        label={'Texto'}
-                        margin='normal'
-                        multiline
-                        rows={7}
-                    />
-                    <StyledButton
-                        type={'submit'}
-                        variant='contained'
-                        color="primary">Criar post</StyledButton>
-                </form>
-            </DivFormCreatePost>
+            <FeedForm getPost={getPost}/>
             {posts}
-            {/* <AddPostButton color="primary" aria-label="add">
-                <AddIcon />
-            </AddPostButton> */}
         </div>
     )
 }

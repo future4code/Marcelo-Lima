@@ -24,7 +24,7 @@ const Router = ({setRightButtonText}) => {
                     <PostPage />
                 </Route>
                 <Route>
-                    <ErrorPage />
+                    <ErrorPage path='/error'/>
                 </Route>
             </Switch>
     )
