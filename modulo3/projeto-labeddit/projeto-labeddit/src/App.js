@@ -10,7 +10,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     /* margin: 0;
     padding: 0; */
-    background-color: #dedede;
+    /* background-color: #dedede; */
+    background-color: #DAE0E6;
+    font-family: verdana, arial, helvetica, sans-serif
   }
 `
 

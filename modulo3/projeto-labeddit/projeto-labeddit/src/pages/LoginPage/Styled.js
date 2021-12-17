@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Button from '@material-ui/core/Button';
+import { Button, TextField } from '@material-ui/core';
 
 export const ScreenContainer = styled.div`
     display: flex;
@@ -40,4 +40,8 @@ export const LogoImage = styled.img`
 
 export const StyledButton = styled(Button)`
     margin-top: 15px;
+`
+
+export const StyledInput = styled(TextField)`
+    background-color: white;
 `

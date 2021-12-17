@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, TextField } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import * as C from './Styled'
-import { StyledButton } from './Styled'
+import { StyledButton, StyledInput } from './Styled'
 
 import useForm from '../../hooks/useForm'
 import { login } from '../../services/user'
@@ -20,7 +20,7 @@ const LoginForm = ({setRightButtonText}) => {
     return (
         <C.InputsContainer>
             <form onSubmit={onSubmitForm}>
-                <TextField
+                <StyledInput
                     name={'email'}
                     value={form.email}
                     onChange={onChange}
@@ -31,7 +31,7 @@ const LoginForm = ({setRightButtonText}) => {
                     type={'email'}
                     required
                 />
-                <TextField
+                <StyledInput
                     name={'password'}
                     value={form.password}
                     onChange={onChange}

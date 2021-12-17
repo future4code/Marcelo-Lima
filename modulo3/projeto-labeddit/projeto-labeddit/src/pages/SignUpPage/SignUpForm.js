@@ -4,7 +4,7 @@ import * as C from './Styled'
 import useForm from '../../hooks/useForm'
 import { signUp } from '../../services/user'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { StyledButton } from './Styled'
+import { StyledButton, StyledInput } from './Styled'
 
 const SignUpForm = ({setRightButtonText}) => {
     const { form, onChange, cleanFields } = useForm({username: '', email: '', password: '' })
@@ -19,7 +19,7 @@ const SignUpForm = ({setRightButtonText}) => {
     return (
             <C.InputsContainer>
                 <form onSubmit={onSubmitForm}>
-                    <TextField
+                    <StyledInput
                         name={'username'}
                         value={form.username}
                         onChange={onChange}
@@ -29,7 +29,7 @@ const SignUpForm = ({setRightButtonText}) => {
                         margin='normal'
                         required
                     />
-                    <TextField
+                    <StyledInput
                         name={'email'}
                         value={form.email}
                         onChange={onChange}
@@ -40,7 +40,7 @@ const SignUpForm = ({setRightButtonText}) => {
                         type={'email'}
                         required
                     />
-                    <TextField
+                    <StyledInput
                         name={'password'}
                         value={form.password}
                         onChange={onChange}

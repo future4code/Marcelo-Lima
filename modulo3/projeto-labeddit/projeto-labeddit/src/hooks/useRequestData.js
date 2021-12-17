@@ -4,7 +4,7 @@ import axios from "axios";
 const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
 
-    useEffect(() => {
+    const getPost = () => {
         axios.get(url, {
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -14,11 +14,13 @@ const useRequestData = (initialData, url) => {
             setData(res.data)
         })
         .catch((err) => {
-            console.log(err)
-            alert('Ocorreu um erro, tente novamente!')
         })
+    }
+
+    useEffect(() => {
+        getPost()
     }, [url])
-    return (data)
+    return [data, getPost]
 }
 
 export default useRequestData
