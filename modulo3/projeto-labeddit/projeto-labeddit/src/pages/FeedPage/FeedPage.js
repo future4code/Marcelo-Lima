@@ -10,6 +10,7 @@ import { goToPost } from '../../routers/Coordinator'
 import useForm from '../../hooks/useForm'
 import { StyledButton } from '../LoginPage/Styled'
 import { useParams } from 'react-router-dom/'
+import { AiOutlineLike, AiFillLike, AiOutlineDislike, AiFillDislike } from 'react-icons/ai';
 
 import upBlack from '../../components/img/upBlack.png'
 import upWhite from '../../components/img/upWhite.png'
@@ -92,9 +93,9 @@ const FeedPage = () => {
                 </DivTitleName>
                 <TextBodyContainer>
                     <div>
-                        {post.userVote === 1 ? <img src={upBlack} onClick={() => deletePostVote( post.id )}/> : <img src={upWhite} onClick={() => createVote( post.id, post.userVote, true)}/>}
+                        {post.userVote === 1 ? <AiFillLike  onClick={() => deletePostVote( post.id )}/> : <AiOutlineLike onClick={() => createVote( post.id, post.userVote, true)}/>}
                         <p>{!post.voteSum ? 0 : post.voteSum}</p>
-                        {post.userVote === -1 ? <img src={downBlack} onClick={() => deletePostVote( post.id )}/> : <img src={downWhite} onClick={() => createVote( post.id, post.userVote, false )}/>}
+                        {post.userVote === -1 ? <AiFillDislike onClick={() => deletePostVote( post.id )}/> : <AiOutlineDislike onClick={() => createVote( post.id, post.userVote, false )}/>}
                     </div>
                     {post.body}
                 </TextBodyContainer>
