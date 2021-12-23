@@ -1,6 +1,6 @@
 import { useHistory } from "react-router"
-import { useEffect, useState } from "react"
-import { goToFeed, goToLogin } from "../routers/Coordinator"
+import { useEffect } from "react"
+import { goToFeed } from "../routers/Coordinator"
 
 export const useUnprotectedPage = () => {
     const history = useHistory()

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-
 import { Button, TextField } from "@material-ui/core";
+import { AiOutlineLike, AiFillLike, AiOutlineDislike, AiFillDislike } from 'react-icons/ai';
 
 export const DivCardContainer = styled.div`
     display: flex;
@@ -55,6 +55,7 @@ export const TextBodyContainer = styled.div`
         align-items: center;
         min-height: 100px;
         margin-right: 5px;
+        width: 40px;
     }
     img{
         width: 25px;
@@ -135,6 +136,7 @@ export const DivButtonLikeComment = styled.div`
         align-items: center;
         min-height: 100px;
         margin-right: 5px;
+        width: 40px;
     }
     img{
         width: 25px;
@@ -144,4 +146,25 @@ export const DivButtonLikeComment = styled.div`
             cursor: pointer;
         }
     }
+`
+
+export const StyledButtonLikeUpBlack = styled(AiFillLike)`
+    cursor: pointer;
+`
+
+export const StyledButtonLikeUpWhite = styled(AiOutlineLike)`
+    cursor: pointer;
+`
+
+export const StyledButtonLikeDownBlack = styled(AiFillDislike)`
+    cursor: pointer;
+`
+
+export const StyledButtonLikeDownWhite = styled(AiOutlineDislike)`
+    cursor: pointer;
+`
+
+export const StyledLoading = styled.div`
+    text-align: center;
+    margin: 150px 0px;
 `

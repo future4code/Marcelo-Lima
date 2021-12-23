@@ -1,23 +1,24 @@
-import { Fab, TextField } from '@material-ui/core'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BASE_URL } from '../../constants/urls'
 import { useProtectedPage } from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
-import { AddPostButton, DivBottomCardPost, DivCardContainer, DivFormCreatePost, DivLikeContainer, DivTitleName, StyledInput, TextBodyContainer } from './Styled'
 import { useHistory } from 'react-router-dom/'
 import { goToPost } from '../../routers/Coordinator'
-import useForm from '../../hooks/useForm'
-import { StyledButton } from '../LoginPage/Styled'
-import { useParams } from 'react-router-dom/'
-import { AiOutlineLike, AiFillLike, AiOutlineDislike, AiFillDislike } from 'react-icons/ai';
-
-import upBlack from '../../components/img/upBlack.png'
-import upWhite from '../../components/img/upWhite.png'
-import downBlack from '../../components/img/downBlack.png'
-import downWhite from '../../components/img/downWhite.png'
+import loading from '../../components/img/loading.gif'
 import FeedForm from './FeedForm'
-
+import {
+    DivBottomCardPost,
+    DivCardContainer,
+    DivLikeContainer,
+    DivTitleName,
+    TextBodyContainer,
+    StyledButtonLikeUpBlack,
+    StyledButtonLikeUpWhite,
+    StyledButtonLikeDownBlack,
+    StyledButtonLikeDownWhite,
+    StyledLoading
+} from './Styled'
 
 
 const FeedPage = () => {
@@ -29,59 +30,49 @@ const FeedPage = () => {
         goToPost(history, id)
     }
 
-    const createVote = (id, userVote, vote) =>{
+    const createVote = (id, userVote, vote) => {
         const headers = {
-            headers:{
+            headers: {
                 Authorization: localStorage.getItem('token')
             }
         }
 
-        let body = {}
-
-        if (vote === true){
-            body = {
-                direction: 1
-            }
-        } else {
-            body = {
-                direction: -1
-            }
+        const body = {
+            direction: vote
         }
 
-        if (userVote === null){
+        if (userVote === null) {
             axios.post(`${BASE_URL}/posts/${id}/votes`, body, headers)
-            .then((res) => {
-                getPost()
-                console.log('bb', res)
-            })
-            .catch((err) =>{
-                history.push('/error')
-                console.log('nn', err.response)
-            })
-        } else if (userVote === -body.direction){
+                .then((res) => {
+                    getPost()
+                })
+                .catch((err) => {
+                    history.push('/error')
+                })
+        } else if (userVote === -body.direction) {
             axios.put(`${BASE_URL}/posts/${id}/votes`, body, headers)
-            .then((res) => {
-                getPost()
-            })
-            .catch((err) =>{
-                history.push('/error')
-            })
+                .then((res) => {
+                    getPost()
+                })
+                .catch((err) => {
+                    history.push('/error')
+                })
         }
     }
 
     const deletePostVote = (id) => {
         const headers = {
-            headers:{
+            headers: {
                 Authorization: localStorage.getItem('token')
             }
         }
         axios.delete(`${BASE_URL}/posts/${id}/votes`, headers)
-        .then((res) => {
-            getPost()
-        })
-        .catch((err) => {
-            history.push('/error')
-        })
+            .then((res) => {
+                getPost()
+            })
+            .catch((err) => {
+                history.push('/error')
+            })
     }
 
     const posts = feed && feed.map((post) => {
@@ -93,9 +84,9 @@ const FeedPage = () => {
                 </DivTitleName>
                 <TextBodyContainer>
                     <div>
-                        {post.userVote === 1 ? <AiFillLike  onClick={() => deletePostVote( post.id )}/> : <AiOutlineLike onClick={() => createVote( post.id, post.userVote, true)}/>}
+                        {post.userVote === 1 ? <StyledButtonLikeUpBlack onClick={() => deletePostVote(post.id)} /> : <StyledButtonLikeUpWhite onClick={() => createVote(post.id, post.userVote, 1)} />}
                         <p>{!post.voteSum ? 0 : post.voteSum}</p>
-                        {post.userVote === -1 ? <AiFillDislike onClick={() => deletePostVote( post.id )}/> : <AiOutlineDislike onClick={() => createVote( post.id, post.userVote, false )}/>}
+                        {post.userVote === -1 ? <StyledButtonLikeDownBlack onClick={() => deletePostVote(post.id)} /> : <StyledButtonLikeDownWhite onClick={() => createVote(post.id, post.userVote, -1)} />}
                     </div>
                     {post.body}
                 </TextBodyContainer>
@@ -107,11 +98,14 @@ const FeedPage = () => {
             </DivCardContainer>
         )
     })
-    
+
     return (
         <div>
-            <FeedForm getPost={getPost}/>
-            {posts}
+            {feed.length ?
+                <div>
+                    <FeedForm getPost={getPost} />
+                    {posts}
+                </div> : <StyledLoading><img src={loading} /></StyledLoading>}
         </div>
     )
 }

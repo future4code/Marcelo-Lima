@@ -1,7 +1,5 @@
 import axios from "axios";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { BASE_URL } from '../constants/urls'
-import useForm from '../hooks/useForm'
 import { goToFeed } from "../routers/Coordinator";
 
 export const login = (body, clear, history, setRightButtonText) => {
@@ -27,6 +25,6 @@ export const signUp = (body, clear, history, setRightButtonText) => {
             setRightButtonText('Logout')
         })
         .catch((err) => {
-            alert(err.response.data)
+            alert(err.response.data.message + 'A senha deve ter no mínimo 8 caracteres')
         })
 }

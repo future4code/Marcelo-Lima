@@ -1,13 +1,10 @@
 import React from 'react'
-import { TextField } from '@material-ui/core'
-import * as C from './Styled'
-import { StyledButton, StyledInput } from './Styled'
-
 import useForm from '../../hooks/useForm'
 import { login } from '../../services/user'
 import { useHistory } from 'react-router-dom/'
+import { StyledButton, StyledInput, InputsContainer } from './Styled'
 
-const LoginForm = ({setRightButtonText}) => {
+const LoginForm = ({ setRightButtonText }) => {
     const { form, onChange, cleanFields } = useForm({ email: '', password: '' })
 
     const history = useHistory()
@@ -18,7 +15,7 @@ const LoginForm = ({setRightButtonText}) => {
     }
 
     return (
-        <C.InputsContainer>
+        <InputsContainer>
             <form onSubmit={onSubmitForm}>
                 <StyledInput
                     name={'email'}
@@ -50,7 +47,7 @@ const LoginForm = ({setRightButtonText}) => {
                     Entrar
                 </StyledButton>
             </form>
-        </C.InputsContainer>
+        </InputsContainer>
     )
 }
 

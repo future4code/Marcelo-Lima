@@ -1,16 +1,16 @@
 import React from 'react'
-import * as C from './Styled'
 import SignUpForm from './SignUpForm'
 import { useUnprotectedPage } from '../../hooks/useUnprotectedPage'
+import { ScreenContainer } from './Styled'
 
-const SignUpPage = ({setRightButtonText}) => {
+const SignUpPage = ({ setRightButtonText }) => {
     useUnprotectedPage()
 
     return (
-        <C.ScreenContainer>
+        <ScreenContainer>
             <h1>Cadastre-se</h1>
-            <SignUpForm setRightButtonText={setRightButtonText}/>
-        </C.ScreenContainer>
+            <SignUpForm setRightButtonText={setRightButtonText} />
+        </ScreenContainer>
     )
 }
 

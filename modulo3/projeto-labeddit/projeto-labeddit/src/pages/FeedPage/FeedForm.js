@@ -3,9 +3,6 @@ import React from 'react'
 import { BASE_URL } from '../../constants/urls'
 import useForm from '../../hooks/useForm'
 import { StyledButton } from '../LoginPage/Styled'
-
-
-
 import { DivFormCreatePost, StyledInput } from './Styled'
 
 const FeedForm = (props) => {
@@ -20,7 +17,6 @@ const FeedForm = (props) => {
             }
         })
             .then((res) => {
-                console.log('vv', res.data)
                 cleanFields()
                 props.getPost()
                 alert('Post criado com sucesso!')
@@ -31,34 +27,34 @@ const FeedForm = (props) => {
             })
     }
 
-    return(
+    return (
         <DivFormCreatePost>
-                <form onSubmit={createPost}>
-                    <StyledInput
-                        variant={'outlined'}
-                        name={'title'}
-                        value={form.title}
-                        onChange={onChange}
-                        label={'Título'}
-                        required
-                        margin='normal'
-                    />
-                    <StyledInput
-                        variant={'outlined'}
-                        name={'body'}
-                        value={form.body}
-                        onChange={onChange}
-                        label={'Texto'}
-                        margin='normal'
-                        multiline
-                        rows={7}
-                    />
-                    <StyledButton
-                        type={'submit'}
-                        variant='contained'
-                        color="primary">Criar post</StyledButton>
-                </form>
-            </DivFormCreatePost>
+            <form onSubmit={createPost}>
+                <StyledInput
+                    variant={'outlined'}
+                    name={'title'}
+                    value={form.title}
+                    onChange={onChange}
+                    label={'Título'}
+                    required
+                    margin='normal'
+                />
+                <StyledInput
+                    variant={'outlined'}
+                    name={'body'}
+                    value={form.body}
+                    onChange={onChange}
+                    label={'Texto'}
+                    margin='normal'
+                    multiline
+                    rows={7}
+                />
+                <StyledButton
+                    type={'submit'}
+                    variant='contained'
+                    color="primary">Criar post</StyledButton>
+            </form>
+        </DivFormCreatePost>
     )
 }
 

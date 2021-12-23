@@ -1,21 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { BASE_URL } from '../../constants/urls'
 import { useProtectedPage } from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import axios from 'axios'
-import { DivCardContainer, DivTitleName, DivBottomCardPost, StyledInput, StyledButton, TextBodyContainer, DivComentContainer, DivButtonLikeComment } from './Styled'
 import useForm from '../../hooks/useForm'
-import { AiOutlineLike, AiFillLike, AiOutlineDislike, AiFillDislike } from 'react-icons/ai';
-
-import upBlack from '../../components/img/upBlack.png'
-import upWhite from '../../components/img/upWhite.png'
-import downBlack from '../../components/img/downBlack.png'
-import downWhite from '../../components/img/downWhite.png'
+import loading from '../../components/img/loading.gif'
+import {
+    DivCardContainer,
+    DivTitleName,
+    DivBottomCardPost,
+    StyledInput,
+    StyledButton,
+    TextBodyContainer,
+    DivComentContainer,
+    DivButtonLikeComment,
+    StyledButtonLikeUpBlack,
+    StyledButtonLikeUpWhite,
+    StyledButtonLikeDownBlack,
+    StyledButtonLikeDownWhite,
+    StyledLoading
+} from './Styled'
 
 const PostPage = () => {
     useProtectedPage()
-    
+
     const history = useHistory()
     const params = useParams()
     const { form, onChange, cleanFields } = useForm({ body: '' })
@@ -23,7 +32,7 @@ const PostPage = () => {
 
     const [posts, getPost] = useRequestData([], `${BASE_URL}/posts`)
     const [comments, getComments] = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`, control)
-    
+
     const createComment = (e) => {
         e.preventDefault()
         axios.post(`${BASE_URL}/posts/${params.id}/comments`, form, {
@@ -47,27 +56,17 @@ const PostPage = () => {
             }
         }
 
-        let body = {}
-
-        if (vote) {
-            body = {
-                direction: 1
-            }
-        } else {
-            body = {
-                direction: -1
-            }
+        let body = {
+            direction: vote
         }
 
         if (userVote === null) {
             axios.post(`${BASE_URL}/posts/${id}/votes`, body, headers)
                 .then((res) => {
                     getPost()
-                    console.log('bb', res)
                 })
                 .catch((err) => {
                     history.push('/error')
-                    console.log('nn', err.response)
                 })
         } else if (userVote === -body.direction) {
             axios.put(`${BASE_URL}/posts/${id}/votes`, body, headers)
@@ -102,16 +101,8 @@ const PostPage = () => {
             }
         }
 
-        let body = {}
-
-        if (vote === true) {
-            body = {
-                direction: 1
-            }
-        } else {
-            body = {
-                direction: -1
-            }
+        const body = {
+            direction: vote
         }
 
         if (userVote === null) {
@@ -157,9 +148,9 @@ const PostPage = () => {
                 </div>
                 <DivButtonLikeComment>
                     <div>
-                        {comment.userVote === 1 ? <AiFillLike onClick={() => deleteCommentVote(comment.id)} /> : <AiOutlineLike onClick={() => createVoteComment(comment.id, comment.userVote, true)} />}
+                        {comment.userVote === 1 ? <StyledButtonLikeUpBlack onClick={() => deleteCommentVote(comment.id)} /> : <StyledButtonLikeUpWhite onClick={() => createVoteComment(comment.id, comment.userVote, 1)} />}
                         <p>{comment.voteSum === null ? 0 : comment.voteSum}</p>
-                        {comment.userVote === -1 ? <AiFillDislike onClick={() => deleteCommentVote(comment.id)} /> : <AiOutlineDislike onClick={() => createVoteComment(comment.id, comment.userVote, false)} />}
+                        {comment.userVote === -1 ? <StyledButtonLikeDownBlack onClick={() => deleteCommentVote(comment.id)} /> : <StyledButtonLikeDownWhite onClick={() => createVoteComment(comment.id, comment.userVote, -1)} />}
                     </div>
                 </DivButtonLikeComment>
             </DivComentContainer>
@@ -176,9 +167,9 @@ const PostPage = () => {
                     </DivTitleName>
                     <TextBodyContainer>
                         <div>
-                            {post.userVote === 1 ? <AiFillLike onClick={() => deletePostVote(post.id)} /> : <AiOutlineLike onClick={() => createVote(post.id, post.userVote, true)} />}
-                            <p>{!post.voteSum ? 0 : post.voteSum}</p>
-                            {post.userVote === -1 ? <AiFillDislike onClick={() => deletePostVote(post.id)} /> : <AiOutlineDislike onClick={() => createVote(post.id, post.userVote, false)} />}
+                        {post.userVote === 1 ? <StyledButtonLikeUpBlack onClick={() => deletePostVote(post.id)} /> : <StyledButtonLikeUpWhite onClick={() => createVote(post.id, post.userVote, 1)} />}
+                        <p>{!post.voteSum ? 0 : post.voteSum}</p>
+                        {post.userVote === -1 ? <StyledButtonLikeDownBlack onClick={() => deletePostVote(post.id)} /> : <StyledButtonLikeDownWhite onClick={() => createVote(post.id, post.userVote, -1)} />}
                         </div>
                         {post.body}
                     </TextBodyContainer>
@@ -204,7 +195,7 @@ const PostPage = () => {
 
     return (
         <div>
-            {postMapped}
+            {posts.length ? postMapped : <StyledLoading><img src={loading} /></StyledLoading>}
         </div>
     )
 }

@@ -1,13 +1,12 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import { StyledToolbar } from './Styled';
 import { goToFeed, goToLogin } from '../../routers/Coordinator';
 import { useHistory } from 'react-router-dom/';
-import { useState } from 'react';
 
-const Header = ({rightButtonText, setRightButtonText}) => {
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import { StyledToolbar } from './Styled';
+
+const Header = ({ rightButtonText, setRightButtonText }) => {
   const history = useHistory()
 
   const token = localStorage.getItem('token')

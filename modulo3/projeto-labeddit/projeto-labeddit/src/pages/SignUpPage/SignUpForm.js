@@ -1,13 +1,11 @@
 import React from 'react'
-import { Button, TextField } from '@material-ui/core'
-import * as C from './Styled'
 import useForm from '../../hooks/useForm'
 import { signUp } from '../../services/user'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { StyledButton, StyledInput } from './Styled'
+import { useHistory } from 'react-router-dom'
+import { InputsContainer, StyledButton, StyledInput } from './Styled'
 
-const SignUpForm = ({setRightButtonText}) => {
-    const { form, onChange, cleanFields } = useForm({username: '', email: '', password: '' })
+const SignUpForm = ({ setRightButtonText }) => {
+    const { form, onChange, cleanFields } = useForm({ username: '', email: '', password: '' })
 
     const history = useHistory()
 
@@ -17,49 +15,49 @@ const SignUpForm = ({setRightButtonText}) => {
     }
 
     return (
-            <C.InputsContainer>
-                <form onSubmit={onSubmitForm}>
-                    <StyledInput
-                        name={'username'}
-                        value={form.username}
-                        onChange={onChange}
-                        label={'Nome'}
-                        variant={'outlined'}
-                        fullWidth
-                        margin='normal'
-                        required
-                    />
-                    <StyledInput
-                        name={'email'}
-                        value={form.email}
-                        onChange={onChange}
-                        label={'E-mail'}
-                        variant={'outlined'}
-                        fullWidth
-                        margin='normal'
-                        type={'email'}
-                        required
-                    />
-                    <StyledInput
-                        name={'password'}
-                        value={form.password}
-                        onChange={onChange}
-                        label={'Senha'}
-                        variant={'outlined'}
-                        fullWidth
-                        margin='normal'
-                        type={'password'}
-                        required
-                    />
-                    <StyledButton
-                        type={'submit'}
-                        variant="contained"
-                        color="primary"
-                        fullWidth>
-                        Cadastrar
-                    </StyledButton>
-                </form>
-            </C.InputsContainer>
+        <InputsContainer>
+            <form onSubmit={onSubmitForm}>
+                <StyledInput
+                    name={'username'}
+                    value={form.username}
+                    onChange={onChange}
+                    label={'Nome'}
+                    variant={'outlined'}
+                    fullWidth
+                    margin='normal'
+                    required
+                />
+                <StyledInput
+                    name={'email'}
+                    value={form.email}
+                    onChange={onChange}
+                    label={'E-mail'}
+                    variant={'outlined'}
+                    fullWidth
+                    margin='normal'
+                    type={'email'}
+                    required
+                />
+                <StyledInput
+                    name={'password'}
+                    value={form.password}
+                    onChange={onChange}
+                    label={'Senha'}
+                    variant={'outlined'}
+                    fullWidth
+                    margin='normal'
+                    type={'password'}
+                    required
+                />
+                <StyledButton
+                    type={'submit'}
+                    variant="contained"
+                    color="primary"
+                    fullWidth>
+                    Cadastrar
+                </StyledButton>
+            </form>
+        </InputsContainer>
     )
 }
 

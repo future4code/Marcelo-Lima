@@ -10,11 +10,11 @@ const useRequestData = (initialData, url) => {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then((res) => {
-            setData(res.data)
-        })
-        .catch((err) => {
-        })
+            .then((res) => {
+                setData(res.data)
+            })
+            .catch((err) => {
+            })
     }
 
     useEffect(() => {
