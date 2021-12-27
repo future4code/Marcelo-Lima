@@ -4,6 +4,8 @@ import { BASE_URL } from '../../constants/urls'
 import useForm from '../../hooks/useForm'
 import { StyledButton } from '../LoginPage/Styled'
 import { DivFormCreatePost, StyledInput } from './Styled'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FeedForm = (props) => {
 
@@ -19,16 +21,31 @@ const FeedForm = (props) => {
             .then((res) => {
                 cleanFields()
                 props.getPost()
-                alert('Post criado com sucesso!')
+                toast.success('Post criado com sucesso!', {
+                    position: toast.POSITION.TOP_CENTER
+                })
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                toast.error(err.response.data.message, {
+                    position: toast.POSITION.TOP_CENTER
+                })
 
             })
     }
 
     return (
         <DivFormCreatePost>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <form onSubmit={createPost}>
                 <StyledInput
                     variant={'outlined'}
