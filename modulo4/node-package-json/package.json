@@ -1,0 +1,12 @@
+{
+  "name": "package-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js",
+    "start": "node ./index.js"
+  },
+  "author": "\"\"\u001b[DMarcelo Maia\"\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[\"Marce",
+  "license": "ISC"
+}
