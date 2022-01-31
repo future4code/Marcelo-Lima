@@ -23,9 +23,9 @@ export const users: Users[] = [
         birthDate: '10/10/1990',
         balance: 5000,
         extract: [{
-            date: '15/02/2015',
+            date: '15/2/2015',
             value: 1500,
-            description: 'compra de uma tv'
+            description: 'Depósito de dinheiro'
         }]
     },
     {
@@ -35,7 +35,7 @@ export const users: Users[] = [
         birthDate: '06/12/1998',
         balance: 15000,
         extract: [{
-            date: '10/05/2018',
+            date: '10/5/2018',
             value: 2000,
             description: 'compra de um celular'
         }]
@@ -44,10 +44,10 @@ export const users: Users[] = [
         id: 3,
         name: 'Igor',
         CPF: '126.090.450-42',
-        birthDate: '12/04/1996',
+        birthDate: '12/4/1996',
         balance: 20000,
         extract: [{
-            date: '25/09/2019',
+            date: '25/9/2019',
             value: 10000,
             description: 'compra de uma moto'
         }]

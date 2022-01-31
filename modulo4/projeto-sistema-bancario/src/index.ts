@@ -103,13 +103,64 @@ app.post('/createAccount', (req: Request, res: Response) => {
   }
 })
 
+// add pay account
+app.post('/account/pay', (req: Request, res: Response) => {
+  try {
+    let { date, value, description, CPF } = req.body
+    let cpfExist = false
+
+    if (!description || !value || !CPF) { throw new Error('please fill the fields') }
+
+    if (!date) {
+      const actualDate = new Date()
+      date = `${actualDate.getDate()}/${actualDate.getMonth() + 1}/${actualDate.getFullYear()}`
+    }
+
+    users.map((user) => {
+      if (user.CPF !== CPF) {
+        cpfExist = true
+      } else if (user.CPF === CPF) {
+        cpfExist = false
+      }
+    })
+
+    if (cpfExist) { throw new Error('Account not exist, please check the data') }
+
+    users.forEach((user) => {
+      if (user.CPF == CPF) {
+        user.extract.push({
+          date,
+          value,
+          description
+        }
+        )
+      }
+    })
+
+    res.status(200).send('Sucessfully')
+  } catch (error: any) {
+    switch (error.message) {
+      case 'please fill the fields':
+        res.status(400)
+        break
+      case 'Account not exist, please check the data':
+        res.status(400)
+        break
+      default:
+        res.status(500)
+    }
+    res.send(error.message)
+  }
+})
+
+
+// add balance
 app.put('/account', (req: Request, res: Response) => {
   try {
     const { name, CPF, balance } = req.body
     let cpfExist = false
     const actualDate = new Date()
 
-    console.log(`${actualDate.getDate()}/${actualDate.getMonth() + 1}/${actualDate.getFullYear()}`)
     if (!name || !CPF || !balance) { throw new Error('please fill the fields') }
 
     users.map((user) => {
@@ -140,10 +191,10 @@ app.put('/account', (req: Request, res: Response) => {
   } catch (error: any) {
     switch (error.message) {
       case 'please fill the fields':
-        res.status(400) // pode ser tb res.statusCode = 422
+        res.status(400)
         break
       case 'Account not exist, please check the data':
-        res.status(400) // pode ser tb res.statusCode = 422
+        res.status(400)
         break
       default:
         res.status(500)
@@ -152,4 +203,26 @@ app.put('/account', (req: Request, res: Response) => {
   }
 })
 
-// app.put('/account/pay', (req: Request, res: Response))
+app.put('/updateAccount', (req: Request, res: Response) => {
+  try {
+    users.map((user) => {
+      user.extract.map((ext) => {
+        if (ext.description !== 'Depósito de dinheiro') {
+          user.balance = user.balance - ext.value
+        }
+      })
+    })
+    res.status(200).send('Sucessfully')
+  } catch (error: any) {
+
+  }
+}
+)
+
+// const [year, month, day] = date.split('/')
+    // const actualDate: number = new Date().getTime()
+    // const payDate: number = new Date(`${year}-${month}-${day}`).getTime()
+    // const valueNegative = (num: number) => {
+    //   let val = num * -1
+    //   return val
+    // }
