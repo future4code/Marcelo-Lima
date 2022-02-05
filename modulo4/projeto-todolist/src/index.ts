@@ -1,12 +1,22 @@
 import { Request, Response } from "express";
 import app from "./app";
-import { createTask, createUser, getTaskById, getUser, getUsers, updateUser } from "./fuctions";
+import { addResponsibleToTask, createTask, createUser, getResponseUserByTask, getTaskById, getTasksByUserId, getUser, getUserByQuery, getUsers, getUsersAll, updateUser } from "./fuctions";
 
-// get all users desafio 1 / exercicio 6
+// get all 
 app.get("/users", async (req: Request, res: Response) => {
     try {
         const users = await getUsers("TodoListUser")
         res.status(200).send(users)
+    } catch (error: any) {
+        res.status(500).send("unexpected error ocurred")
+    }
+})
+
+// get all users exercicio 6
+app.get("/users/all", async (req: Request, res: Response) => {
+    try {
+        const users = await getUsersAll("TodoListUser")
+        res.status(200).send({ users: users })
     } catch (error: any) {
         res.status(500).send("unexpected error ocurred")
     }
@@ -38,14 +48,13 @@ app.get("/task/:id", async (req: Request, res: Response) => {
         const task = await getTaskById(id)
 
         if (task[0].length === 0) { throw new Error("no taks found") }
-        
-        const data = task[0][0].limit_date
-        const newDate = `${data.getDate()}/${data.getMonth() +1}/${data.getFullYear()}`
-        
 
-        const taskRealize = [...task, task[0][0].limit_date = newDate]
-        
-        res.status(200).send(taskRealize[0])
+        const data = task[0][0].limit_date
+        const newDate = `${String(data.getDate()).padStart(2, '0')}/${String(data.getMonth() + 1).padStart(2, '0')}/${data.getFullYear()}`
+
+        const taskRealize = { ...task[0][0], limit_date: newDate }
+
+        res.status(200).send(taskRealize)
     } catch (error: any) {
         switch (error.message) {
             case "no user found":
@@ -55,6 +64,90 @@ app.get("/task/:id", async (req: Request, res: Response) => {
                 res.status(500)
         }
         res.send(error.message)
+    }
+})
+
+// get task by user id exercicio 7
+app.get("/task", async (req: Request, res: Response) => {
+    try {
+        const creatorUserId: string = req.query.creatorUserId as string
+        const task = await getTasksByUserId(creatorUserId)
+
+        if (!creatorUserId) { throw new Error("you didn't send the userId") }
+
+        if (task[0].length > 0) {
+            for (let i of task[0]) {
+                const data = i.limitDate
+                i.limitDate = `${String(data.getDate()).padStart(2, '0')}/${String(data.getMonth() + 1).padStart(2, '0')}/${data.getFullYear()}`
+            }
+        }
+
+        res.status(200).send({ tasks: task[0] })
+    } catch (error: any) {
+        switch (error.message) {
+            case "you didn't send the userId":
+                res.status(400)
+                break
+            case "no user found":
+                res.status(400)
+                break
+            default:
+                res.status(500)
+        }
+        res.send(error.message)
+    }
+})
+
+// get user by id or email in query exercicio 8
+app.get("/user", async (req: Request, res: Response) => {
+    try {
+        const q: string = req.query.q as string
+        const user = await getUserByQuery(q)
+        if (user.length === 0) { throw new Error("no user found") }
+        res.status(200).send({ user: user[0] })
+    } catch (error: any) {
+        switch (error.message) {
+            case "no user found":
+                res.status(400)
+                break
+            default:
+                res.status(500)
+        }
+        res.send(error.message)
+    }
+})
+
+// get users response by task exercicio 10
+app.get("/task/:id/responsible", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id 
+        if(!id){ throw new Error("please fill the filds") }
+        const result = await getResponseUserByTask(id)
+        if(result[0].length === 0){throw new Error("no task found")}
+        res.status(200).send({users: result[0]})
+    } catch (error:any) {
+        switch (error.message) {
+            case "please fill the filds":
+                res.status(400)
+                break
+            case "no task found":
+                res.status(400)
+                break
+            default:
+                res.status(500)
+        }
+        res.send(error.message)
+    }
+
+})
+
+// get task with respon by id exercicio 11
+app.get("/task/response/:id", async (req: Request, res: Response) => {
+    try{
+        const id = req.params.id
+        
+    }catch(error:any){
+
     }
 })
 
@@ -115,6 +208,25 @@ app.post("/task", async (req: Request, res: Response) => {
     }
 })
 
+// atribuir um usuário responsável a uma tarefa exercicio 9
+app.post("/task/responsible", async (req: Request, res: Response) => {
+    try {
+        const { taskId, responsibleUserId } = req.body
+        if (!taskId || !responsibleUserId) { throw new Error("please fill the fields") }
+        await addResponsibleToTask(taskId, responsibleUserId)
+        res.status(201).send("Sucessfully")
+    } catch (error: any) {
+        switch (error.message) {
+            case "please fill the fields":
+                res.status(400)
+                break
+            default:
+                res.status(500)
+        }
+        res.send(error.message)
+    }
+})
+
 // edit user exercicio 3
 app.put("/user/edit/:id", async (req: Request, res: Response) => {
     try {
@@ -136,3 +248,4 @@ app.put("/user/edit/:id", async (req: Request, res: Response) => {
         res.send(error.message)
     }
 })
+
