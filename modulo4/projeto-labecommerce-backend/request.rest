@@ -1,0 +1,38 @@
+GET http://localhost:3003/users
+
+###
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "maria",
+    "email": "maria@labenu.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/products
+
+###
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "copo stanley",
+    "price": "135",
+    "imageUrl": "https://stanley.fbitsstatic.net/img/p/copo-termico-de-cerveja-473ml-78082/264566-1.jpg?w=495&h=500&v=no-change&qs=ignore"
+}
+
+###
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "userId": "1644518471987",
+    "productId": "1644521521882",
+    "quantity": "2"
+}
+
+###
+GET http://localhost:3003/users/1644518493018/purchases
