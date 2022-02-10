@@ -16,7 +16,7 @@ export const createPurchases = async (req: Request, res: Response): Promise<any>
             .select("id")
             .from("labecommerce_users")
             .where("id", userId)
-        console.log(checkUserId)
+            
         if (checkUserId.length === 0) { throw new Error("user id not found") }
 
         const checkProductId = await connection()

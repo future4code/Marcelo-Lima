@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3003/users/1644518493018/purchases
+GET http://localhost:3003/users/16445493018/purchases
