@@ -12,16 +12,16 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3003/products
+GET http://localhost:3003/products?search=ma&order=DESC
 
 ###
 POST http://localhost:3003/products
 Content-Type: application/json
 
 {
-    "name": "copo stanley",
-    "price": "135",
-    "imageUrl": "https://stanley.fbitsstatic.net/img/p/copo-termico-de-cerveja-473ml-78082/264566-1.jpg?w=495&h=500&v=no-change&qs=ignore"
+    "name": "cubo magico",
+    "price": "50",
+    "imageUrl": "https://img.elo7.com.br/product/zoom/1F151A7/cubo-magico-minicraft.jpg"
 }
 
 ###
