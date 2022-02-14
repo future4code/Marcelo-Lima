@@ -1,0 +1,22 @@
+GET http://localhost:3003/users
+Content-Type: application/json
+
+###
+GET http://localhost:3003/users?name=Am
+Content-Type: application/json
+
+###
+GET http://localhost:3003/order?order=name
+Content-Type: application/json
+
+###
+GET http://localhost:3003/user/:type
+Content-Type: application/json
+
+###
+GET http://localhost:3003/users/page
+Content-Type: application/json
+
+###
+GET http://localhost:3003/users/order/offset?page=1
+Content-Type: application/json
