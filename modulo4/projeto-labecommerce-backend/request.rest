@@ -1,0 +1,38 @@
+GET http://localhost:3003/users
+
+###
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "maria",
+    "email": "maria@labenu.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/products?search=ma&order=DESC
+
+###
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "cubo magico",
+    "price": "50",
+    "imageUrl": "https://img.elo7.com.br/product/zoom/1F151A7/cubo-magico-minicraft.jpg"
+}
+
+###
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "userId": "1644518471987",
+    "productId": "1644521521882",
+    "quantity": "2"
+}
+
+###
+GET http://localhost:3003/users/16445493018/purchases
