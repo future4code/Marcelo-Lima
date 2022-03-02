@@ -20,10 +20,10 @@ export async function createRecipe(req: Request, res: Response): Promise<void>{
         if(!tokenExist){
             res.status(422).send("token inválido")
         }
-
+        
         const recipe: Recipe = new Recipe(id, title, description, date)
         const recipeDatabase = new RecipeDatabase()
-        await recipeDatabase.createRecipe(recipe)
+        await recipeDatabase.createRecipe(recipe, tokenExist.id)
 
         res.status(201).send({message: "receita criada com sucesso"})
     } catch (error:any) {
