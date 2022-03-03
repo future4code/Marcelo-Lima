@@ -19,19 +19,40 @@ export class RecipeDatabase extends BaseDatabase {
     public async getRecipe(id: string): Promise<any> {
         try {
             const recipe = await BaseDatabase.connection("recipes_cookenu")
-                .select("id", "title", "description", "cratedAt")
+                .select()
                 .where({ id })
             return recipe[0] && Recipe.toUserModel(recipe[0])
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    public async getFeedRecipes(user_id: string): Promise<any>{
+    public async getFeedRecipes(user_id: string): Promise<Recipe>{
         try {
             const result = await BaseDatabase.connection("recipes_cookenu")
                 .select()
                 .where({user_id})
             return result[0]
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    public async getAllRecipes(): Promise<Recipe[]>{
+        try {
+            const result = await BaseDatabase.connection("recipes_cookenu")
+                .select()
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    public async updateRecipe(id: string, title: string, description: string): Promise<void>{
+        try {
+            await BaseDatabase.connection("recipes_cookenu")
+                .where({id})
+                .update({
+                    title,
+                    description
+                })
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

@@ -1,15 +1,19 @@
 export class Recipe{
     constructor(
         private id: string,
+        private user_id: string,
         private title: string,
         private description: string,
-        private date: Date
+        private cratedAt: Date
     ){}
     static toUserModel(data: any): Recipe {
-        return new Recipe(data.id, data.title, data.description, data.date)
+        return new Recipe(data.id, data.user_id, data.title, data.description, data.date)
     }
     public getId(){
         return this.id
+    }
+    public getUserId(){
+        return this.user_id
     }
     public getTitle(){
         return this.title
@@ -18,6 +22,6 @@ export class Recipe{
         return this.description
     }
     public getDate(){
-        return this.date
+        return this.cratedAt
     }
 }

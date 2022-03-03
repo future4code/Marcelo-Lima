@@ -1,5 +1,6 @@
 import app from "./app";
 import { createRecipe } from "./endpoints/createRecipe";
+import { editRecipe } from "./endpoints/editRecipe";
 import { followUser } from "./endpoints/followUser";
 import { getFeed } from "./endpoints/getFeed";
 import { getProfile } from "./endpoints/getProfile";
@@ -19,6 +20,7 @@ app.post("/user/login", login)
 //Recipes
 app.get("/recipe/:id", getRecipeById)
 app.post("/recipe", createRecipe)
+app.post("/recipe/edit", editRecipe)
 
 //Followers
 app.post("/user/follow", followUser)
