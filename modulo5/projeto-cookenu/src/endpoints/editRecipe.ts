@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { RecipeDatabase } from "../data/RecipeDatabase";
-import { Recipe } from "../entities/Recipe";
 import { Authenticator } from "../services/Authenticator";
 
 export async function editRecipe(req: Request, res: Response): Promise<void>{
@@ -25,7 +24,7 @@ export async function editRecipe(req: Request, res: Response): Promise<void>{
         if(tokenExist.role === "NORMAL"){
             res.status(422).send("você não tem permissão de ADMIN para concluir o procedimento")
         }
-        
+
         const recipeDatabase = new RecipeDatabase()
         await recipeDatabase.updateRecipe(recipeId, title, description)
         
