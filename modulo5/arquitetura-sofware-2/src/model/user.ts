@@ -8,12 +8,11 @@ export type authenticationData = {
    role: USER_ROLES
 }
 
-export type userData = {
+export type SignupInputDTO = {
    name: string,
-   nickname: string,
    email: string,
    password: string,
    role: USER_ROLES
 }
 
-export type user = userData & { id: string }
+export type user = SignupInputDTO & { id: string }

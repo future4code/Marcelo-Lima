@@ -1,19 +1,26 @@
 import { Request, Response } from "express"
 import { UserBusiness } from "../business/UserBusiness"
+import { SignupInputDTO } from "../model/user"
+
 export class UserController {
     constructor(
         private userBusiness: UserBusiness
-    ){}
+    ) { }
     signup = async (
         req: Request,
         res: Response
     ) => {
         try {
-            const { name, nickname, email, password, role } = req.body
+            const { name, email, password, role } = req.body
 
-            const token: string = await signupBusiness({
-                name, nickname, email, password, role
-            })
+            const input: SignupInputDTO = {
+                name,
+                email,
+                password,
+                role
+            }
+
+            const token: string = await this.userBusiness.signupBusiness(input)
 
             res
                 .status(201)
@@ -29,19 +36,19 @@ export class UserController {
     login = async (
         req: Request,
         res: Response
-     ): Promise<void> => {
+    ): Promise<void> => {
         try {
-           const { email, password } = req.body
-     
-           const token: string = await loginBusiness(email, password)
-     
-           res.send({
-              message: "Usuário logado!",
-              token
-           })
-     
+            const { email, password } = req.body
+
+            const token: string = await this.userBusiness.loginBusiness(email, password)
+
+            res.send({
+                message: "Usuário logado!",
+                token
+            })
+
         } catch (error: any) {
-           res.status(400).send(error.message)
+            res.status(400).send(error.message)
         }
-     }
+    }
 }

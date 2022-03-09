@@ -1,20 +1,22 @@
-import { hash } from "../services/hashManager";
-import { insertUser } from "../data/user/insertUser";
-import { userData } from "../model/user";
-import { generateToken } from "../services/authenticator";
-import { generateId } from "../services/idGenerator";
-import { compare } from "../services/hashManager"
-import { selectUserByEmail } from "../data/user/selectUserByEmail"
-import { generateToken } from "../services/authenticator"
+import { HashManager } from "../services/hashManager";
+import { SignupInputDTO } from "../model/user";
+import { Authenticator } from "../services/authenticator";
+import { IdGenerator } from "../services/idGenerator";
 import { user } from "../model/user"
+import { UserDatabase } from "../data/UserDatabase";
 
 export class UserBusiness {
+    constructor(
+        private userData: UserDatabase,
+        private idGenerator: IdGenerator,
+        private hashManager: HashManager,
+        private authenticator: Authenticator
+    ) { }
     signupBusiness = async (
-        userData: userData
+        userData: SignupInputDTO
     ): Promise<string> => {
         if (
             !userData.name ||
-            !userData.nickname ||
             !userData.email ||
             !userData.password ||
             !userData.role
@@ -22,17 +24,17 @@ export class UserBusiness {
             throw new Error('Preencha os campos "name","nickname", "email" e "password"')
         }
 
-        const cypherPassword = await hash(userData.password);
+        const cypherPassword = await this.hashManager.hash(userData.password);
 
         const newUser = {
             ...userData,
             password: cypherPassword,
-            id: generateId()
+            id: this.idGenerator.generateId()
         }
 
-        await insertUser(newUser)
+        await this.userData.insertUser(newUser)
 
-        const token: string = generateToken({
+        const token: string = this.authenticator.generateToken({
             id: newUser.id,
             role: userData.role
         })
@@ -43,28 +45,28 @@ export class UserBusiness {
     loginBusiness = async (
         email: string,
         password: string
-     ) => {
+    ) => {
         if (!email || !password) {
-           throw new Error("'email' e 'senha' são obrigatórios")
+            throw new Error("'email' e 'senha' são obrigatórios")
         }
-     
-        const user: user = await selectUserByEmail(email)
-     
+
+        const user: user = await this.userData.selectUserByEmail(email)
+
         if (!user) {
-           throw new Error("Usuário não encontrado ou senha incorreta")
+            throw new Error("Usuário não encontrado ou senha incorreta")
         }
-     
-        const passwordIsCorrect: boolean = await compare(password, user.password)
-     
+
+        const passwordIsCorrect: boolean = await this.hashManager.compare(password, user.password)
+
         if (!passwordIsCorrect) {
-           throw new Error("Usuário não encontrado ou senha incorreta")
+            throw new Error("Usuário não encontrado ou senha incorreta")
         }
-     
-        const token: string = generateToken({
-           id: user.id,
-           role: user.role
+
+        const token: string = this.authenticator.generateToken({
+            id: user.id,
+            role: user.role
         })
-     
+
         return token
-     }
+    }
 }

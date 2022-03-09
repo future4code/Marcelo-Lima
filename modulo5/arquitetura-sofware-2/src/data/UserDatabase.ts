@@ -5,13 +5,13 @@ export class UserDatabase extends BaseDatabase{
     insertUser = async(
         user: user
      ) => {
-        await connection.insert(user).into('to_do_list_users')
+        await BaseDatabase.connection.insert(user).into('to_do_list_users')
      }
     selectUserByEmail = async (
         email: string
      ): Promise<user> => {
         try {
-           const result = await connection("to_do_list_users")
+           const result = await BaseDatabase.connection("to_do_list_users")
               .select("*")
               .where({ email })
      
@@ -24,7 +24,7 @@ export class UserDatabase extends BaseDatabase{
               role: result[0].role
            }
      
-        } catch (error) {
+        } catch (error: any) {
            throw new Error(error.slqMessage || error.message)
         }
      }
