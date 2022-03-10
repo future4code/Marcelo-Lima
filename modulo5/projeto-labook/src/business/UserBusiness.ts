@@ -1,3 +1,4 @@
+import { Friend, FriendUserInputDTO } from "../model/Friend";
 import { SignupInputDTO, User } from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
@@ -63,5 +64,40 @@ export class UserBusiness {
         const token = this.authentication.generate({id: user.getId()})
 
         return token
+    }
+    insertFriend = async (input: FriendUserInputDTO) => {
+
+        const {token, friend_id} = input
+        const id = this.idGenerator.generateId() as string
+        if(!token || !friend_id){
+            throw new Error("Preencha corretamente os campos de 'id do usuário' e 'id do amigo'")
+        }
+        const user = await this.userData.findUserById(friend_id)
+        if(!user){
+            throw new Error("Este e-mail não existe")
+        }
+        const tokenExist = this.authentication.getTokenData(token)
+        if (!tokenExist) {
+            throw new Error("Token inválido")
+        }
+        const user_id = tokenExist.id
+        const friend = new Friend(
+            id,
+            user_id,
+            friend_id
+        )
+        await this.userData.insertFriend(friend)
+        return "Sucesso"
+    }
+    deleteFriendship = async (token: string, id: string) => {
+        if(!token || !id){
+            throw new Error("Preencha corretamente os campos de 'id do usuário' e 'id do amigo'")
+        }
+        const tokenExist = this.authentication.getTokenData(token)
+        if (!tokenExist) {
+            throw new Error("Token inválido")
+        }
+        await this.userData.deleteFriendship(id)
+        return "Desfeita a amizade com sucesso"
     }
 }
