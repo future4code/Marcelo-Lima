@@ -11,10 +11,10 @@ export class Post {
         private photo: string,
         private description: string,
         private type: string,
-        private created_at: number,
+        private created_at: string,
         private author_id: string
     ) { }
-    static toUserModel(data: any): Post {
+    static toPostModel(data: any): Post {
         return new Post(data.id, data.photo, data.description, data.type, data.created_at, data.author_id)
     }
     public getId() {

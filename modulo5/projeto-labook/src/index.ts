@@ -10,3 +10,4 @@ app.post("/user/login", userController.login)
 const postController = new PostController()
 
 app.post("/post", postController.createPost)
+app.get("/post/:id", postController.getPostById)

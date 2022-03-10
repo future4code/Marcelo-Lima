@@ -13,29 +13,41 @@ export class PostBusiness {
         this.authentication = new Authenticator()
     }
     createPost = async (input: CreatePostInputDTO, token: string) => {
-        const {photo, description, type, author_id} = input
+        const { photo, description, type, author_id } = input
 
         const id = this.idGenerator.generateId()
-        if(!photo || !description || !type || !author_id){
+        if (!photo || !description || !type || !author_id) {
             throw new Error("Campos vazios")
         }
 
         const tokenExist = this.authentication.getTokenData(token)
-        if(!tokenExist){
+        if (!tokenExist) {
             throw new Error("Token inválido")
         }
-        const created_at = new Date().getTime()
-        console.log(tokenExist.id)
+
+        const created_at = new Date().toString()
         const post = new Post(
             id,
             photo,
             description,
             type,
             created_at,
-            author_id
+            tokenExist.id
         )
-
-        await this.postData.insert(post, tokenExist.id)
+        console.log(post)
+        await this.postData.insert(post)
         return "Post criado com sucesso"
+    }
+    getPostById = async (id: string, token: string) => {
+        if (!id) {
+            throw new Error("Precisa de um id")
+        }
+        const tokenExist = this.authentication.getTokenData(token)
+        if (!tokenExist) {
+            throw new Error("Token inválido")
+        }
+        const result = await this.postData.getPostById(id)
+
+        return result
     }
 }

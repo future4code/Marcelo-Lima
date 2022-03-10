@@ -2,7 +2,7 @@ import { UserRepository } from "../business/UserRepository";
 import { User } from "../model/User";
 import { BaseDatabase } from "./BaseDatabase";
 
-export class UserDatabase extends BaseDatabase implements UserRepository{
+export class UserDatabase extends BaseDatabase implements UserRepository {
     protected TABLE_NAME = "labook_users"
     insert = async (user: User) => {
         try {
@@ -17,8 +17,8 @@ export class UserDatabase extends BaseDatabase implements UserRepository{
         try {
             const result = await BaseDatabase.connection(this.TABLE_NAME)
                 .select()
-                .where({email})
-            if(!result[0]){
+                .where({ email })
+            if (!result[0]) {
                 return null
             }
             return User.toUserModel(result[0])
