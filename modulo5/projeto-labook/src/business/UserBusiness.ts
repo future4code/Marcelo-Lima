@@ -81,6 +81,10 @@ export class UserBusiness {
             throw new Error("Token inválido")
         }
         const user_id = tokenExist.id
+        const friendExist = await this.userData.isFriend(user_id, friend_id)
+        if(friendExist){
+            throw new Error("Estes usuários já possuem amizade")
+        }
         const friend = new Friend(
             id,
             user_id,

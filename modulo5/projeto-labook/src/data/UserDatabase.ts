@@ -50,6 +50,17 @@ export class UserDatabase extends BaseDatabase implements UserRepository {
             throw new Error("Erro ao tentar acessar o banco de dados")
         }
     }
+    isFriend = async (user_id: string, friend_id: string) => {
+        try {
+            const result = await BaseDatabase.connection(this.TABLE_FRIENDS)
+                .select()
+                .where({user_id})
+                .andWhere({friend_id})
+            return result[0]
+        } catch (error: any) {
+            throw new Error("Erro ao tentar buscar amizades no banco de dados")
+        }
+    }
     deleteFriendship = async (id: string) => {
         try {
             await BaseDatabase.connection(this.TABLE_FRIENDS)
