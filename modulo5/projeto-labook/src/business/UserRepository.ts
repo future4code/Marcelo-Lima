@@ -7,5 +7,5 @@ export interface UserRepository{
     findUserById(id: string): Promise<User | null>
     insertFriend(friend: Friend): Promise<Friend>
     isFriend(user_id: string, friend_id: string): Promise<Friend> 
-    deleteFriendship(id: string): Promise<void>
+    deleteFriendship(id: string): Promise<number>
 }

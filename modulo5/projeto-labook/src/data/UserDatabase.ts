@@ -63,9 +63,10 @@ export class UserDatabase extends BaseDatabase implements UserRepository {
     }
     deleteFriendship = async (id: string) => {
         try {
-            await BaseDatabase.connection(this.TABLE_FRIENDS)
+            const result = await BaseDatabase.connection(this.TABLE_FRIENDS)
                 .where({ id })
                 .delete()
+            return result
         } catch (error: any) {
             throw new Error("Erro ao tentar acessar o banco de dados")
         }

@@ -101,7 +101,10 @@ export class UserBusiness {
         if (!tokenExist) {
             throw new Error("Token inválido")
         }
-        await this.userData.deleteFriendship(id)
+        const result = await this.userData.deleteFriendship(id)
+        if(!result){
+            throw new Error("Amizade não existe")
+        }
         return "Desfeita a amizade com sucesso"
     }
 }
