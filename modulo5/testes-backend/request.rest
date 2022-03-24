@@ -1,0 +1,14 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Pedro",
+    "email": "ph@labenu.com",
+    "password": "123456",
+    "role": "NORMAL"
+}
+
+###
+
+GET http://localhost:3003/user/profile/78294830-8549-4966-b7e4-d2e5a45b532d
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc4Mjk0ODMwLTg1NDktNDk2Ni1iN2U0LWQyZTVhNDViNTMyZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NDc0NTYwNzksImV4cCI6MTY0NzU0MjQ3OX0.teef-da40UBwoUhz4Rv_1jaE5sQBQRJI5YZgiQnsIdg
