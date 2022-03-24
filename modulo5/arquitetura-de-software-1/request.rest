@@ -1,0 +1,25 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Igor",
+    "email": "igor@labenu.com",
+    "password": "123456",
+    "role": "ADMIN"
+}
+
+###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "marcelo@labenu.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:3003/users
+
+###
+DELETE http://localhost:3003/user/4886ff1a-0dd9-4ac4-b2f3-191c2a3e0e4d
