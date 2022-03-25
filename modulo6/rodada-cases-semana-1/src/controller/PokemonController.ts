@@ -1,42 +1,46 @@
 import { Request, Response } from "express";
 import { PokemonBusiness } from "../business/PokemonBusiness";
+import { PokemonDatabase } from "../data/PokemonDatabase";
 import { CustomError } from "../error/CustomError";
 
 export class PokemonController {
+
     constructor(
         private pokemonsBusiness: PokemonBusiness
-    ) {}
+    ) {
+        // this.pokemonsBusiness =  new PokemonBusiness( new PokemonDatabase)
+    }
     getAllPokemons = async (req: Request, res: Response) => {
         const limit = req.query.limit || 20
         const page = req.query.page || 1
         try {
             const result = await this.pokemonsBusiness.getAllPokemons(Number(limit), Number(page))
-            if(!result){
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }
     }
-    getPokemonName = async (req: Request, res: Response) => {
+    getPokemonByName = async (req: Request, res: Response) => {
         const name = req.query.name as string
         const limit = req.query.limit || 20
         const page = req.query.page || 1
         try {
-            const result = await this.pokemonsBusiness.getPokemonName(name, Number(limit), Number(page))
-            if(!result){
+            const result = await this.pokemonsBusiness.getPokemonByName(name, Number(limit), Number(page))
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }
@@ -47,14 +51,14 @@ export class PokemonController {
         const page = req.query.page || 1
         try {
             const result = await this.pokemonsBusiness.getPokemonByGeneration(Number(generation), Number(limit), Number(page))
-            if(!result){
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }
@@ -65,14 +69,14 @@ export class PokemonController {
         const page = req.query.page || 1
         try {
             const result = await this.pokemonsBusiness.getPokemonByType(type, Number(limit), Number(page))
-            if(!result){
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }
@@ -83,14 +87,14 @@ export class PokemonController {
         const page = req.query.page || 1
         try {
             const result = await this.pokemonsBusiness.getPokemonById(Number(id), Number(limit), Number(page))
-            if(!result){
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }
@@ -101,14 +105,14 @@ export class PokemonController {
         const page = req.query.page || 1
         try {
             const result = await this.pokemonsBusiness.getPokemonLegendary(Number(legendary), Number(limit), Number(page))
-            if(!result){
+            if (!result) {
                 throw new CustomError("Error making request", 400)
             }
             res.status(200).json(result)
         } catch (error: any) {
-            if(error instanceof CustomError){
+            if (error instanceof CustomError) {
                 res.status(error.code).send(error.message)
-            }else{
+            } else {
                 res.status(400).send(error.message)
             }
         }

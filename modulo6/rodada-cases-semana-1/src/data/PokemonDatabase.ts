@@ -3,7 +3,7 @@ import { CustomError } from "../error/CustomError";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class PokemonDatabase extends BaseDatabase implements PokemonRepository {
-    protected TABLE_NAME = "PokemonGo"
+    public TABLE_NAME = "PokemonGo"
     getAllPokemons = async (limit: number, offset: number) => {
         try {
             const result = await BaseDatabase.connection(this.TABLE_NAME)
@@ -19,7 +19,7 @@ export class PokemonDatabase extends BaseDatabase implements PokemonRepository {
             throw new CustomError("Error accessing database", 400)
         }
     }
-    getPokemonName = async (name: string, limit: number, offset: number) => {
+    getPokemonByName = async (name: string, limit: number, offset: number) => {
         try {
             const result = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("Row", "name", "Type_1", "Type_2", "ATK", "DEF", "STA")
@@ -86,7 +86,7 @@ export class PokemonDatabase extends BaseDatabase implements PokemonRepository {
                 .where({ Legendary })
                 .limit(limit)
                 .offset(offset)
-            
+
             if (!result) {
                 return null
             }
