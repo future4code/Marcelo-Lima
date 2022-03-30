@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getNumberResult, getMegaResults, getContestResult } from "../API/getApiResults";
+import { DivMain } from "./Styles";
 
 export const HomePage = () => {
     const [ mega, setMega] = useState({id: 0, nome: "mega-sena"})
@@ -47,11 +48,11 @@ export const HomePage = () => {
     })
 
     return (
-        <div>
+        <DivMain>
             <select onChange={onChangeSelectedMega}>
                 {renderSelectMega}
             </select>
             {renderSelectNumber}
-        </div>
+        </DivMain>
     )
 }
