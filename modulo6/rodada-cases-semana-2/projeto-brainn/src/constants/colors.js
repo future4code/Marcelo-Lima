@@ -1,6 +1,10 @@
 export const colorMegaSena = "#6BEFA3"
-export const colorQuina = "#8666EF"
-export const colorLotoFacil = "#DD7AC6"
-export const colorLotoMania = "#FFAB64"
-export const colorTimeMania = "#5AAD7D"
-export const colorDiaDeSorte = "#BFAF83"
+
+export const collorsLoto = [
+    {id: 0, color: "#6BEFA3"},
+    {id: 1, color: "#8666EF"},
+    {id: 2, color: "#DD7AC6"},
+    {id: 3, color: "#FFAB64"},
+    {id: 4, color: "#5AAD7D"},
+    {id: 5, color: "#BFAF83"},
+]
