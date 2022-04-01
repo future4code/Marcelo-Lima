@@ -28,11 +28,6 @@ export const HomePage = () => {
         })
     }, [contestMega])
 
-    // console.log('contest', contestMega)
-    // console.log('ola', resultMega)
-    // console.log('bbb', numbersMega)
-    // console.log('aaa',mega)
-
     const date = numbersMega.data && numbersMega.data.split('T')[0]
     const formatDate = date && date.split('-')
     const newDate = formatDate && `${formatDate[2]}/${formatDate[1]}/${formatDate[0]}`
@@ -60,7 +55,6 @@ export const HomePage = () => {
     const renderNumberConcurse = contestMega && contestMega.filter((data) => {
         return data.loteriaId === mega.id
     })
-
 
     return (
         <DivMain color={controlColor}>

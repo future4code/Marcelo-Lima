@@ -13,20 +13,20 @@ export const getMegaResults = (setData) => {
 
 export const getContestResult = (setData) => {
     axios.get(`${BASE_URL}/loterias-concursos`)
-    .then((res) => {
-        setData(res.data)
-    })
-    .catch((err) => {
-        alert(err.message)
-    })
+        .then((res) => {
+            setData(res.data)
+        })
+        .catch((err) => {
+            alert(err.message)
+        })
 }
 
 export const getNumberResult = (setData, id) => {
     axios.get(`${BASE_URL}/concursos/${id}`)
-    .then((res) => {
-        setData(res.data)
-    })
-    .catch((err) => {
-        alert(err.message)
-    })
+        .then((res) => {
+            setData(res.data)
+        })
+        .catch((err) => {
+            alert(err.message)
+        })
 }

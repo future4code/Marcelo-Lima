@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const DivMain = styled.div`
-    /* width: 100vw; */
     height: 100vh;
     min-height: 600px;
     background-color: ${(props) => props.color};
@@ -12,7 +11,6 @@ export const DivMain = styled.div`
 `
 
 export const DivSelect = styled.div`
-    /* background-color: ${(props) => props.color}; */
     height: 40%;
     display: flex;
     flex-direction: column;
@@ -82,19 +80,11 @@ export const DivDivision = styled.div`
     max-height: 65px;
     height: 25px;
     width: 100%;
-    /* transform: scale(1.3); */
-    /* z-index: -1; */
     position: relative;
     path{
         fill: #EFEFEF;
     }
     @media only screen and (min-width: 600px) {
-        /* z-index: 1; */
-        /* transform: rotate(-90deg);
-        width: 100%;
-        height: 100vh;
-        margin-top: 200px;
-        border: 2px solid black; */
         width: 0px;
     }
 `
