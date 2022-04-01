@@ -24,7 +24,7 @@ export const getContestResult = (setData) => {
 export const getNumberResult = (setData, id) => {
     axios.get(`${BASE_URL}/concursos/${id}`)
     .then((res) => {
-        setData(res.data.numeros)
+        setData(res.data)
     })
     .catch((err) => {
         alert(err.message)
