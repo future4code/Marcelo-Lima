@@ -1,23 +1,30 @@
 import axios from "axios"
 import { useContext, useEffect } from "react"
+import { CardMovie } from "../../components/CardMovie/CardMovie"
 import GlobalStateContext from "../../globalContext/GlobalStateContext"
+import { DivMovies, MainDiv, DivGenre, DivButtonGenres } from "./styles"
 
 export const HomePage = () => {
-    const {states, setters} = useContext(GlobalStateContext)
-    const {listMovies} = states
-    console.log("list", listMovies)
+    const { states, setters } = useContext(GlobalStateContext)
+    const { listMovies, movieGenres } = states
+    console.log(movieGenres)
 
-    const renderListMovies = listMovies && listMovies.map((data) => {
-        return (
-            <div key={data.id}>
-                <h3>{data.title}</h3>
-            </div>
-        )
+    const renderMovieGenres = movieGenres && movieGenres.map((data) => {
+        return <button key={data.id}>{data.name}</button>
+
     })
     return (
-    <div>
-        <h1>HomePage</h1>
-        {renderListMovies}
-    </div>
+        <MainDiv>
+            <DivGenre>
+                <h1>Milhões de filmes, séries e pessoas para descobrir, Explore já.</h1>
+                <p>FILTRE POR:</p>
+                <DivButtonGenres>
+                    {renderMovieGenres}
+                </DivButtonGenres>
+            </DivGenre>
+            <DivMovies>
+                <CardMovie movie={listMovies} />
+            </DivMovies>
+        </MainDiv>
     )
 }
