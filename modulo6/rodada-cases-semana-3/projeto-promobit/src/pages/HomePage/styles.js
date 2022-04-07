@@ -42,6 +42,13 @@ export const DivButtonGenres = styled.div`
         font-weight: bolder;
         font-size: 16px;
         padding: 0px 15px;
+        :hover{
+            cursor: pointer;
+        }
+        :active{
+            background-color: #5C16C5;
+            color: #ffff;
+        }
     }
 `
 

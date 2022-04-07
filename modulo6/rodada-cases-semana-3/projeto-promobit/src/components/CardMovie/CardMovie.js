@@ -1,9 +1,8 @@
 import { IMAGE_URL } from "../../constants/urls"
 import { DivCardMovie, PosterImg, MainDiv, TextDate } from "./styles"
 
-export const CardMovie = (movie) => {
-    const renderListMovies = movie.movie && movie.movie.map((data) => {
-        const dateSplit = data.release_date.split('-')
+export const CardMovie = (props) => {
+        const dateSplit = props.movie.release_date.split('-')
         let date = ''
         switch (dateSplit[1]) {
             case "01":
@@ -46,14 +45,12 @@ export const CardMovie = (movie) => {
                 date = ''
         }
         const newDate = `${dateSplit[2]} ${date} ${dateSplit[0]}`
-        return (
-            <DivCardMovie key={data.id}>
-                <PosterImg src={`${IMAGE_URL}${data.poster_path}`} />
-                <p><b>{data.title}</b></p>
+        
+    return (
+        <DivCardMovie key={props.movie.id} onClick={props.changePage}>
+                <PosterImg src={`${IMAGE_URL}${props.movie.poster_path}`} />
+                <p><b>{props.movie.title}</b></p>
                 <TextDate><b>{newDate}</b></TextDate>
             </DivCardMovie>
-        )
-    })
-
-    return renderListMovies
+    )
 }
