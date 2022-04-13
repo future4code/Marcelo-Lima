@@ -5,16 +5,15 @@ import { CardMovie } from "../../components/CardMovie/CardMovie"
 import GlobalStateContext from "../../globalContext/GlobalStateContext"
 import { goToMovieDetails } from "../../router/coordinator"
 import { DivMovies, MainDiv, DivGenre, DivButtonGenres } from "./styles"
+import Pagination from '@mui/material/Pagination';
 
 export const HomePage = () => {
     const { states, setters } = useContext(GlobalStateContext)
     const { listMovies, movieGenres } = states
-    console.log(listMovies)
 
     const navigate = useNavigate()
     const goToDetails = (id) => {
         goToMovieDetails(navigate, id)
-        console.log("testando", id)
     }
 
     const renderMovieGenres = movieGenres && movieGenres.map((data) => {
@@ -33,6 +32,11 @@ export const HomePage = () => {
         )
     })
 
+    const onChangePagination = (event, value) => {
+        setters.setPagination(value)
+        console.log(value)
+    }
+
     return (
         <MainDiv>
             <DivGenre>
@@ -44,6 +48,7 @@ export const HomePage = () => {
             </DivGenre>
             <DivMovies>
                 {renderMovies}
+            <Pagination count={500} defaultPage={1}  onChange={onChangePagination}/>
             </DivMovies>
         </MainDiv>
     )
