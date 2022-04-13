@@ -14,7 +14,6 @@ const MovieRequestDataDetails = (id) => {
         axios.get(`${BASE_URL}/movie/${id}${API_KEY}&language=pt-br`)
         .then((res) => {
             setData(res.data)
-            console.log("details", res.data)
         })
         .catch((err) => {
             console.log("erro no endpoint getMovieDetails", err)

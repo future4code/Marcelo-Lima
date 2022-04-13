@@ -3,17 +3,17 @@ import { useEffect, useState } from "react"
 import { API_KEY } from "../constants/api_key"
 import { BASE_URL } from "../constants/urls"
 
-const MovieRequestDataInfo = (id) => {
+const MovieRequestDataTrailer = (id) => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        getMovieInfos()
+        getMovieTrailer()
     }, [])
 
-    const getMovieInfos = () => {
-        axios.get(`${BASE_URL}/movie/${id}/release_dates${API_KEY}`)
+    const getMovieTrailer = () => {
+        axios.get(`${BASE_URL}/movie/${id}/videos${API_KEY}&language=pt-br`)
         .then((res) => {
-            setData(res.data)
+            setData(res.data.results)
         })
         .catch((err) => {
             console.log("erro no endpoint getMovieDetails", err)
@@ -22,4 +22,4 @@ const MovieRequestDataInfo = (id) => {
     return data
 }
 
-export default MovieRequestDataInfo
+export default MovieRequestDataTrailer
