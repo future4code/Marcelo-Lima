@@ -59,4 +59,3 @@ export const DivMovies = styled.div`
     max-width: 1229px;
     margin: auto;
 `
-
