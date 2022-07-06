@@ -7,16 +7,14 @@ import { BASE_URL, MOVIE_GENRE } from "../constants/urls"
 export const GlobalState = (props) => {
     const [listMovies, setListMovies] = useState([])
     const [movieGenres, setMovieGenres] = useState([])
-    const [pagination, setPagination] = useState(1)
-    
 
     useEffect(() => {
         getMovies()
         getMoviesGenre()
-    }, [pagination])
+    }, [])
 
     const getMovies = () => {
-        axios.get(`${BASE_URL}/movie/popular${API_KEY}&language=pt-br&page=${pagination}`)
+        axios.get(`${BASE_URL}/movie/popular${API_KEY}&language=pt-br&page=1`)
             .then((res) => {
                 setListMovies(res.data.results)
             })
@@ -37,7 +35,7 @@ export const GlobalState = (props) => {
 
 
     const states = { listMovies, movieGenres }
-    const setters = { setListMovies, setMovieGenres, setPagination }
+    const setters = { setListMovies, setMovieGenres }
     return (
         <GlobalStateContext.Provider value={{ states, setters }}>
             {props.children}

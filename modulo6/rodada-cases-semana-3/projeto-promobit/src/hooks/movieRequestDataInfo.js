@@ -3,15 +3,15 @@ import { useEffect, useState } from "react"
 import { API_KEY } from "../constants/api_key"
 import { BASE_URL } from "../constants/urls"
 
-const MovieRequestDataDetails = (id) => {
+const MovieRequestDataInfo = (id) => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        getMovieDetails()
+        getMovieInfos()
     }, [])
 
-    const getMovieDetails = () => {
-        axios.get(`${BASE_URL}/movie/${id}${API_KEY}&language=pt-br`)
+    const getMovieInfos = () => {
+        axios.get(`${BASE_URL}/movie/${id}/release_dates${API_KEY}`)
         .then((res) => {
             setData(res.data)
         })
@@ -22,4 +22,4 @@ const MovieRequestDataDetails = (id) => {
     return data
 }
 
-export default MovieRequestDataDetails
+export default MovieRequestDataInfo

@@ -1,29 +1,29 @@
-import { DivPage, DivMain, DivContainer, PosterImg, DivInfo, DivCredits, DivCasts, ImgCasts, DivCardCasts, DivTrailer, DivRecommendations, ImgRecommendations, DivCardRecommendations, TextDate } from "./styles"
+import { DivPage, DivMain, DivContainer, PosterImg, DivInfo, DivCredits, DivCasts, ImgCasts, DivCardCasts } from "./styles"
 import GlobalStateContext from "../../globalContext/GlobalStateContext"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { BASE_URL, IMAGE_URL } from "../../constants/urls"
+import axios from "axios"
 import { API_KEY } from "../../constants/api_key"
 import movieRequestDataDetails from "../../hooks/movieRequestDataDetails"
+import MovieRequestDataInfo from "../../hooks/movieRequestDataInfo"
+import MovieRequestDataCredits from "../../hooks/movieRequestDataCredits"
+import MovieRequestDataTrailer from "../../hooks/movieRequestDataTrailer"
 
 export const MovieDetails = () => {
     const { states, setters } = useContext(GlobalStateContext)
     const { listMovies, movieGenres } = states
     const [movieDetail, setMovieDetail] = useState([])
     const params = useParams()
-    console.log(params)
 
-    const detailMovie = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}${API_KEY}&language=pt-br`)
-    const movieInfos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/release_dates${API_KEY}`)
-    const movieCredits = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/credits${API_KEY}&language=pt-br`)
-    const movieVideos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/videos${API_KEY}&language=pt-br`)
-    const movieRecommendations = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/recommendations${API_KEY}&language=pt-br&page=1`)
-    console.log(movieRecommendations)
+    const detailMovie = movieRequestDataDetails(params.movieId)
+    const movieInfos = MovieRequestDataInfo(params.movieId)
+    const movieCredits = MovieRequestDataCredits(params.movieId)
+    const movieVideos = MovieRequestDataTrailer(params.movieId)
 
     const movieInfo = movieInfos.results && movieInfos.results.filter((data) => {
-        return data.iso_3166_1 === 'BR' || data.iso_3166_1 === 'US' || data.iso_3166_1 === 'ES'
+        return data.iso_3166_1 === 'BR'
     })
-
     const datePermission = movieInfo && movieInfo[0].release_dates[0].certification
 
     const dateMovie = detailMovie && detailMovie.release_date
@@ -93,67 +93,18 @@ export const MovieDetails = () => {
         )
     })
 
-
-    const movieTrailer = movieVideos && movieVideos.results && movieVideos.results.filter((data) => {
-        return data.type === "Trailer"
+    const movieTrailer = movieVideos && movieVideos.filter((data) => {
+        return data.name === "Trailer Oficial Dublado"
     })
 
-    const renderTrailer = movieTrailer && movieTrailer[0] && <div>
-        <iframe width="560" height="315" src={`https://www.youtube.com/embed/${movieTrailer[0].key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
-    const renderRecommendations = movieRecommendations && movieRecommendations.results && movieRecommendations.results.map((data) => {
-        const dateSplit = data.release_date.split('-')
-        let date = ''
-        switch (dateSplit[1]) {
-            case "01":
-                date = "JAN"
-                break;
-            case "02":
-                date = "FEV"
-                break;
-            case "03":
-                date = "MAR"
-                break;
-            case "04":
-                date = "ABR"
-                break;
-            case "05":
-                date = "MAI"
-                break;
-            case "06":
-                date = "JUN"
-                break;
-            case "07":
-                date = "JUL"
-                break;
-            case "08":
-                date = "AGO"
-                break;
-            case "09":
-                date = "SET"
-                break;
-            case "10":
-                date = "OUT"
-                break;
-            case "11":
-                date = "NOV"
-                break;
-            case "12":
-                date = "DEZ"
-                break;
-            default:
-                date = ''
-        }
-        const newDate = `${dateSplit[2]} ${date} ${dateSplit[0]}`
+    const renderTrailer = movieTrailer && movieTrailer.map((data) => {
         return (
-            <DivCardRecommendations>
-                <ImgRecommendations src={`${IMAGE_URL}${data.poster_path}`} />
-                <p><b>{data.title}</b></p>
-                <TextDate><b>{newDate}</b></TextDate>
-            </DivCardRecommendations>
+            <div>
+                <iframe width="560" height="315" src={`https://www.youtube.com/embed/${data.key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         )
     })
+
 
     return (
         <DivPage>
@@ -164,16 +115,10 @@ export const MovieDetails = () => {
                     {renderCastMovie}
                 </div>
             </DivCasts>
-            <DivTrailer>
+            <div>
                 <h2>Trailer</h2>
                 {renderTrailer}
-            </DivTrailer>
-            <DivRecommendations>
-                <h2>Recomendações</h2>
-                <div>
-                    {renderRecommendations}
-                </div>
-            </DivRecommendations>
+            </div>
         </DivPage>
     )
 }
