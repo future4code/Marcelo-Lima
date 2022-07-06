@@ -7,11 +7,12 @@ import { BASE_URL, MOVIE_GENRE } from "../constants/urls"
 export const GlobalState = (props) => {
     const [listMovies, setListMovies] = useState([])
     const [movieGenres, setMovieGenres] = useState([])
+    const [filter, setFilter] = useState([])
 
     useEffect(() => {
         getMovies()
         getMoviesGenre()
-    }, [])
+    }, [filter])
 
     const getMovies = () => {
         axios.get(`${BASE_URL}/movie/popular${API_KEY}&language=pt-br&page=1`)
@@ -34,8 +35,8 @@ export const GlobalState = (props) => {
     }
 
 
-    const states = { listMovies, movieGenres }
-    const setters = { setListMovies, setMovieGenres }
+    const states = { listMovies, movieGenres, filter }
+    const setters = { setListMovies, setMovieGenres, setFilter }
     return (
         <GlobalStateContext.Provider value={{ states, setters }}>
             {props.children}
