@@ -1,6 +1,6 @@
 import styled from "styled-components";
+
 export const MainDiv = styled.div`
-    /* margin: auto; */
     display: flex;
     flex-direction: column;
     min-height: 90vh;
@@ -25,11 +25,9 @@ export const DivGenre = styled.div`
     }
     @media screen and (min-width: 512px)  and (max-width: 822px){
         height: 600px;
-
     }
     @media screen and (min-width: 0px)  and (max-width: 512px){
         height: 800px;
-
     }
 `
 export const DivButtonGenres = styled.div`
@@ -52,10 +50,6 @@ export const ButtonAdd = styled.button`
     :hover{
         cursor: pointer;
     }
-    /* :active{
-        background-color: #5C16C5;
-        color: #ffff;
-    } */
 `
 export const ButtonRemove = styled.button`
     height: 40px;

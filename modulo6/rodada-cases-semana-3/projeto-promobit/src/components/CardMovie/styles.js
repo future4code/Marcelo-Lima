@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const MainDiv = styled.div`
-    
-`
-
 export const DivCardMovie = styled.div`
     margin: 15px;
     max-width: 176px;

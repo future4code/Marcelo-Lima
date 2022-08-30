@@ -1,5 +1,5 @@
 import { IMAGE_URL } from "../../constants/urls"
-import { DivCardMovie, PosterImg, MainDiv, TextDate } from "./styles"
+import { DivCardMovie, PosterImg, TextDate } from "./styles"
 
 export const CardMovie = (props) => {
         const dateSplit = props.movie.release_date.split('-')

@@ -1,20 +1,33 @@
-import { DivPage, DivMain, DivContainer, PosterImg, DivInfo, DivCredits, DivCasts, ImgCasts, DivCardCasts, DivTrailer, DivRecommendations, ImgRecommendations, DivCardRecommendations, TextDate } from "./styles"
-import GlobalStateContext from "../../globalContext/GlobalStateContext"
-import { useContext, useState } from "react"
 import { useParams } from "react-router"
 import { BASE_URL, IMAGE_URL } from "../../constants/urls"
 import { API_KEY } from "../../constants/api_key"
-import movieRequestDataDetails from "../../hooks/movieRequestDataDetails"
+import movieRequestData from "../../hooks/movieRequestData"
+import {
+    DivPage,
+    DivMain,
+    DivContainer,
+    PosterImg,
+    DivInfo,
+    DivCredits,
+    DivCasts,
+    ImgCasts,
+    DivCardCasts,
+    DivTrailer,
+    DivRecommendations,
+    ImgRecommendations,
+    DivCardRecommendations,
+    TextDate
+} from "./styles"
 
 export const MovieDetails = () => {
 
     const params = useParams()
 
-    const detailMovie = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}${API_KEY}&language=pt-br`)
-    const movieInfos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/release_dates${API_KEY}`)
-    const movieCredits = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/credits${API_KEY}&language=pt-br`)
-    const movieVideos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/videos${API_KEY}&language=pt-br`)
-    const movieRecommendations = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/recommendations${API_KEY}&language=pt-br&page=1`)
+    const detailMovie = movieRequestData(`${BASE_URL}/movie/${params.movieId}${API_KEY}&language=pt-br`)
+    const movieInfos = movieRequestData(`${BASE_URL}/movie/${params.movieId}/release_dates${API_KEY}`)
+    const movieCredits = movieRequestData(`${BASE_URL}/movie/${params.movieId}/credits${API_KEY}&language=pt-br`)
+    const movieVideos = movieRequestData(`${BASE_URL}/movie/${params.movieId}/videos${API_KEY}&language=pt-br`)
+    const movieRecommendations = movieRequestData(`${BASE_URL}/movie/${params.movieId}/recommendations${API_KEY}&language=pt-br&page=1`)
 
     const movieInfo = movieInfos.results && movieInfos.results.filter((data) => {
         return data.iso_3166_1 === 'BR' || data.iso_3166_1 === 'US' || data.iso_3166_1 === 'ES'

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router"
 import { CardMovie } from "../../components/CardMovie/CardMovie"
 import GlobalStateContext from "../../globalContext/GlobalStateContext"
@@ -9,12 +9,8 @@ import Pagination from '@mui/material/Pagination';
 export const HomePage = () => {
     const { states, setters } = useContext(GlobalStateContext)
     const { listMovies, movieGenres, filter } = states
-    
-    const navigate = useNavigate()
 
-    const goToDetails = (id) => {
-        goToMovieDetails(navigate, id)
-    }
+    const navigate = useNavigate()
 
     const onChangePagination = (event, value) => {
         setters.setPagination(value)
@@ -49,7 +45,7 @@ export const HomePage = () => {
             <CardMovie
                 key={data.id}
                 movie={data}
-                changePage={() => goToDetails(data.id)}
+                changePage={() => goToMovieDetails(navigate, data.id)}
             />
         )
     })

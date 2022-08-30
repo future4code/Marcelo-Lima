@@ -24,7 +24,7 @@ export const GlobalState = (props) => {
                 console.log(err)
             })
     }
-    
+
     const getMoviesGenre = () => {
         axios.get(`${MOVIE_GENRE}${API_KEY}&language=pt-br`)
             .then((res) => {
@@ -34,8 +34,10 @@ export const GlobalState = (props) => {
                 console.log(err)
             })
     }
+
     const states = { listMovies, movieGenres, filter }
     const setters = { setListMovies, setMovieGenres, setFilter, setPagination }
+
     return (
         <GlobalStateContext.Provider value={{ states, setters }}>
             {props.children}

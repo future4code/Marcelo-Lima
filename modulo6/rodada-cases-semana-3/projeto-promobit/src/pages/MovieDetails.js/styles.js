@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const DivPage = styled.div`
     background-color: #F3F3F3;
 `
@@ -61,8 +60,6 @@ export const DivInfo = styled.div`
 `
 
 export const DivCredits = styled.div`
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr; */
     display: flex;
     flex-wrap: wrap;
     div{
@@ -82,20 +79,14 @@ export const DivCasts = styled.div`
     width: 5px;
     height: 10px;
     }
-    /* Track */
     ::-webkit-scrollbar-track {
    background-color: #DDDDDD; 
     border-radius: 5px;
     }
-    /* Handle */
     ::-webkit-scrollbar-thumb {
     background: #ADADAD; 
     border-radius: 10px;
     }
-    /* Handle on hover */
-    /* ::-webkit-scrollbar-thumb:hover {
-    background: #ADADAD; 
-    } */
     div{
         display: flex;
     }
@@ -145,20 +136,14 @@ export const DivRecommendations = styled.div`
     width: 5px;
     height: 10px;
     }
-    /* Track */
     ::-webkit-scrollbar-track {
    background-color: #DDDDDD; 
     border-radius: 5px;
     }
-    /* Handle */
     ::-webkit-scrollbar-thumb {
     background: #ADADAD; 
     border-radius: 10px;
     }
-    /* Handle on hover */
-    /* ::-webkit-scrollbar-thumb:hover {
-    background: #ADADAD; 
-    } */
     div{
         display: flex;
     }
