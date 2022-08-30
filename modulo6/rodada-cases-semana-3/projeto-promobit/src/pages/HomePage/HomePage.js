@@ -9,8 +9,7 @@ import Pagination from '@mui/material/Pagination';
 export const HomePage = () => {
     const { states, setters } = useContext(GlobalStateContext)
     const { listMovies, movieGenres, filter } = states
-    console.log("filter fora do escopo", filter)
-    console.log("listMovies", listMovies)
+    
     const navigate = useNavigate()
 
     const goToDetails = (id) => {

@@ -8,5 +8,8 @@ export const HeaderStyled = styled.header`
         height: 24.03px;
         width: 184.74px;
         margin: 16px 0px 15.97px 112px;
+        :hover{
+            cursor: pointer;
+        }
     }
 `

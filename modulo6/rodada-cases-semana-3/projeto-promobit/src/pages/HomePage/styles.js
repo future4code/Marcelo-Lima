@@ -23,6 +23,14 @@ export const DivGenre = styled.div`
         font-weight: bold;
         margin-top: 50px;
     }
+    @media screen and (min-width: 512px)  and (max-width: 822px){
+        height: 600px;
+
+    }
+    @media screen and (min-width: 0px)  and (max-width: 512px){
+        height: 800px;
+
+    }
 `
 export const DivButtonGenres = styled.div`
     display: flex;

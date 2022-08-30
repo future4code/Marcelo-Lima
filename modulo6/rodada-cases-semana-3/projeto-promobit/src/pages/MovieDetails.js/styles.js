@@ -6,7 +6,7 @@ export const DivPage = styled.div`
 `
 
 export const DivMain = styled.div`
-    height: 600px;
+    height: 100%;
     background-color: #2D0C5E;
     display: flex;
     justify-content: center;
@@ -18,13 +18,26 @@ export const DivContainer = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    @media screen and (min-width: 0px)  and (max-width: 858px){
+        display: flex;
+        flex-direction: column;
+
+    }
 `
 
 export const PosterImg = styled.img`
     max-width: 383px;
+    max-height: 510px;
     border-radius: 5px;
     transform: scale(1.2);
     margin-top: 60px;
+    @media screen and (min-width: 396px)  and (max-width: 858px){
+        margin: auto;
+        max-width: 100vw;
+        transform: scale(1.1);
+    }@media screen and (min-width: 0px)  and (max-width: 396px){
+        transform: scale(1);
+    }
 `
 
 export const DivInfo = styled.div`
@@ -41,11 +54,20 @@ export const DivInfo = styled.div`
     h3{
         color: #ffff;
     }
+    @media screen and (min-width: 0px)  and (max-width: 858px){
+        margin-left: 15px;
+        margin-top: 40px;
+    }
 `
 
 export const DivCredits = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr; */
+    display: flex;
+    flex-wrap: wrap;
+    div{
+        margin: 10px;
+    }
 `
 
 export const DivCasts = styled.div`
@@ -105,6 +127,11 @@ export const DivTrailer = styled.div`
     iframe{
         width: 70%;
         height: 40vh;
+    }
+    @media screen and (min-width: 0px)  and (max-width: 458px){
+        iframe{
+            width: 100vw;
+        }
     }
 `
 
