@@ -1,69 +1,51 @@
-import axios from "axios"
 import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { CardMovie } from "../../components/CardMovie/CardMovie"
 import GlobalStateContext from "../../globalContext/GlobalStateContext"
 import { goToMovieDetails } from "../../router/coordinator"
-import { DivMovies, MainDiv, DivGenre, DivButtonGenres, ButtonRemove, ButtonAdd } from "./styles"
+import { DivMovies, MainDiv, DivGenre, DivButtonGenres, DivPagination, ButtonRemove, ButtonAdd } from "./styles"
 import Pagination from '@mui/material/Pagination';
 
 export const HomePage = () => {
     const { states, setters } = useContext(GlobalStateContext)
     const { listMovies, movieGenres, filter } = states
-
+    console.log("filter fora do escopo", filter)
+    console.log("listMovies", listMovies)
     const navigate = useNavigate()
+
     const goToDetails = (id) => {
         goToMovieDetails(navigate, id)
     }
 
     const onChangePagination = (event, value) => {
         setters.setPagination(value)
-        // console.log(value)
     }
 
     const addFilter = (setFilter, genreId) => {
-        // console.log("oi")
-        if(!filter) {
-            console.log('asdfsdf')
-            setFilter([...filter, genreId])
-        } else {
-            console.log('coisado', filter)
-            const idExist = filter.find(genMovId => genMovId === genreId)
-            console.log('aoi', idExist)
-            if(idExist){
-                console.log('adedonha')
-                return
-            }
-            setFilter([...filter, genreId])
-        }
+        setFilter([...filter, genreId])
     }
 
     const removeFilter = (filter, setFilter, genreId) => {
-        // console.log("re")
-        const index = filter.findIndex(i => i === genreId)
-        if(filter[index] !== -1){
-            filter.splice(index, 1)
-        }
-        setFilter(filter)
+        const newFilter = filter.filter(id => id !== genreId)
+        setFilter(newFilter)
     }
 
     const renderMovieGenres = movieGenres && movieGenres.map((data) => {
-        let idExist = filter.find(movie => movie === data.id)
-        // console.log("idExist", idExist)
-        if(idExist){
-            // console.log("botRemove")
+        let idExist = filter.find(movieId => movieId === data.id)
+        if (idExist) {
             return <ButtonRemove key={data.id} onClick={() => removeFilter(filter, setters.setFilter, data.id)}>{data.name}</ButtonRemove>
-        }else {
-            // console.log("botAdd")
+        } else {
             return <ButtonAdd key={data.id} onClick={() => addFilter(setters.setFilter, data.id)}>{data.name}</ButtonAdd>
         }
-        
-        
-        // return <button key={data.id}>{data.name}</button>
-
     })
 
-    const renderMovies = listMovies && listMovies.map((data) => {
+    const renderMovies = listMovies && listMovies.filter(item => {
+        if (filter.length === 0) {
+            return item
+        } else {
+            return item.genre_ids.find(item1 => filter.find(item2 => item1 === item2))
+        }
+    }).map((data) => {
         return (
             <CardMovie
                 key={data.id}
@@ -72,8 +54,6 @@ export const HomePage = () => {
             />
         )
     })
-
-
 
     return (
         <MainDiv>
@@ -86,8 +66,10 @@ export const HomePage = () => {
             </DivGenre>
             <DivMovies>
                 {renderMovies}
-            <Pagination count={500} defaultPage={1}  onChange={onChangePagination}/>
             </DivMovies>
+            <DivPagination>
+                <Pagination count={500} defaultPage={1} onChange={onChangePagination} />
+            </DivPagination>
         </MainDiv>
     )
 }

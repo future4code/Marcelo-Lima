@@ -7,29 +7,23 @@ import { API_KEY } from "../../constants/api_key"
 import movieRequestDataDetails from "../../hooks/movieRequestDataDetails"
 
 export const MovieDetails = () => {
-    const { states, setters } = useContext(GlobalStateContext)
-    const { listMovies, movieGenres } = states
-    const [movieDetail, setMovieDetail] = useState([])
+
     const params = useParams()
-    console.log(params)
 
     const detailMovie = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}${API_KEY}&language=pt-br`)
     const movieInfos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/release_dates${API_KEY}`)
     const movieCredits = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/credits${API_KEY}&language=pt-br`)
     const movieVideos = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/videos${API_KEY}&language=pt-br`)
     const movieRecommendations = movieRequestDataDetails(`${BASE_URL}/movie/${params.movieId}/recommendations${API_KEY}&language=pt-br&page=1`)
-    console.log(movieRecommendations)
 
     const movieInfo = movieInfos.results && movieInfos.results.filter((data) => {
         return data.iso_3166_1 === 'BR' || data.iso_3166_1 === 'US' || data.iso_3166_1 === 'ES'
     })
 
     const datePermission = movieInfo && movieInfo[0].release_dates[0].certification
-
     const dateMovie = detailMovie && detailMovie.release_date
     const newDate = dateMovie && dateMovie.split("-")
     const movieYear = newDate && newDate[0]
-
     const releaseDate = movieInfo && movieInfo[0].release_dates[0].release_date.split('T')[0]
     const formatDate = releaseDate && releaseDate.split('-')
     const newReleaseDate = formatDate && `${formatDate[2]}/${formatDate[1]}/${formatDate[0]}`
@@ -43,7 +37,6 @@ export const MovieDetails = () => {
         const min = minutes % 60;
         const textTime = (`${time}`).slice(-2);
         const textMin = (`${min}`).slice(-2);
-
         return `${textTime}h ${textMin}m`;
     };
 
@@ -58,7 +51,6 @@ export const MovieDetails = () => {
                 <p>{data.job}</p>
             </div>
         )
-
     })
 
     const renderDetailMovie = detailMovie && (
@@ -92,7 +84,6 @@ export const MovieDetails = () => {
             </DivCardCasts>
         )
     })
-
 
     const movieTrailer = movieVideos && movieVideos.results && movieVideos.results.filter((data) => {
         return data.type === "Trailer"
@@ -145,6 +136,7 @@ export const MovieDetails = () => {
             default:
                 date = ''
         }
+
         const newDate = `${dateSplit[2]} ${date} ${dateSplit[0]}`
         return (
             <DivCardRecommendations>

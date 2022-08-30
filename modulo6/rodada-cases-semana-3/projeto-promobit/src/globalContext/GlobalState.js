@@ -8,14 +8,15 @@ export const GlobalState = (props) => {
     const [listMovies, setListMovies] = useState([])
     const [movieGenres, setMovieGenres] = useState([])
     const [filter, setFilter] = useState([])
+    const [pagination, setPagination] = useState(1)
 
     useEffect(() => {
         getMovies()
         getMoviesGenre()
-    }, [filter])
+    }, [filter, pagination])
 
     const getMovies = () => {
-        axios.get(`${BASE_URL}/movie/popular${API_KEY}&language=pt-br&page=1`)
+        axios.get(`${BASE_URL}/movie/popular${API_KEY}&language=pt-br&page=1&page=${pagination}`)
             .then((res) => {
                 setListMovies(res.data.results)
             })
@@ -23,7 +24,7 @@ export const GlobalState = (props) => {
                 console.log(err)
             })
     }
-
+    
     const getMoviesGenre = () => {
         axios.get(`${MOVIE_GENRE}${API_KEY}&language=pt-br`)
             .then((res) => {
@@ -33,10 +34,8 @@ export const GlobalState = (props) => {
                 console.log(err)
             })
     }
-
-
     const states = { listMovies, movieGenres, filter }
-    const setters = { setListMovies, setMovieGenres, setFilter }
+    const setters = { setListMovies, setMovieGenres, setFilter, setPagination }
     return (
         <GlobalStateContext.Provider value={{ states, setters }}>
             {props.children}
